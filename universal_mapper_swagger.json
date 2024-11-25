@@ -1,0 +1,540 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "UniversalMapper API",
+    "description": "An Api for multiple idenfiers mapping",
+    "version": "v1"
+  },
+  "paths": {
+    "/UniMap/{source}": {
+      "get": {
+        "tags": [
+          "UniMap"
+        ],
+        "summary": "Find all identifiers of a specific compoment",
+        "parameters": [
+          {
+            "name": "source",
+            "in": "path",
+            "description": "Source of identifier or Collection UUID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AlternativeIdentifier"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AlternativeIdentifier"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AlternativeIdentifier"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "UniMap"
+        ],
+        "summary": "Add new identifier for a specific source",
+        "description": "Sample request:\r\n            \r\n    POST /UniMap/test\r\n    {\r\n        \"SourceName\": {\r\n            \"Value\": \"test\"\r\n        },\r\n        \"Identifier\": {\r\n            \"Value\": \"INV01\"\r\n        },\r\n        \"Description\": {\r\n            \"Value\": \"inverter name\"\r\n        },\r\n        \"IdentifierType\": {\r\n            \"Value\": \"Other\"\r\n        }\r\n    }",
+        "parameters": [
+          {
+            "name": "source",
+            "in": "path",
+            "description": "source of identifier",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "AlternavieIdentifier definition",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AlternativeIdentifier"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AlternativeIdentifier"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AlternativeIdentifier"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/UniMap/{source}/{exsistingId}": {
+      "post": {
+        "tags": [
+          "UniMap"
+        ],
+        "summary": "Map a new identifier to an existing identifier",
+        "description": "Sample request:\r\n            \r\n    POST /UniMap/test/INV01\r\n    {\r\n        \"SourceName\": {\r\n            \"Value\": \"otherplatform\"\r\n        },\r\n        \"Identifier\": {\r\n            \"Value\": \"INV.0001\"\r\n        },\r\n        \"Description\": {\r\n            \"Value\": \"another description\"\r\n        },\r\n        \"IdentifierType\": {\r\n            \"Value\": \"Other\"\r\n        }\r\n    }",
+        "parameters": [
+          {
+            "name": "source",
+            "in": "path",
+            "description": "Source of exisiting indentifier or Collection UUID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "exsistingId",
+            "in": "path",
+            "description": "Identifier to search",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "AlternativeIdentifier to add in collection",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AlternativeIdentifier"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AlternativeIdentifier"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AlternativeIdentifier"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "UniMap"
+        ],
+        "summary": "Update an existing Identifier",
+        "description": "Sample request:\r\n            \r\n    PUT /UniMap/otherplatform/INV.0001\r\n    {\r\n        \"SourceName\": {\r\n            \"Value\": \"otherplatform\"\r\n        },\r\n        \"Identifier\": {\r\n            \"Value\": \"INV.0001-A\"\r\n        },\r\n        \"Description\": {\r\n            \"Value\": \"another description\"\r\n        },\r\n        \"IdentifierType\": {\r\n            \"Value\": \"Other\"\r\n        }\r\n    }",
+        "parameters": [
+          {
+            "name": "source",
+            "in": "path",
+            "description": "Source of exisiting indentifier",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "exsistingId",
+            "in": "path",
+            "description": "Identifier to search",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "AlternativeIdentifier to update",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AlternativeIdentifier"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AlternativeIdentifier"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AlternativeIdentifier"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "UniMap"
+        ],
+        "summary": "Delete an identifier",
+        "parameters": [
+          {
+            "name": "source",
+            "in": "path",
+            "description": "Source of exisiting indentifier",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "exsistingId",
+            "in": "path",
+            "description": "Identifier to search",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/UniMap/{source}/{id}": {
+      "get": {
+        "tags": [
+          "UniMap"
+        ],
+        "summary": "Find all identifiers of a specific compoment",
+        "parameters": [
+          {
+            "name": "source",
+            "in": "path",
+            "description": "Source of identifier or Collection UUID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Name of the component in source",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AlternativeIdentifier"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AlternativeIdentifier"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AlternativeIdentifier"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AlternativeIdentifier": {
+        "type": "object",
+        "properties": {
+          "SourceName": {
+            "$ref": "#/components/schemas/SourceName"
+          },
+          "Identifier": {
+            "$ref": "#/components/schemas/Identifier"
+          },
+          "Description": {
+            "$ref": "#/components/schemas/Description"
+          },
+          "IdentifierType": {
+            "$ref": "#/components/schemas/IdentifierType"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Description": {
+        "type": "object",
+        "properties": {
+          "Value": {
+            "type": "string",
+            "nullable": true
+          },
+          "Unit": {
+            "type": "string",
+            "nullable": true
+          },
+          "Decimals": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "Precision": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "StartTime": {
+            "type": "string",
+            "nullable": true
+          },
+          "EndTime": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Identifier": {
+        "type": "object",
+        "properties": {
+          "Value": {
+            "type": "string",
+            "nullable": true
+          },
+          "Unit": {
+            "type": "string",
+            "nullable": true
+          },
+          "Decimals": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "Precision": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "StartTime": {
+            "type": "string",
+            "nullable": true
+          },
+          "EndTime": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "IdentifierType": {
+        "type": "object",
+        "properties": {
+          "Value": {
+            "type": "string",
+            "nullable": true
+          },
+          "Unit": {
+            "type": "string",
+            "nullable": true
+          },
+          "Decimals": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "Precision": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "StartTime": {
+            "type": "string",
+            "nullable": true
+          },
+          "EndTime": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SourceName": {
+        "type": "object",
+        "properties": {
+          "Value": {
+            "type": "string",
+            "nullable": true
+          },
+          "Unit": {
+            "type": "string",
+            "nullable": true
+          },
+          "Decimals": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "Precision": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "StartTime": {
+            "type": "string",
+            "nullable": true
+          },
+          "EndTime": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "securitySchemes": {
+      "bearer": {
+        "type": "http",
+        "description": "JWT Authorization header using the Bearer scheme.",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  "security": [
+    {
+      "bearer": [ ]
+    }
+  ]
+}
