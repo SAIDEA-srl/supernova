@@ -1,0 +1,133 @@
+{
+  "asyncapi": "3.0.0",
+  "info": {
+    "title": "Orange Service",
+    "version": "0.0.1"
+  },
+  "channels": {
+    "orange": {
+      "address": "orange-api",
+      "messages": {
+        "OmTask": {
+          "$ref": "#/components/messages/MessageOmTask"
+        },
+        "OmIssue": {
+          "$ref": "#/components/messages/MessageOmIssue"
+        },
+        "WeatherDataRecord": {
+          "$ref": "#/components/messages/MessageWeatherDataRecord"
+        }
+      },
+      "servers": [
+        {
+          "$ref": "#/servers/orange"
+        }
+      ]
+    }
+  },
+  "servers": {
+    "orange": {
+      "host": "orange:orange@192.168.253.110/orange",
+      "protocol": "amqps"
+    }
+  },
+  "operations": {
+    "omTask": {
+      "action": "send",
+      "channel": {
+        "$ref": "#/channels/orange"
+      },
+      "messages": [
+        {
+          "$ref": "#/channels/orange/messages/OmTask"
+        }
+      ]
+    },
+    "omIssue": {
+      "action": "send",
+      "channel": {
+        "$ref": "#/channels/orange"
+      },
+      "messages": [
+        {
+          "$ref": "#/channels/orange/messages/OmIssue"
+        }
+      ]
+    },
+    "weatherDataRecord": {
+      "action": "send",
+      "channel": {
+        "$ref": "#/channels/orange"
+      },
+      "messages": [
+        {
+          "$ref": "#/channels/orange/messages/WeatherDataRecord"
+        }
+      ]
+    }
+  },
+  "components": {
+    "messages": {
+      "MessageOmTask": {
+        "payload": {
+          "type": "object",
+          "properties": {
+              "DateTime": {
+              "type": "string",
+              "format": "date-time",
+              "description": "Message creation date"
+            },
+            "Source": {
+              "type": "string",
+              "description": "Message source"
+            },
+            "Data": {
+              "$ref": "./orange_api_swagger.json#/components/schemas/OMTask",
+              "description": "OMTask object"
+            }
+          }
+        }
+      },
+      "MessageOmIssue": {
+        "payload": {
+          "type": "object",
+          "properties": {
+            "DateTime": {
+              "type": "string",
+              "format": "date-time",
+              "description": "Message creation date"
+            },
+            "Source": {
+              "type": "string",
+              "description": "Message source"
+            },
+            "Data": {
+              "$ref": "./orange_api_swagger.json#/components/schemas/OMIssue",
+              "description": "OMIssue object"
+            }
+          }
+        }
+      },
+      "MessageWeatherDataRecord": {
+        "payload": {
+          "type": "object",
+          "properties": {
+            "DateTime": {
+              "type": "string",
+              "format": "date-time",
+              "description": "Message creation date"
+            },
+            "Source": {
+              "type": "string",
+              "description": "Message source"
+            },
+            "Data": {
+              "$ref": "./orange_api_swagger.json#/components/schemas/WeatherDataRecord",
+              "description": "WeatherDataRecord object"
+            }
+          }
+        }
+      }
+    }
+  }
+}
