@@ -5,29 +5,64 @@
     "version": "0.0.1"
   },
   "channels": {
-    "orange": {
-      "address": "orange-api",
+    "weathers": {
+      "address": "weathers",
+      "bindings": {
+        "amqp": {
+          "is":"routingKey",
+          "exchange": {
+            "name": "RebusTopics",
+            "type": "topic",
+            "vhost": "orange"
+          }
+        }
+      },
       "messages": {
-        "OmTask": {
-          "$ref": "#/components/messages/MessageOmTask"
-        },
-        "OmIssue": {
-          "$ref": "#/components/messages/MessageOmIssue"
-        },
         "WeatherDataRecord": {
           "$ref": "#/components/messages/MessageWeatherDataRecord"
         }
-      },
-      "servers": [
-        {
-          "$ref": "#/servers/orange"
+      }
+    },
+    "omissue": {
+      "address": "omissue",
+      "bindings": {
+        "amqp": {
+          "is":"routingKey",
+          "exchange": {
+            "name": "RebusTopics",
+            "type": "topic",
+            "vhost": "orange"
+          }
         }
-      ]
+      },
+      "messages": {
+        "OmIssue": {
+          "$ref": "#/components/messages/MessageOmIssue"
+        }
+      }
+    },
+    "omtask": {
+      "address": "omtask",
+      "bindings": {
+        "amqp": {
+          "is":"routingKey",
+          "exchange": {
+            "name": "RebusTopics",
+            "type": "topic",
+            "vhost": "orange"
+          }
+        }
+      },
+      "messages": {
+        "OmTask": {
+          "$ref": "#/components/messages/MessageOmTask"
+        }
+      }
     }
   },
   "servers": {
     "orange": {
-      "host": "orange:orange@192.168.253.110/orange",
+      "host": "192.168.253.110",
       "protocol": "amqps"
     }
   },
@@ -35,33 +70,33 @@
     "omTask": {
       "action": "send",
       "channel": {
-        "$ref": "#/channels/orange"
+        "$ref": "#/channels/omtask"
       },
       "messages": [
         {
-          "$ref": "#/channels/orange/messages/OmTask"
+          "$ref": "#/channels/omtask/messages/OmTask"
         }
       ]
     },
     "omIssue": {
       "action": "send",
       "channel": {
-        "$ref": "#/channels/orange"
+        "$ref": "#/channels/omissue"
       },
       "messages": [
         {
-          "$ref": "#/channels/orange/messages/OmIssue"
+          "$ref": "#/channels/omissue/messages/OmIssue"
         }
       ]
     },
     "weatherDataRecord": {
       "action": "send",
       "channel": {
-        "$ref": "#/channels/orange"
+        "$ref": "#/channels/weathers"
       },
       "messages": [
         {
-          "$ref": "#/channels/orange/messages/WeatherDataRecord"
+          "$ref": "#/channels/weathers/messages/WeatherDataRecord"
         }
       ]
     }
