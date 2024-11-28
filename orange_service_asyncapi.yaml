@@ -1,0 +1,145 @@
+asyncapi: 2.6.0
+id: it:saidea:antares:orange:orange-service
+info:
+  title: Orange Service
+  version: 0.0.1
+tags:
+  - name: orange-service
+    description: Tag for orange-service
+servers:
+  orange:
+    url: 192.168.253.110
+    protocol: amqps
+channels:
+  weathers:
+    subscribe:
+      operationId: weatherDataReceived
+      message:
+        name: MessageWeatherDataRecord
+        payload:
+          type: object
+          properties:
+            DateTime:
+              type: string
+              format: date-time
+              description: Message creation date
+            Source:
+              type: string
+              description: Message source
+            Data:
+              description: WeatherDataRecord object
+    publish:
+      operationId: weatherReadSend
+      message:
+        name: MessageWeatherDataRecord
+        payload:
+          type: object
+          properties:
+            DateTime:
+              type: string
+              format: date-time
+              description: Message creation date
+            Source:
+              type: string
+              description: Message source
+            Data:
+              description: WeatherDataRecord object
+    bindings:
+      amqp:
+        is: routingKey
+        queue: 
+          name: orange-api
+      exhange:
+        name: RebusTopics
+        type: topic
+        durable: true
+        autoDelete: false
+        vhost: orange
+  omissue:
+    subscribe:
+      operationId: omIssueReceived
+      message:
+        name: MessageOmIssue
+        payload:
+          type: object
+          properties:
+            DateTime:
+              type: string
+              format: date-time
+              description: Message creation date
+            Source:
+              type: string
+              description: Message source
+            Data:
+              description: OMIssue object
+    publish:
+      operationId: omIssueSend
+      message:
+        name: MessageOmIssue
+        payload:
+          type: object
+          properties:
+            DateTime:
+              type: string
+              format: date-time
+              description: Message creation date
+            Source:
+              type: string
+              description: Message source
+            Data:
+              description: OMIssue object
+    bindings:
+      amqp:
+        is: routingKey
+        queue: 
+          name: orange-api
+      exhange:
+        name: RebusTopics
+        type: topic
+        durable: true
+        autoDelete: false
+        vhost: orange
+  omtask:
+    subscribe:
+      operationId: omTaskReceived
+      message:
+        name: MessageOmTask
+        payload:
+          type: object
+          properties:
+            DateTime:
+              type: string
+              format: date-time
+              description: Message creation date
+            Source:
+              type: string
+              description: Message source
+            Data:
+              description: OMTask object
+    publish:
+      operationId: omTaskSend
+      message:
+        name: MessageOmTask
+        payload:
+          type: object
+          properties:
+            DateTime:
+              type: string
+              format: date-time
+              description: Message creation date
+            Source:
+              type: string
+              description: Message source
+            Data:
+              description: OMTask object
+    bindings:
+      amqp:
+        is: routingKey
+        queue: 
+          name: orange-api
+      exhange:
+        name: RebusTopics
+        type: topic
+        durable: true
+        autoDelete: false
+        vhost: orange

@@ -1,0 +1,6 @@
+https://www.asyncapi.com/docs/tools/generator/installation-guide
+
+npm install -g @asyncapi/cli
+npm install -g @asyncapi/dotnet-rabbitmq-template
+
+asyncapi generate fromTemplate orange_service_asyncapi_2.6.0.json @asyncapi/dotnet-rabbitmq-template --force-write
