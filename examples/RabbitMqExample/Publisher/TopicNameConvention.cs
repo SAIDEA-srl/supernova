@@ -1,7 +1,7 @@
 ﻿using Rebus.Serialization;
 using Rebus.Topic;
 
-namespace RebusExtensions.Topic
+namespace Publisher
 {
     public class TopicNameConvention : ITopicNameConvention
     {

@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Subscriber", "Subscriber\Su
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{56229CA8-FCCD-4831-866E-AD2F9B9F3ECC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RebusExtensions", "RebusExtensions\RebusExtensions.csproj", "{19593840-EEA5-4E6F-8CE7-8D22E7B07633}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,10 +27,6 @@ Global
 		{56229CA8-FCCD-4831-866E-AD2F9B9F3ECC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{56229CA8-FCCD-4831-866E-AD2F9B9F3ECC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{56229CA8-FCCD-4831-866E-AD2F9B9F3ECC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{19593840-EEA5-4E6F-8CE7-8D22E7B07633}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{19593840-EEA5-4E6F-8CE7-8D22E7B07633}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{19593840-EEA5-4E6F-8CE7-8D22E7B07633}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{19593840-EEA5-4E6F-8CE7-8D22E7B07633}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

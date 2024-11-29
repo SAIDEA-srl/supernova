@@ -1,8 +1,12 @@
 ﻿using Models;
 using Models.OrangeButton;
+using Newtonsoft.Json;
+using Publisher;
 using Rebus.Config;
-using Rebus.Messages;
-using RebusExtensions;
+using Rebus.Serialization;
+using Rebus.Serialization.Custom;
+using Rebus.Serialization.Json;
+using Rebus.Topic;
 
 var sourceName = "PublisherExample";
 var vhost = "orange";
@@ -10,9 +14,21 @@ var username = "orange";
 var password = "orange";
 
 var bus = Configure.OneWayClient()
-    .MapTypes(t =>
+    .Serialization((s) =>
     {
-        t.Map<Message<OMIssue>>($"omissue");
+        s.UseNewtonsoftJson(new JsonSerializerSettings
+        {
+            TypeNameHandling = TypeNameHandling.None
+        });
+        s.UseCustomMessageTypeNames().AddWithCustomName<Message<OMIssue>>("omissue");
+    })
+    .Options(o =>
+    {
+        o.Decorate<ITopicNameConvention>(c =>
+        {
+            var messageTypeNameConvention = c.Get<IMessageTypeNameConvention>();
+            return new TopicNameConvention(messageTypeNameConvention);
+        });
     })
     .Transport(t =>
     {
