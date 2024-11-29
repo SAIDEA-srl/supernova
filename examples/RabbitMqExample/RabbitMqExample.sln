@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RebusSubscriber", "RebusSub
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{56229CA8-FCCD-4831-866E-AD2F9B9F3ECC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Subscriber", "Subscriber\Subscriber.csproj", "{84D069FE-CE34-4486-9028-8730AEF5CBD0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Publisher", "Publisher\Publisher.csproj", "{4A8E5CF8-00C2-4DC9-B005-5C97922AD982}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{56229CA8-FCCD-4831-866E-AD2F9B9F3ECC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{56229CA8-FCCD-4831-866E-AD2F9B9F3ECC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{56229CA8-FCCD-4831-866E-AD2F9B9F3ECC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84D069FE-CE34-4486-9028-8730AEF5CBD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84D069FE-CE34-4486-9028-8730AEF5CBD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84D069FE-CE34-4486-9028-8730AEF5CBD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84D069FE-CE34-4486-9028-8730AEF5CBD0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A8E5CF8-00C2-4DC9-B005-5C97922AD982}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A8E5CF8-00C2-4DC9-B005-5C97922AD982}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A8E5CF8-00C2-4DC9-B005-5C97922AD982}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A8E5CF8-00C2-4DC9-B005-5C97922AD982}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
