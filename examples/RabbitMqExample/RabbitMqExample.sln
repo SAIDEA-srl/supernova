@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.12.35514.174
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RebusPublisher", "Publisher\RebusPublisher.csproj", "{44E77985-F138-47F4-AC1E-4EB4CE261544}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RebusPublisher", "RebusPublisher\RebusPublisher.csproj", "{44E77985-F138-47F4-AC1E-4EB4CE261544}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RebusSubscriber", "Subscriber\RebusSubscriber.csproj", "{E8252684-B3C3-4D7F-B4D3-85EE4535B4D1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RebusSubscriber", "RebusSubscriber\RebusSubscriber.csproj", "{E8252684-B3C3-4D7F-B4D3-85EE4535B4D1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{56229CA8-FCCD-4831-866E-AD2F9B9F3ECC}"
 EndProject
