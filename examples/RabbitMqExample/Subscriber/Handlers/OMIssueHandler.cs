@@ -1,5 +1,6 @@
 ﻿using Models;
 using Models.OrangeButton;
+using Newtonsoft.Json;
 using Rebus.Handlers;
 
 namespace Subscriber.Handlers
@@ -10,9 +11,8 @@ namespace Subscriber.Handlers
         {
             await System.Threading.Tasks.Task.CompletedTask;
 
-            Console.WriteLine("New OMIssue received");
-
-
+            Console.WriteLine("New OMIssue message received");
+            Console.WriteLine(JsonConvert.SerializeObject(message));
         }
     }
 }
