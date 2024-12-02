@@ -41,5 +41,5 @@ using (var channel = await connection.CreateChannelAsync())
 
     var message = JsonConvert.SerializeObject(newOmIssue);
     var body = Encoding.UTF8.GetBytes(message);
-    await channel.BasicPublishAsync("RebusTopics", "omissue", body);
+    await channel.BasicPublishAsync("topics", "omissue", body);
 }

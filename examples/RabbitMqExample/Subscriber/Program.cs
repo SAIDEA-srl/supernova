@@ -24,7 +24,7 @@ using (var channel = await connection.CreateChannelAsync())
                          autoDelete: false,
                          arguments: null);
 
-    await channel.QueueBindAsync("subscriber-example", "RebusTopics", "omissue");
+    await channel.QueueBindAsync("subscriber-example", "topics", "omissue");
 
     var consumer = new AsyncEventingBasicConsumer(channel);
     consumer.ReceivedAsync += async (model, ea) =>

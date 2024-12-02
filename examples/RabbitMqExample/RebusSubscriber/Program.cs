@@ -38,6 +38,7 @@ services.AddRebus(conf =>
     .Transport(t =>
     {
         t.UseRabbitMq($"amqps://{username}:{password}@192.168.253.110/{vhost}", queueName)
+            .ExchangeNames("directs", "topics")
             .Ssl(new Rebus.RabbitMq.SslSettings(false, ""))
             .ClientConnectionName("SubscriberExample");
     }),

@@ -33,6 +33,7 @@ var bus = Configure.OneWayClient()
     .Transport(t =>
     {
         t.UseRabbitMqAsOneWayClient($"amqps://{username}:{password}@192.168.253.110/{vhost}")
+            .ExchangeNames("directs", "topics")
             .Ssl(new Rebus.RabbitMq.SslSettings(false, ""))
             .ClientConnectionName(sourceName);
     })
