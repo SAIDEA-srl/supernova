@@ -23,7 +23,7 @@ services.AddRebus(conf =>
     {
         s.UseNewtonsoftJson(new JsonSerializerSettings
         {
-            TypeNameHandling = TypeNameHandling.None
+            TypeNameHandling = TypeNameHandling.None,
         });
         s.UseCustomMessageTypeNames().AddWithCustomName<Message<OMIssue>>("omissue");
     })

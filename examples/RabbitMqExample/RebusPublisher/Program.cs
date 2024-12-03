@@ -35,6 +35,7 @@ var bus = Configure.OneWayClient()
         t.UseRabbitMqAsOneWayClient($"amqps://{username}:{password}@192.168.253.110/{vhost}")
             .ExchangeNames("directs", "topics")
             .Ssl(new Rebus.RabbitMq.SslSettings(false, ""))
+            .Declarations(declareExchanges: false)
             .ClientConnectionName(sourceName);
     })
     .Start();
