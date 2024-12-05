@@ -26,7 +26,7 @@ var factory = new ConnectionFactory()
     HostName = "192.168.253.110",
     VirtualHost = "orange",
     ClientProvidedName = "SubscriberExample",
-    CredentialsProvider = authprovider
+    CredentialsProvider = authprovider,
 };
 using var connection = factory.CreateConnection();
 using var channel = connection.CreateModel();

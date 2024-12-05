@@ -7,11 +7,10 @@ using Rebus.Serialization;
 using Rebus.Serialization.Custom;
 using Rebus.Serialization.Json;
 using Rebus.Topic;
+using RabbitMQ.Client.OAuth2;
 
 var sourceName = "PublisherExample";
 var vhost = "orange";
-var username = "orange";
-var password = "orange";
 
 var bus = Configure.OneWayClient()
     .Serialization((s) =>
@@ -32,12 +31,31 @@ var bus = Configure.OneWayClient()
     })
     .Transport(t =>
     {
-        t.UseRabbitMqAsOneWayClient($"amqps://{username}:{password}@192.168.253.110/{vhost}")
+        t.UseRabbitMqAsOneWayClient($"amqps://192.168.253.110/{vhost}")
             .ExchangeNames("directs", "topics")
             .Ssl(new Rebus.RabbitMq.SslSettings(false, ""))
             .Declarations(declareExchanges: false)
-            .ClientConnectionName(sourceName);
-    })
+            .CustomizeConnectionFactory(factory =>
+            {
+                var scoppes = string.Join(" ", [
+                        "orange-bus.write:orange/topics/omissue",
+                        "orange-bus.read:orange/directs/*",
+                        "orange-bus.write:orange/directs/*",
+                        $"orange-bus.write:orange/error/*",
+                        $"orange-bus.configure:orange/error/*"
+                    ]);
+
+                var authclient = new OAuth2ClientBuilder("orange-bus-subscriber", "95fe531e-2c5a-49e5-82b2-42a5c3a7bda6", new Uri("https://identitytesteurac.goantares.uno/connect/token"))
+                    .SetScope(scoppes)
+                    .Build();
+
+                var token = authclient.RequestToken();
+
+                factory.ClientProvidedName = sourceName;
+                factory.CredentialsProvider = new OAuth2ClientCredentialsProvider("orange", authclient);
+                return factory;
+            });
+})
     .Start();
 
 var deviceId = Guid.NewGuid();

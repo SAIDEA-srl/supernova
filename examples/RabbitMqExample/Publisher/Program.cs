@@ -52,6 +52,7 @@ var props = channel.CreateBasicProperties();
 props.MessageId = Guid.NewGuid().ToString();
 props.ContentType = "application/json";
 props.ContentEncoding = "utf-8";
+props.Type = "omissue";
 
 //Questi header sono per l'interoperabilita con rebus
 props.Headers = new Dictionary<string, object>
