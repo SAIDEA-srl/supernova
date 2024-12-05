@@ -27,8 +27,6 @@ var collection = new ServiceCollection()
             cfg.Host("192.168.253.110", "orange", "PublisherExample", h =>
             {
                 h.CredentialsProvider = authprovider;
-                //h.Username("admin");
-                //h.Password("Idea2000");
             });
             cfg.ConfigureEndpoints(context);
 
