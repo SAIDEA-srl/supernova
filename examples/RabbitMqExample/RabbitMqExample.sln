@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Subscriber", "Subscriber\Su
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Publisher", "Publisher\Publisher.csproj", "{4A8E5CF8-00C2-4DC9-B005-5C97922AD982}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MassTransitPublisher", "MassTransitPublisher\MassTransitPublisher.csproj", "{B93FCDC7-F4A0-47F9-B8F6-C8F17365E08A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{4A8E5CF8-00C2-4DC9-B005-5C97922AD982}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4A8E5CF8-00C2-4DC9-B005-5C97922AD982}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4A8E5CF8-00C2-4DC9-B005-5C97922AD982}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B93FCDC7-F4A0-47F9-B8F6-C8F17365E08A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B93FCDC7-F4A0-47F9-B8F6-C8F17365E08A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B93FCDC7-F4A0-47F9-B8F6-C8F17365E08A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B93FCDC7-F4A0-47F9-B8F6-C8F17365E08A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
