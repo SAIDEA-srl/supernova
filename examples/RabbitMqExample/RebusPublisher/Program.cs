@@ -41,11 +41,11 @@ var bus = Configure.OneWayClient()
                         "orange-bus.write:orange/topics/omissue",
                         "orange-bus.read:orange/directs/*",
                         "orange-bus.write:orange/directs/*",
-                        $"orange-bus.write:orange/error/*",
-                        $"orange-bus.configure:orange/error/*"
+                        "orange-bus.write:orange/error/*",
+                        "orange-bus.configure:orange/error/*"
                     ]);
 
-                var authclient = new OAuth2ClientBuilder("orange-bus-subscriber", "95fe531e-2c5a-49e5-82b2-42a5c3a7bda6", new Uri("https://identitytesteurac.goantares.uno/connect/token"))
+                var authclient = new OAuth2ClientBuilder("orange-bus-publisher", "7e1b6166-2922-4de4-846f-912fb2f554f2", new Uri("https://identitytesteurac.goantares.uno/connect/token"))
                     .SetScope(scoppes)
                     .Build();
 
