@@ -13,8 +13,9 @@ var authclient = new OAuth2ClientBuilder("orange-bus-publisher", "7e1b6166-2922-
     ]))
     .Build();
 
-var authprovider = new OAuth2ClientCredentialsProvider("oauth2", authclient);
+var token = authclient.RequestToken();
 
+var authprovider = new OAuth2ClientCredentialsProvider("oauth2", authclient);
 var builder = Host.CreateApplicationBuilder(args);
 var services = builder.Services;
 
@@ -23,10 +24,12 @@ var collection = new ServiceCollection()
     {
         x.UsingRabbitMq((context, cfg) =>
         {
+            cfg.DeployPublishTopology = false;
             cfg.UseNewtonsoftRawJsonSerializer();
             cfg.Host("192.168.253.110", "orange", "PublisherExample", h =>
             {
                 h.CredentialsProvider = authprovider;
+                h.CredentialsRefresher = new MassTransitPublisher.NoOpCredentialsRefresher();
             });
             cfg.ConfigureEndpoints(context);
 
@@ -67,6 +70,5 @@ var newOmIssue = new Message<OMIssue>()
     }
 };
 
-using var source = new CancellationTokenSource(TimeSpan.FromSeconds(30));
-await bus.Publish(newOmIssue, source.Token);
+await bus.Publish(newOmIssue);
 Console.WriteLine($"[{newOmIssue.Data}] Message sent");
