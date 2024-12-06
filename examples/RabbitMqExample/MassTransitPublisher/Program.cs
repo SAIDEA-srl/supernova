@@ -1,37 +1,37 @@
 ﻿using MassTransit;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Models;
 using Models.OrangeButton;
 using RabbitMQ.Client;
 using RabbitMQ.Client.OAuth2;
 
-
 var authclient = new OAuth2ClientBuilder("orange-bus-publisher", "7e1b6166-2922-4de4-846f-912fb2f554f2", new Uri("https://identitytesteurac.goantares.uno/connect/token"))
     .SetScope(string.Join(" ", [
         "orange-bus.write:orange/topics/omissue",
+        "orange-bus.configure:orange/topics/*",
     ]))
     .Build();
 
 var token = authclient.RequestToken();
 
 var authprovider = new OAuth2ClientCredentialsProvider("oauth2", authclient);
-var builder = Host.CreateApplicationBuilder(args);
-var services = builder.Services;
 
-var collection = new ServiceCollection()
+var services = new ServiceCollection()
     .AddMassTransit(x =>
     {
+
         x.UsingRabbitMq((context, cfg) =>
         {
-            cfg.DeployPublishTopology = false;
+
             cfg.UseNewtonsoftRawJsonSerializer();
+
             cfg.Host("192.168.253.110", "orange", "PublisherExample", h =>
             {
                 h.CredentialsProvider = authprovider;
                 h.CredentialsRefresher = new MassTransitPublisher.NoOpCredentialsRefresher();
             });
-            cfg.ConfigureEndpoints(context);
 
             cfg.Send<Message<OMIssue>>(x =>
             {
@@ -41,13 +41,23 @@ var collection = new ServiceCollection()
             {
                 x.SetEntityName("topics");
             });
+
             cfg.Publish<Message<OMIssue>>(x =>
             {
                 x.ExchangeType = ExchangeType.Topic;
             });
+
+            cfg.ConfigureEndpoints(context);
         });
     });
-var serviceProvider = collection.BuildServiceProvider();
+
+
+services.AddLogging(logging => {
+    logging.SetMinimumLevel(LogLevel.Trace);
+    logging.AddConsole();
+});
+
+var serviceProvider = services.BuildServiceProvider();
 
 var bus = serviceProvider.GetRequiredService<IBus>();
 
@@ -69,6 +79,8 @@ var newOmIssue = new Message<OMIssue>()
         }
     }
 };
+
+var topology = bus.Topology;
 
 await bus.Publish(newOmIssue);
 Console.WriteLine($"[{newOmIssue.Data}] Message sent");
