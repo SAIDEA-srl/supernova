@@ -1,8 +1,8 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "UniversalMapper API",
-    "description": "An Api for multiple idenfiers mapping",
+    "title": "SUPERNOVA Interoperation API 1.0, UniversalMapper service",
+    "description": "An API for multiple identifiers mapping",
     "version": "v1"
   },
   "paths": {
@@ -76,7 +76,7 @@
           }
         ],
         "requestBody": {
-          "description": "AlternavieIdentifier definition",
+          "description": "AlternativeIdentifier definition",
           "content": {
             "application/json": {
               "schema": {
@@ -125,7 +125,7 @@
         }
       }
     },
-    "/UniMap/{source}/{exsistingId}": {
+    "/UniMap/{source}/{existingId}": {
       "post": {
         "tags": [
           "UniMap"
@@ -143,7 +143,7 @@
             }
           },
           {
-            "name": "exsistingId",
+            "name": "existingId",
             "in": "path",
             "description": "Identifier to search",
             "required": true,
@@ -218,7 +218,7 @@
             }
           },
           {
-            "name": "exsistingId",
+            "name": "existingId",
             "in": "path",
             "description": "Identifier to search",
             "required": true,
@@ -292,7 +292,7 @@
             }
           },
           {
-            "name": "exsistingId",
+            "name": "existingId",
             "in": "path",
             "description": "Identifier to search",
             "required": true,
@@ -459,68 +459,10 @@
         "additionalProperties": false
       },
       "IdentifierType": {
-        "type": "object",
-        "properties": {
-          "Value": {
-            "type": "string",
-            "nullable": true
-          },
-          "Unit": {
-            "type": "string",
-            "nullable": true
-          },
-          "Decimals": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "Precision": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "StartTime": {
-            "type": "string",
-            "nullable": true
-          },
-          "EndTime": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
+          "$ref": "./constants#/components/schemas/AssetIdentifierType"
       },
       "SourceName": {
-        "type": "object",
-        "properties": {
-          "Value": {
-            "type": "string",
-            "nullable": true
-          },
-          "Unit": {
-            "type": "string",
-            "nullable": true
-          },
-          "Decimals": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "Precision": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "StartTime": {
-            "type": "string",
-            "nullable": true
-          },
-          "EndTime": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
+          "$ref": "./constants#/components/schemas/PlatformIdentifier"
       }
     },
     "securitySchemes": {

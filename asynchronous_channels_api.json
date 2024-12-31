@@ -1,8 +1,8 @@
 {
   "asyncapi": "3.0.0",
   "info": {
-    "title": "Orange Service",
-    "version": "0.0.1"
+    "title": "SUPERNOVA Interoperation API 1.0 asynchronous API messaging",
+    "version": "1.0"
   },
   "channels": {
     "weathers": {
