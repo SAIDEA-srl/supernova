@@ -40,7 +40,9 @@
         "type": "string"
       },
       "DeviceTypeId": {
-        "comment": "Originated from TRUST-PV Risk Matrix.",
+        "comment": "Originated from TRUST-PV Risk Matrix components/subcomponents lists by connecting names with -, changing blanks in _, changing & in _and_",
+        "url": "https://trust-pv.eu/reports/risk-matrix/",
+        "extracted-on": "2024-12-31",
         "enum": [
           "unknown",
           "Communication_and_Monitoring-Monitoring_system",
@@ -125,6 +127,8 @@
       },
       "AlarmTypeId": {
         "comment": "Originated from TRUST-PV Risk Matrix.",
+        "url": "https://trust-pv.eu/reports/risk-matrix/",
+        "extracted-on": "2024-12-31",
         "enum": [
           "com.01",
           "com.02",
@@ -540,6 +544,7 @@
           "enum": [
               "UUID",
               "InternalID",
+              "Name",
               "SerialNumber"
           ]
       }
