@@ -58,7 +58,7 @@
           "$ref": "#/components/messages/MessageOmTask"
         }
       }
-    }
+    },
     "hookcompletion": {
       "address": "supernova.hookcompletion.{source}",
       "bindings": {
