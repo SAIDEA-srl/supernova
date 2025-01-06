@@ -6,7 +6,7 @@
   },
   "channels": {
     "weathers": {
-      "address": "weathers",
+      "address": "supernova.weather",
       "bindings": {
         "amqp": {
           "is":"routingKey",
@@ -24,7 +24,7 @@
       }
     },
     "omissue": {
-      "address": "omissue",
+      "address": "supernova.omissue",
       "bindings": {
         "amqp": {
           "is":"routingKey",
@@ -42,7 +42,7 @@
       }
     },
     "omtask": {
-      "address": "omtask",
+      "address": "supernova.omtask.{source}.{state}",
       "bindings": {
         "amqp": {
           "is":"routingKey",
@@ -59,15 +59,27 @@
         }
       }
     }
-  },
-  "servers": {
-    "orange": {
-      "host": "192.168.253.110",
-      "protocol": "amqps"
+    "hookcompletion": {
+      "address": "supernova.hookcompletion.{source}",
+      "bindings": {
+        "amqp": {
+          "is":"routingKey",
+          "exchange": {
+            "name": "RebusTopics",
+            "type": "topic",
+            "vhost": "orange"
+          }
+        }
+      },
+      "messages": {
+        "OmTask": {
+          "$ref": "#/components/messages/MessageHookCompletion"
+        }
+      }
     }
   },
   "operations": {
-    "omTask": {
+    "omTaskChanged": {
       "action": "send",
       "channel": {
         "$ref": "#/channels/omtask"
@@ -78,7 +90,7 @@
         }
       ]
     },
-    "omIssue": {
+    "omIssueRaised": {
       "action": "send",
       "channel": {
         "$ref": "#/channels/omissue"
@@ -89,7 +101,7 @@
         }
       ]
     },
-    "weatherDataRecord": {
+    "weatherUpdate": {
       "action": "send",
       "channel": {
         "$ref": "#/channels/weathers"
@@ -97,6 +109,17 @@
       "messages": [
         {
           "$ref": "#/channels/weathers/messages/WeatherDataRecord"
+        }
+      ]
+    },
+    "hookOperationCompleted": {
+      "action": "send",
+      "channel": {
+        "$ref": "#/channels/hookcompletion"
+      },
+      "messages": [
+        {
+          "$ref": "#/channels/weathers/messages/MessageHookCompletion"
         }
       ]
     }
@@ -159,6 +182,26 @@
             "Data": {
               "$ref": "./orange_api_swagger.json#/components/schemas/WeatherDataRecord",
               "description": "WeatherDataRecord object"
+            }
+          }
+        }
+      },
+      "MessageHookCompletion": {
+        "payload": {
+          "type": "object",
+          "properties": {
+            "DateTime": {
+              "type": "string",
+              "format": "date-time",
+              "description": "Message creation date"
+            },
+            "Source": {
+              "type": "string",
+              "description": "Message source"
+            },
+            "Data": {
+              "$ref": "./orange_api_swagger.json#/components/schemas/GatewayHookResult",
+              "description": "Results of completed hook operation"
             }
           }
         }

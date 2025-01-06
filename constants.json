@@ -548,6 +548,16 @@
               "SerialNumber"
           ]
       }
-    }
+    },
+    "NotificationTopic": {
+      "comment": "To be extended while channel types are identifier.",
+      "enum": [
+          "omissue",
+          "omtask",
+          "weather",
+          "hookcompletion"
+      ],
+      "type": "string"
+    },
   }
 }
