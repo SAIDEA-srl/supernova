@@ -1,8 +1,8 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "SUPERNOVA Interoperation API 1.0, UniversalMapper service",
-    "description": "An API for multiple identifiers mapping",
+    "title": "UniversalMapper API",
+    "description": "An Api for multiple idenfiers mapping",
     "version": "v1"
   },
   "paths": {
@@ -11,12 +11,12 @@
         "tags": [
           "UniMap"
         ],
-        "summary": "Find all identifiers of a specific compoment",
+        "summary": "Find all identifiers of a specific source",
         "parameters": [
           {
             "name": "source",
             "in": "path",
-            "description": "Source of identifier or Collection UUID",
+            "description": "source name",
             "required": true,
             "schema": {
               "type": "string"
@@ -76,7 +76,7 @@
           }
         ],
         "requestBody": {
-          "description": "AlternativeIdentifier definition",
+          "description": "AlternavieIdentifier definition",
           "content": {
             "application/json": {
               "schema": {
@@ -125,7 +125,7 @@
         }
       }
     },
-    "/UniMap/{source}/{existingId}": {
+    "/UniMap/{source}/{exsistingId}": {
       "post": {
         "tags": [
           "UniMap"
@@ -143,7 +143,7 @@
             }
           },
           {
-            "name": "existingId",
+            "name": "exsistingId",
             "in": "path",
             "description": "Identifier to search",
             "required": true,
@@ -218,7 +218,7 @@
             }
           },
           {
-            "name": "existingId",
+            "name": "exsistingId",
             "in": "path",
             "description": "Identifier to search",
             "required": true,
@@ -292,12 +292,21 @@
             }
           },
           {
-            "name": "existingId",
+            "name": "exsistingId",
             "in": "path",
             "description": "Identifier to search",
             "required": true,
             "schema": {
               "type": "string"
+            }
+          },
+          {
+            "name": "all",
+            "in": "query",
+            "description": "Optional query parameter for delete all collection",
+            "schema": {
+              "type": "boolean",
+              "default": false
             }
           }
         ],
@@ -321,7 +330,7 @@
           {
             "name": "source",
             "in": "path",
-            "description": "Source of identifier or Collection UUID",
+            "description": "Source of identifier",
             "required": true,
             "schema": {
               "type": "string"
@@ -372,6 +381,104 @@
           }
         }
       }
+    },
+    "/UniMap/collection/{collectionUUID}": {
+      "get": {
+        "tags": [
+          "UniMap"
+        ],
+        "summary": "Find all identifiers of a specific collection",
+        "parameters": [
+          {
+            "name": "collectionUUID",
+            "in": "path",
+            "description": "Collection UUID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Collection"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Collection"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Collection"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/UniMap/search/{identitifier}": {
+      "get": {
+        "tags": [
+          "UniMap"
+        ],
+        "summary": "Search an identifier",
+        "parameters": [
+          {
+            "name": "identitifier",
+            "in": "path",
+            "description": "identifier to search",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Collection"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Collection"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Collection"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
     }
   },
   "components": {
@@ -390,6 +497,25 @@
           },
           "IdentifierType": {
             "$ref": "#/components/schemas/IdentifierType"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Collection": {
+        "type": "object",
+        "properties": {
+          "CollectionId": {
+            "type": "string",
+            "format": "uuid",
+            "readOnly": true
+          },
+          "Identifiers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AlternativeIdentifier"
+            },
+            "nullable": true,
+            "readOnly": true
           }
         },
         "additionalProperties": false
@@ -459,10 +585,68 @@
         "additionalProperties": false
       },
       "IdentifierType": {
-          "$ref": "./constants#/components/schemas/AssetIdentifierType"
+        "type": "object",
+        "properties": {
+          "Value": {
+            "type": "string",
+            "nullable": true
+          },
+          "Unit": {
+            "type": "string",
+            "nullable": true
+          },
+          "Decimals": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "Precision": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "StartTime": {
+            "type": "string",
+            "nullable": true
+          },
+          "EndTime": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
       },
       "SourceName": {
-          "$ref": "./constants#/components/schemas/PlatformIdentifier"
+        "type": "object",
+        "properties": {
+          "Value": {
+            "type": "string",
+            "nullable": true
+          },
+          "Unit": {
+            "type": "string",
+            "nullable": true
+          },
+          "Decimals": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "Precision": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "StartTime": {
+            "type": "string",
+            "nullable": true
+          },
+          "EndTime": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
       }
     },
     "securitySchemes": {
@@ -476,7 +660,7 @@
   },
   "security": [
     {
-      "bearer": [ ]
+      "bearer": []
     }
   ]
 }
