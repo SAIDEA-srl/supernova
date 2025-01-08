@@ -151,7 +151,7 @@ public class UniMapController : ControllerBase
     /// Add new identifier for a specific source
     /// </summary>
     /// <param name="source">source of identifier</param>
-    /// <param name="alternativeIdentifier">AlternavieIdentifier definition</param>
+    /// <param name="alternativeIdentifier">AlternativeIdentifier definition</param>
     /// <returns>Collection UUID</returns>
     /// <remarks>
     /// Sample request:
@@ -198,7 +198,7 @@ public class UniMapController : ControllerBase
     /// Map a new identifier to an existing identifier
     /// </summary>
     /// <param name="source">Source of exisiting indentifier or Collection UUID</param>
-    /// <param name="exsistingId">Identifier to search</param>
+    /// <param name="existingId">Identifier to search</param>
     /// <param name="alternativeIdentifier">AlternativeIdentifier to add in collection</param>
     /// <returns>Collection UUID</returns>
     /// <remarks>
@@ -220,12 +220,12 @@ public class UniMapController : ControllerBase
     ///         }
     ///     }
     /// </remarks>
-    [HttpPost("{source}/{exsistingId}")]
+    [HttpPost("{source}/{existingId}")]
     [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(Guid))]
     [SwaggerResponse(StatusCodes.Status400BadRequest)]
-    public async Task<Results<BadRequest, Ok<Guid>>> AddIdentifierToExsisting(string source, string exsistingId, [FromBody] AlternativeIdentifier alternativeIdentifier)
+    public async Task<Results<BadRequest, Ok<Guid>>> AddIdentifierToExisting(string source, string existingId, [FromBody] AlternativeIdentifier alternativeIdentifier)
     {
-        Guid? collectionUUID = await FindCollectionUUID(source, exsistingId);
+        Guid? collectionUUID = await FindCollectionUUID(source, existingId);
 
         if (collectionUUID == null)
         {
@@ -249,7 +249,7 @@ public class UniMapController : ControllerBase
     /// Update an existing Identifier
     /// </summary>
     /// <param name="source">Source of exisiting indentifier</param>
-    /// <param name="exsistingId">Identifier to search</param>
+    /// <param name="existingId">Identifier to search</param>
     /// <param name="alternativeIdentifier">AlternativeIdentifier to update</param>
     /// <returns>Collection UUID</returns>
     /// <remarks>
@@ -271,14 +271,14 @@ public class UniMapController : ControllerBase
     ///         }
     ///     }
     /// </remarks>
-    [HttpPut("{source}/{exsistingId}")]
+    [HttpPut("{source}/{existingId}")]
     [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(Guid))]
     [SwaggerResponse(StatusCodes.Status400BadRequest)]
-    public async Task<Results<BadRequest, Ok<Guid>>> UpdateIdentifier(string source, string exsistingId, [FromBody] AlternativeIdentifier alternativeIdentifier)
+    public async Task<Results<BadRequest, Ok<Guid>>> UpdateIdentifier(string source, string existingId, [FromBody] AlternativeIdentifier alternativeIdentifier)
     {
         var identifier = await dbContext.Maps
             .Where(t => t.AlternativeIdentifier.SourceName.Value == source)
-            .Where(t => t.AlternativeIdentifier.Identifier.Value == exsistingId)
+            .Where(t => t.AlternativeIdentifier.Identifier.Value == existingId)
             .FirstOrDefaultAsync();
 
         if (identifier == null)
@@ -298,17 +298,17 @@ public class UniMapController : ControllerBase
     /// Delete an identifier
     /// </summary>
     /// <param name="source">Source of exisiting indentifier</param>
-    /// <param name="exsistingId">Identifier to search</param>
+    /// <param name="existingId">Identifier to search</param>
     /// <param name="all">Optional query parameter for delete all collection</param>
     /// <returns>No Content</returns>
-    [HttpDelete("{source}/{exsistingId}")]
+    [HttpDelete("{source}/{existingId}")]
     [SwaggerResponse(StatusCodes.Status200OK)]
     [SwaggerResponse(StatusCodes.Status400BadRequest)]
-    public async Task<Results<BadRequest, Ok>> DeleteIdentifiers(string source, string exsistingId, [FromQuery] bool all = false)
+    public async Task<Results<BadRequest, Ok>> DeleteIdentifiers(string source, string existingId, [FromQuery] bool all = false)
     {
         var identifier = await dbContext.Maps.Where(t =>
             t.AlternativeIdentifier.SourceName.Value == source &&
-            t.AlternativeIdentifier.Identifier.Value == exsistingId
+            t.AlternativeIdentifier.Identifier.Value == existingId
         ).FirstOrDefaultAsync();
 
         if (identifier == null)

@@ -28,8 +28,8 @@ builder.Services.AddSwaggerGen(options =>
     options.SwaggerDoc("v1", new OpenApiInfo
     {
         Version = "v1",
-        Title = "UniversalMapper API",
-        Description = "An Api for multiple idenfiers mapping",
+        Title = "SUPERNOVA Interoperation API 1.0, UniversalMapper service",
+        Description = "An API for multiple identifiers mapping",
     });
 
     options.OrderActionsBy(apiDescription =>
