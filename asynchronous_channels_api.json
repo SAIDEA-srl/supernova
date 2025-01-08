@@ -1,0 +1,211 @@
+{
+  "asyncapi": "3.0.0",
+  "info": {
+    "title": "SUPERNOVA Interoperation API 1.0 asynchronous API messaging",
+    "version": "1.0"
+  },
+  "channels": {
+    "weathers": {
+      "address": "supernova.weather",
+      "bindings": {
+        "amqp": {
+          "is":"routingKey",
+          "exchange": {
+            "name": "RebusTopics",
+            "type": "topic",
+            "vhost": "orange"
+          }
+        }
+      },
+      "messages": {
+        "WeatherDataRecord": {
+          "$ref": "#/components/messages/MessageWeatherDataRecord"
+        }
+      }
+    },
+    "omissue": {
+      "address": "supernova.omissue",
+      "bindings": {
+        "amqp": {
+          "is":"routingKey",
+          "exchange": {
+            "name": "RebusTopics",
+            "type": "topic",
+            "vhost": "orange"
+          }
+        }
+      },
+      "messages": {
+        "OmIssue": {
+          "$ref": "#/components/messages/MessageOmIssue"
+        }
+      }
+    },
+    "omtask": {
+      "address": "supernova.omtask.{source}.{state}",
+      "bindings": {
+        "amqp": {
+          "is":"routingKey",
+          "exchange": {
+            "name": "RebusTopics",
+            "type": "topic",
+            "vhost": "orange"
+          }
+        }
+      },
+      "messages": {
+        "OmTask": {
+          "$ref": "#/components/messages/MessageOmTask"
+        }
+      }
+    },
+    "hookcompletion": {
+      "address": "supernova.hookcompletion.{source}",
+      "bindings": {
+        "amqp": {
+          "is":"routingKey",
+          "exchange": {
+            "name": "RebusTopics",
+            "type": "topic",
+            "vhost": "orange"
+          }
+        }
+      },
+      "messages": {
+        "OmTask": {
+          "$ref": "#/components/messages/MessageHookCompletion"
+        }
+      }
+    }
+  },
+  "operations": {
+    "omTaskChanged": {
+      "action": "send",
+      "channel": {
+        "$ref": "#/channels/omtask"
+      },
+      "messages": [
+        {
+          "$ref": "#/channels/omtask/messages/OmTask"
+        }
+      ]
+    },
+    "omIssueRaised": {
+      "action": "send",
+      "channel": {
+        "$ref": "#/channels/omissue"
+      },
+      "messages": [
+        {
+          "$ref": "#/channels/omissue/messages/OmIssue"
+        }
+      ]
+    },
+    "weatherUpdate": {
+      "action": "send",
+      "channel": {
+        "$ref": "#/channels/weathers"
+      },
+      "messages": [
+        {
+          "$ref": "#/channels/weathers/messages/WeatherDataRecord"
+        }
+      ]
+    },
+    "hookOperationCompleted": {
+      "action": "send",
+      "channel": {
+        "$ref": "#/channels/hookcompletion"
+      },
+      "messages": [
+        {
+          "$ref": "#/channels/weathers/messages/MessageHookCompletion"
+        }
+      ]
+    }
+  },
+  "components": {
+    "messages": {
+      "MessageOmTask": {
+        "payload": {
+          "type": "object",
+          "properties": {
+              "DateTime": {
+              "type": "string",
+              "format": "date-time",
+              "description": "Message creation date"
+            },
+            "Source": {
+              "type": "string",
+              "description": "Message source"
+            },
+            "Data": {
+              "$ref": "./orange_api_swagger.json#/components/schemas/OMTask",
+              "description": "OMTask object"
+            }
+          }
+        }
+      },
+      "MessageOmIssue": {
+        "payload": {
+          "type": "object",
+          "properties": {
+            "DateTime": {
+              "type": "string",
+              "format": "date-time",
+              "description": "Message creation date"
+            },
+            "Source": {
+              "type": "string",
+              "description": "Message source"
+            },
+            "Data": {
+              "$ref": "./orange_api_swagger.json#/components/schemas/OMIssue",
+              "description": "OMIssue object"
+            }
+          }
+        }
+      },
+      "MessageWeatherDataRecord": {
+        "payload": {
+          "type": "object",
+          "properties": {
+            "DateTime": {
+              "type": "string",
+              "format": "date-time",
+              "description": "Message creation date"
+            },
+            "Source": {
+              "type": "string",
+              "description": "Message source"
+            },
+            "Data": {
+              "$ref": "./orange_api_swagger.json#/components/schemas/WeatherDataRecord",
+              "description": "WeatherDataRecord object"
+            }
+          }
+        }
+      },
+      "MessageHookCompletion": {
+        "payload": {
+          "type": "object",
+          "properties": {
+            "DateTime": {
+              "type": "string",
+              "format": "date-time",
+              "description": "Message creation date"
+            },
+            "Source": {
+              "type": "string",
+              "description": "Message source"
+            },
+            "Data": {
+              "$ref": "./orange_api_swagger.json#/components/schemas/GatewayHookResult",
+              "description": "Results of completed hook operation"
+            }
+          }
+        }
+      }
+    }
+  }
+}
