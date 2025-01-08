@@ -427,7 +427,7 @@
         }
       }
     },
-    "/UniMap/search/{identitifier}": {
+    "/UniMap/search/{identifier}": {
       "get": {
         "tags": [
           "UniMap"
@@ -435,7 +435,7 @@
         "summary": "Search an identifier",
         "parameters": [
           {
-            "name": "identitifier",
+            "name": "identifier",
             "in": "path",
             "description": "identifier to search",
             "required": true,

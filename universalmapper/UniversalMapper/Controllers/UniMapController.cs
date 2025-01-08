@@ -121,15 +121,15 @@ public class UniMapController : ControllerBase
     /// <summary>
     /// Search an identifier
     /// </summary>
-    /// <param name="identitifier">identifier to search</param>
+    /// <param name="identifier">identifier to search</param>
     /// <returns>A list of all alternativeIdentifier registred</returns>
-    [HttpGet("search/{identitifier}")]
+    [HttpGet("search/{identifier}")]
     [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(List<Collection>))]
     [SwaggerResponse(StatusCodes.Status404NotFound)]
-    public async Task<Results<NotFound, Ok<List<Collection>>>> SearchIdentifiers(string identitifier)
+    public async Task<Results<NotFound, Ok<List<Collection>>>> SearchIdentifiers(string identifier)
     {
         var identifiers = await dbContext.Maps.Where(t =>
-            t.AlternativeIdentifier.Identifier.Value == identitifier
+            t.AlternativeIdentifier.Identifier.Value == identifier
         ).ToListAsync();
 
         var collectionIds = identifiers.Select(t => t.UUID).ToList();
