@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Http.Json;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using MongoDB.Driver;
+using OrangeButton.Models;
+using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Reflection;
 using System.Text.Json;
 using UniversalMapper;
@@ -25,6 +27,10 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {
+    options.UseAllOfForInheritance();
+    options.UseOneOfForPolymorphism();
+    options.UseAllOfToExtendReferenceSchemas();
+
     options.SwaggerDoc("v1", new OpenApiInfo
     {
         Version = "v1",
@@ -36,6 +42,7 @@ builder.Services.AddSwaggerGen(options =>
     {
         return apiDescription.RelativePath?.ToLower();
     });
+
     options.AddSecurityDefinition(JwtBearerDefaults.AuthenticationScheme.ToLower(), new OpenApiSecurityScheme
     {
         Description = "JWT Authorization header using the Bearer scheme.",
@@ -65,6 +72,16 @@ builder.Services.AddSwaggerGen(options =>
     // using System.Reflection;
     var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
     options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
+
+    options.MapType<AlternativeIdentifier>(() => new OpenApiSchema()
+    {
+        Reference = new OpenApiReference()
+        {
+            Id = "AlternativeIdentifier",
+            Type = ReferenceType.Schema,
+            ExternalResource = "https://raw.githubusercontent.com/SAIDEA-srl/supernova/refs/heads/rev1/datamodel.json",
+        }
+    });
 });
 
 builder.Services.AddDbContext<UniversalMapperDbContext>((config) =>
