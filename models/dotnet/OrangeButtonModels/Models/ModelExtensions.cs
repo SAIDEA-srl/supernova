@@ -4,27 +4,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OrangeButton.Models
+namespace OrangeButton.Models.Extensions
 {
-    public partial class PVSystem : System
+    public class PVSystem : OrangeButton.Models.PVSystem
     {
         [Newtonsoft.Json.JsonProperty("Locations", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public IEnumerable<Location>? Locations { get; set; }
     }
 
-    public partial class PVArray
+    public class PVArray : OrangeButton.Models.PVArray
     {
         [Newtonsoft.Json.JsonProperty("Locations", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public IEnumerable<Location>? Locations { get; set; }
     }
 
-    public partial class PVString
+    public class PVString : OrangeButton.Models.PVString
     {
         [Newtonsoft.Json.JsonProperty("Locations", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public IEnumerable<Location>? Locations { get; set; }
     }
 
-    public partial class Device
+    public class Device : OrangeButton.Models.Device
     {
         [Newtonsoft.Json.JsonProperty("Locations", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public IEnumerable<Location>? Locations { get; set; }
