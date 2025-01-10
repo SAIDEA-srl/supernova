@@ -79,7 +79,7 @@ builder.Services.AddSwaggerGen(options =>
         {
             Id = "AlternativeIdentifier",
             Type = ReferenceType.Schema,
-            ExternalResource = "https://raw.githubusercontent.com/SAIDEA-srl/supernova/refs/heads/rev1/datamodel.json",
+            ExternalResource = "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/refs/heads/main/Master-OB-OpenAPI-2407-0-0.json",
         }
     });
 });

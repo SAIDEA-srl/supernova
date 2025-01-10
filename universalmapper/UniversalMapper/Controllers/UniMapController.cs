@@ -197,7 +197,7 @@ public class UniMapController : ControllerBase
     /// <summary>
     /// Map a new identifier to an existing identifier
     /// </summary>
-    /// <param name="source">Source of exisiting indentifier or Collection UUID</param>
+    /// <param name="source">Source of existing indentifier or Collection UUID</param>
     /// <param name="existingId">Identifier to search</param>
     /// <param name="alternativeIdentifier">AlternativeIdentifier to add in collection</param>
     /// <returns>Collection UUID</returns>
@@ -248,7 +248,7 @@ public class UniMapController : ControllerBase
     /// <summary>
     /// Update an existing Identifier
     /// </summary>
-    /// <param name="source">Source of exisiting indentifier</param>
+    /// <param name="source">Source of existing indentifier</param>
     /// <param name="existingId">Identifier to search</param>
     /// <param name="alternativeIdentifier">AlternativeIdentifier to update</param>
     /// <returns>Collection UUID</returns>
@@ -297,7 +297,7 @@ public class UniMapController : ControllerBase
     /// <summary>
     /// Delete an identifier
     /// </summary>
-    /// <param name="source">Source of exisiting indentifier</param>
+    /// <param name="source">Source of existing indentifier</param>
     /// <param name="existingId">Identifier to search</param>
     /// <param name="all">Optional query parameter for delete all collection</param>
     /// <returns>No Content</returns>
