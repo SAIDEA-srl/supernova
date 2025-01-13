@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net9.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<PackageOutputPath>$(SolutionDir)..\packages</PackageOutputPath>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+	</ItemGroup>
+
+	<PropertyGroup>
+		<PackageId>Saidea.OrangeButtonModels</PackageId>
+		<Authors>Saidea</Authors>
+		<Company>Saidea</Company>
+		<Product />
+		<Version>0.0.1</Version>
+		<PackageProjectUrl>https://github.com/SAIDEA-srl/supernova</PackageProjectUrl>
+		<RepositoryType>git</RepositoryType>
+		<RepositoryUrl>https://github.com/SAIDEA-srl/supernova.git</RepositoryUrl>
+		<PackageTags>OrangeButton;Models</PackageTags>
+		<Copyright>@Saidea 2024</Copyright>
+		<Description>OrangeButton Models</Description>
+		<AssemblyVersion>0.0.1</AssemblyVersion>
+		<FileVersion>0.0.1</FileVersion>
+		<RootNamespace>OrangeButton</RootNamespace>
+	</PropertyGroup>
+
+</Project>

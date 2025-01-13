@@ -11,12 +11,12 @@
         "tags": [
           "UniMap"
         ],
-        "summary": "Find all identifiers of a specific compoment",
+        "summary": "Find all identifiers of a specific source",
         "parameters": [
           {
             "name": "source",
             "in": "path",
-            "description": "Source of identifier or Collection UUID",
+            "description": "source name",
             "required": true,
             "schema": {
               "type": "string"
@@ -31,7 +31,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/AlternativeIdentifier"
+                    "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/refs/heads/main/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/AlternativeIdentifier"
                   }
                 }
               },
@@ -39,7 +39,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/AlternativeIdentifier"
+                    "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/refs/heads/main/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/AlternativeIdentifier"
                   }
                 }
               },
@@ -47,7 +47,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/AlternativeIdentifier"
+                    "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/refs/heads/main/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/AlternativeIdentifier"
                   }
                 }
               }
@@ -80,17 +80,29 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/AlternativeIdentifier"
+                "allOf": [
+                  {
+                    "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/refs/heads/main/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/AlternativeIdentifier"
+                  }
+                ]
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/AlternativeIdentifier"
+                "allOf": [
+                  {
+                    "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/refs/heads/main/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/AlternativeIdentifier"
+                  }
+                ]
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/AlternativeIdentifier"
+                "allOf": [
+                  {
+                    "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/refs/heads/main/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/AlternativeIdentifier"
+                  }
+                ]
               }
             }
           }
@@ -136,7 +148,7 @@
           {
             "name": "source",
             "in": "path",
-            "description": "Source of exisiting indentifier or Collection UUID",
+            "description": "Source of existing indentifier or Collection UUID",
             "required": true,
             "schema": {
               "type": "string"
@@ -157,17 +169,29 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/AlternativeIdentifier"
+                "allOf": [
+                  {
+                    "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/refs/heads/main/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/AlternativeIdentifier"
+                  }
+                ]
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/AlternativeIdentifier"
+                "allOf": [
+                  {
+                    "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/refs/heads/main/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/AlternativeIdentifier"
+                  }
+                ]
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/AlternativeIdentifier"
+                "allOf": [
+                  {
+                    "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/refs/heads/main/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/AlternativeIdentifier"
+                  }
+                ]
               }
             }
           }
@@ -211,7 +235,7 @@
           {
             "name": "source",
             "in": "path",
-            "description": "Source of exisiting indentifier",
+            "description": "Source of existing indentifier",
             "required": true,
             "schema": {
               "type": "string"
@@ -232,17 +256,29 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/AlternativeIdentifier"
+                "allOf": [
+                  {
+                    "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/refs/heads/main/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/AlternativeIdentifier"
+                  }
+                ]
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/AlternativeIdentifier"
+                "allOf": [
+                  {
+                    "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/refs/heads/main/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/AlternativeIdentifier"
+                  }
+                ]
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/AlternativeIdentifier"
+                "allOf": [
+                  {
+                    "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/refs/heads/main/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/AlternativeIdentifier"
+                  }
+                ]
               }
             }
           }
@@ -285,7 +321,7 @@
           {
             "name": "source",
             "in": "path",
-            "description": "Source of exisiting indentifier",
+            "description": "Source of existing indentifier",
             "required": true,
             "schema": {
               "type": "string"
@@ -298,6 +334,15 @@
             "required": true,
             "schema": {
               "type": "string"
+            }
+          },
+          {
+            "name": "all",
+            "in": "query",
+            "description": "Optional query parameter for delete all collection",
+            "schema": {
+              "type": "boolean",
+              "default": false
             }
           }
         ],
@@ -321,7 +366,7 @@
           {
             "name": "source",
             "in": "path",
-            "description": "Source of identifier or Collection UUID",
+            "description": "Source of identifier",
             "required": true,
             "schema": {
               "type": "string"
@@ -345,7 +390,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/AlternativeIdentifier"
+                    "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/refs/heads/main/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/AlternativeIdentifier"
                   }
                 }
               },
@@ -353,7 +398,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/AlternativeIdentifier"
+                    "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/refs/heads/main/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/AlternativeIdentifier"
                   }
                 }
               },
@@ -361,7 +406,105 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/AlternativeIdentifier"
+                    "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/refs/heads/main/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/AlternativeIdentifier"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/UniMap/collection/{collectionUUID}": {
+      "get": {
+        "tags": [
+          "UniMap"
+        ],
+        "summary": "Find all identifiers of a specific collection",
+        "parameters": [
+          {
+            "name": "collectionUUID",
+            "in": "path",
+            "description": "Collection UUID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Collection"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Collection"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Collection"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/UniMap/search/{identifier}": {
+      "get": {
+        "tags": [
+          "UniMap"
+        ],
+        "summary": "Search an identifier",
+        "parameters": [
+          {
+            "name": "identifier",
+            "in": "path",
+            "description": "identifier to search",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Collection"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Collection"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Collection"
                   }
                 }
               }
@@ -376,93 +519,24 @@
   },
   "components": {
     "schemas": {
-      "AlternativeIdentifier": {
+      "Collection": {
         "type": "object",
         "properties": {
-          "SourceName": {
-            "$ref": "#/components/schemas/SourceName"
+          "CollectionId": {
+            "type": "string",
+            "format": "uuid",
+            "readOnly": true
           },
-          "Identifier": {
-            "$ref": "#/components/schemas/Identifier"
-          },
-          "Description": {
-            "$ref": "#/components/schemas/Description"
-          },
-          "IdentifierType": {
-            "$ref": "#/components/schemas/IdentifierType"
+          "Identifiers": {
+            "type": "array",
+            "items": {
+              "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/refs/heads/main/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/AlternativeIdentifier"
+            },
+            "nullable": true,
+            "readOnly": true
           }
         },
         "additionalProperties": false
-      },
-      "Description": {
-        "type": "object",
-        "properties": {
-          "Value": {
-            "type": "string",
-            "nullable": true
-          },
-          "Unit": {
-            "type": "string",
-            "nullable": true
-          },
-          "Decimals": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "Precision": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "StartTime": {
-            "type": "string",
-            "nullable": true
-          },
-          "EndTime": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "Identifier": {
-        "type": "object",
-        "properties": {
-          "Value": {
-            "type": "string",
-            "nullable": true
-          },
-          "Unit": {
-            "type": "string",
-            "nullable": true
-          },
-          "Decimals": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "Precision": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "StartTime": {
-            "type": "string",
-            "nullable": true
-          },
-          "EndTime": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "IdentifierType": {
-          "$ref": "./constants#/components/schemas/AssetIdentifierType"
-      },
-      "SourceName": {
-          "$ref": "./constants#/components/schemas/PlatformIdentifier"
       }
     },
     "securitySchemes": {
@@ -476,7 +550,7 @@
   },
   "security": [
     {
-      "bearer": [ ]
+      "bearer": []
     }
   ]
 }

@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniversalMapper", "UniversalMapper\UniversalMapper.csproj", "{8C7CBC68-62C3-15F3-2488-DC29AD3BF7F1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniversalMapper.AppHost", "UniversalMapper.AppHost\UniversalMapper.AppHost.csproj", "{3849399B-F1B8-4779-B927-53350EDB0F8C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrangeButtonModels", "..\models\dotnet\OrangeButtonModels\OrangeButtonModels.csproj", "{C1D962BC-CCA8-921D-18F5-87A7FC59411A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}"
+	ProjectSection(SolutionItems) = preProject
+		..\constants.json = ..\constants.json
+		..\synchronous_unimap_api.json = ..\synchronous_unimap_api.json
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8C7CBC68-62C3-15F3-2488-DC29AD3BF7F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C7CBC68-62C3-15F3-2488-DC29AD3BF7F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C7CBC68-62C3-15F3-2488-DC29AD3BF7F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C7CBC68-62C3-15F3-2488-DC29AD3BF7F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3849399B-F1B8-4779-B927-53350EDB0F8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3849399B-F1B8-4779-B927-53350EDB0F8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3849399B-F1B8-4779-B927-53350EDB0F8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3849399B-F1B8-4779-B927-53350EDB0F8C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1D962BC-CCA8-921D-18F5-87A7FC59411A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1D962BC-CCA8-921D-18F5-87A7FC59411A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1D962BC-CCA8-921D-18F5-87A7FC59411A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1D962BC-CCA8-921D-18F5-87A7FC59411A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4799E35A-B038-4A21-88AF-CE2CB6B2807B}
+	EndGlobalSection
+EndGlobal
