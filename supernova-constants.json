@@ -7,27 +7,28 @@
   "components": {
     "schemas": {
       "PlatformIdentifier": {
-        "comment": "Preliminary platform list. To be extended with new products.",
+        "type": "string",
+        "description": "Preliminary platform list. To be extended with new products.",
         "enum": [
            "ANTARES",
            "SOLARGAIN",
            "SYNAPTIQ",
            "other"
-        ],
-        "type": "string"
+        ]
       },
       "DocumentContentType": {
-        "comment": "Preliminary example list. To be extended with platform-specific docs.",
+        "type": "string",
+        "description": "Preliminary example list. To be extended with platform-specific docs.",
         "enum": [
           "PowerProductionReport",
           "3D model",
           "photo",
           "other"
-        ],
-        "type": "string"
+        ]
       },
       "DocumentFormat": {
-        "comment": "Preliminary example list.",
+        "type": "string",
+        "description": "Preliminary example list.",
         "enum": [
           "CSV",
           "JSON",
@@ -36,13 +37,10 @@
           "PDF",
           "text",
           "other"
-        ],
-        "type": "string"
+        ]
       },
       "DeviceTypeId": {
-        "comment": "Originated from TRUST-PV Risk Matrix components/subcomponents lists by connecting names with -, changing blanks in _, changing & in _and_",
-        "url": "https://trust-pv.eu/reports/risk-matrix/",
-        "extracted-on": "2024-12-31",
+        "type": "string",
         "enum": [
           "unknown",
           "Communication_and_Monitoring-Monitoring_system",
@@ -123,12 +121,13 @@
           "Weather_sensors-Soiling_sensor",
           "Weather_sensors-Wind_speed_sensor"
         ],
-        "type": "string"
+        "x-description": "Originated from TRUST-PV Risk Matrix components/subcomponents lists by connecting names with -, changing blanks in _, changing & in _and_",
+        "x-url": "https://trust-pv.eu/reports/risk-matrix/",
+        "x-extracted-on": "2024-12-31"
       },
       "AlarmTypeId": {
-        "comment": "Originated from TRUST-PV Risk Matrix.",
-        "url": "https://trust-pv.eu/reports/risk-matrix/",
-        "extracted-on": "2024-12-31",
+        "type": "string",
+        "description": "",        
         "enum": [
           "com.01",
           "com.02",
@@ -537,10 +536,13 @@
           "ws.36",
           "ws.37"
         ],
-        "type": "string"
+        "x-comment": "Originated from TRUST-PV Risk Matrix.",
+        "x-url": "https://trust-pv.eu/reports/risk-matrix/",
+        "x-extracted-on": "2024-12-31"
       },
       "AssetIdentifierType": {
-          "comment": "Preliminary set. To be extended while platforms are added.",
+          "type":"string",
+          "description": "Preliminary set. To be extended while platforms are added.",
           "enum": [
               "UUID",
               "InternalID",
@@ -549,14 +551,14 @@
           ]
       },
       "NotificationTopic": {
-        "comment": "To be extended while channel types are identifier.",
+        "type": "string",
+        "description": "To be extended while channel types are identifier.",
         "enum": [
           "omissue",
           "omtask",
           "weather",
           "hookcompletion"
-        ],
-        "type": "string"
+        ]
       }
     }
   }
