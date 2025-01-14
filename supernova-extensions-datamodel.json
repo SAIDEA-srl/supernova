@@ -28,6 +28,27 @@
           "Version": {
             "description": "...TODO...",
             "type": "string"
+          },
+          "SupportedDocuments": {
+            "description": "...TODO...",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SupportedDocument"
+            }
+          }
+        }
+      },
+      "SupportedDocument": {
+        "type": "object",
+        "description": "Document supported",
+        "properties": {
+          "Description": {
+            "type": "string"
+          },
+          "DocumentType": {
+            "type": "string",
+            "description": "document type",
+            "x-ob-usate-tips" : "text/csv"
           }
         }
       },
@@ -119,19 +140,19 @@
         "type": "object",
         "description": "...TODO...",
         "properties": {
-            "ConnectionId": {
-              "$ref": "#/components/schemas/ConnectionId"
-            },
-            "ConnectionType": {
-              "$ref": "#/components/schemas/ConnectionType"
-            },
-            "FromDeviceId": {
-              "$ref": "#/components/schemas/FromDeviceId"
-            },
-            "ToDeviceId": {
-              "$ref": "#/components/schemas/ToDeviceId"
-            }
-        }      
+          "ConnectionId": {
+            "$ref": "#/components/schemas/ConnectionId"
+          },
+          "ConnectionType": {
+            "$ref": "#/components/schemas/ConnectionType"
+          },
+          "FromDeviceId": {
+            "$ref": "#/components/schemas/FromDeviceId"
+          },
+          "ToDeviceId": {
+            "$ref": "#/components/schemas/ToDeviceId"
+          }
+        }
       },
       "Document": {
         "type": "object",
@@ -151,8 +172,8 @@
           },
           "DocumentDate": {
             "$ref": "#/components/schemas/DocumentDate"
-          }          
-        }        
+          }
+        }
       },
       "ConnectionId": {
         "allOf": [
@@ -209,7 +230,7 @@
             "x-ob-item-type-group": ""
           }
         ]
-      },      
+      },
       "DocumentId": {
         "allOf": [
           {
@@ -279,12 +300,85 @@
             "x-ob-item-type-group": ""
           }
         ]
-      }  
+      },
+      "GatewayHook": {
+        "type": "object",
+        "properties": {
+          "Name": {
+            "type": "string",
+            "nullable": true
+          },
+          "Parameters": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        }
+      },
+      "GatewayHookExecution": {
+        "type": "object",
+        "properties": {
+          "Id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "HookName": {
+            "type": "string"
+          },
+          "Paramenters": {
+            "type": "object",
+            "additionalProperties": {},
+            "nullable": true
+          },
+          "DateTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "Status": {
+            "$ref": "#/components/schemas/HookStatus"
+          },
+          "Result": {
+            "$ref": "#/components/schemas/GatewayHookResult"
+          }
+        }
+      },
+      "GatewayHookResult": {
+        "type": "object",
+        "properties": {
+          "ExecutionId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "IsSuccessful": {
+            "type": "boolean"
+          },
+          "ResponseUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "DateTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "ExpirationTime": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        }
+      },
+      "HookStatus": {
+        "enum": [
+          "Created", 
+          "Execution", 
+          "End"
+        ],
+        "type": "string"
+      }
     }
   },
-  "x-ob-item-types": {
-  },
-  "x-ob-item-type-group" : {
-
-  }
+  "x-ob-item-types": {},
+  "x-ob-item-type-group": {}
 }
