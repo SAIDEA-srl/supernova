@@ -5,7 +5,7 @@
   "documentGenerator": {
     "fromDocument": {
       "json": "",
-      "url": "./Master-OB-OpenAPI.json",
+      "url": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/676b4bb1730de5ed871668d652c9a738c47907ee/Master-OB-OpenAPI-2407-0-0.json",
       "output": null,
       "newLineBehavior": "Auto"
     }
