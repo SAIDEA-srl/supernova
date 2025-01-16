@@ -4,6 +4,7 @@
     "title": "SUPERNOVA Interoperation API 1.0 Constant Values",
     "version": "1.0"
   },
+  "paths": {},
   "components": {
     "schemas": {
       "PlatformIdentifier": {

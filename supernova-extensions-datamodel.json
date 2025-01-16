@@ -5,6 +5,7 @@
     "version": "1.0",
     "description": "Derived by extending the OB OpenAPI Taxonomy 1.1.7"
   },
+  "paths": {},
   "components": {
     "schemas": {
       "Info": {
