@@ -1,4 +1,4 @@
-﻿namespace OrangeButton.Models;
+﻿namespace Supernova.Models;
 
 
 public class Message<T>
@@ -11,14 +11,12 @@ public class Message<T>
 
 }
 
-
 public enum ExectutionStatus
 {
     Created = 0,
     Execution = 1,
     End = 2,
 }
-
 
 public class GatewayExectutionStatus
 {

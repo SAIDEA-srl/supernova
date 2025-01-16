@@ -13,7 +13,7 @@
 	</ItemGroup>
 
 	<PropertyGroup>
-		<PackageId>Saidea.OrangeButtonModels</PackageId>
+		<PackageId>OrangeButton.Models</PackageId>
 		<Authors>Saidea</Authors>
 		<Company>Saidea</Company>
 		<Product />
