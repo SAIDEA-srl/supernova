@@ -1,10 +1,4 @@
-$URL = "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/refs/heads/main/Master-OB-OpenAPI.json"
-$Path = '../../Master-OB-OpenAPI.json'
-
-#Invoke-WebRequest -URI $URL -OutFile $Path 
 nswag run .\NSwagConfig.nswag  
-
-
 
 ## fix System
 (Get-Content .\ModelGenerated.cs) `

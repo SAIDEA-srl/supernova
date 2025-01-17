@@ -31,7 +31,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/refs/heads/main/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/AlternativeIdentifier"
+                    "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/676b4bb1730de5ed871668d652c9a738c47907ee/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/AlternativeIdentifier"
                   }
                 }
               },
@@ -39,7 +39,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/refs/heads/main/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/AlternativeIdentifier"
+                    "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/676b4bb1730de5ed871668d652c9a738c47907ee/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/AlternativeIdentifier"
                   }
                 }
               },
@@ -47,7 +47,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/refs/heads/main/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/AlternativeIdentifier"
+                    "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/676b4bb1730de5ed871668d652c9a738c47907ee/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/AlternativeIdentifier"
                   }
                 }
               }
@@ -82,7 +82,7 @@
               "schema": {
                 "allOf": [
                   {
-                    "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/refs/heads/main/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/AlternativeIdentifier"
+                    "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/676b4bb1730de5ed871668d652c9a738c47907ee/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/AlternativeIdentifier"
                   }
                 ]
               }
@@ -91,7 +91,7 @@
               "schema": {
                 "allOf": [
                   {
-                    "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/refs/heads/main/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/AlternativeIdentifier"
+                    "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/676b4bb1730de5ed871668d652c9a738c47907ee/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/AlternativeIdentifier"
                   }
                 ]
               }
@@ -100,7 +100,7 @@
               "schema": {
                 "allOf": [
                   {
-                    "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/refs/heads/main/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/AlternativeIdentifier"
+                    "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/676b4bb1730de5ed871668d652c9a738c47907ee/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/AlternativeIdentifier"
                   }
                 ]
               }
@@ -171,7 +171,7 @@
               "schema": {
                 "allOf": [
                   {
-                    "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/refs/heads/main/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/AlternativeIdentifier"
+                    "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/676b4bb1730de5ed871668d652c9a738c47907ee/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/AlternativeIdentifier"
                   }
                 ]
               }
@@ -180,7 +180,7 @@
               "schema": {
                 "allOf": [
                   {
-                    "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/refs/heads/main/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/AlternativeIdentifier"
+                    "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/676b4bb1730de5ed871668d652c9a738c47907ee/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/AlternativeIdentifier"
                   }
                 ]
               }
@@ -189,7 +189,7 @@
               "schema": {
                 "allOf": [
                   {
-                    "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/refs/heads/main/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/AlternativeIdentifier"
+                    "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/676b4bb1730de5ed871668d652c9a738c47907ee/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/AlternativeIdentifier"
                   }
                 ]
               }
@@ -258,7 +258,7 @@
               "schema": {
                 "allOf": [
                   {
-                    "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/refs/heads/main/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/AlternativeIdentifier"
+                    "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/676b4bb1730de5ed871668d652c9a738c47907ee/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/AlternativeIdentifier"
                   }
                 ]
               }
@@ -267,7 +267,7 @@
               "schema": {
                 "allOf": [
                   {
-                    "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/refs/heads/main/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/AlternativeIdentifier"
+                    "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/676b4bb1730de5ed871668d652c9a738c47907ee/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/AlternativeIdentifier"
                   }
                 ]
               }
@@ -276,7 +276,7 @@
               "schema": {
                 "allOf": [
                   {
-                    "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/refs/heads/main/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/AlternativeIdentifier"
+                    "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/676b4bb1730de5ed871668d652c9a738c47907ee/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/AlternativeIdentifier"
                   }
                 ]
               }
@@ -390,7 +390,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/refs/heads/main/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/AlternativeIdentifier"
+                    "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/676b4bb1730de5ed871668d652c9a738c47907ee/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/AlternativeIdentifier"
                   }
                 }
               },
@@ -398,7 +398,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/refs/heads/main/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/AlternativeIdentifier"
+                    "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/676b4bb1730de5ed871668d652c9a738c47907ee/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/AlternativeIdentifier"
                   }
                 }
               },
@@ -406,7 +406,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/refs/heads/main/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/AlternativeIdentifier"
+                    "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/676b4bb1730de5ed871668d652c9a738c47907ee/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/AlternativeIdentifier"
                   }
                 }
               }
@@ -530,7 +530,7 @@
           "Identifiers": {
             "type": "array",
             "items": {
-              "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/refs/heads/main/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/AlternativeIdentifier"
+              "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/676b4bb1730de5ed871668d652c9a738c47907ee/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/AlternativeIdentifier"
             },
             "nullable": true,
             "readOnly": true

@@ -5,22 +5,28 @@
     "version": "1.0"
   },
   "paths": {
+    "/Info": {
+      "get": {
+        "tags": ["Info"],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "supernova-extensions-datamodel.json#/components/schemas/Info"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/Devices": {
       "get": {
-        "tags": [
-          "Device"
-        ],
+        "tags": ["Device"],
         "operationId": "Device_GetList",
         "parameters": [
-          {
-            "name": "api-version",
-            "in": "query",
-            "description": "The requested API version",
-            "schema": {
-              "type": "string",
-              "default": "1.0"
-            }
-          },
           {
             "name": "$expand",
             "in": "query",
@@ -96,39 +102,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "./datamodel.json#/components/schemas/Device"
-                  }
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "./datamodel.json#/components/schemas/Device"
-                  }
-                }
-              },
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "./datamodel.json#/components/schemas/Device"
-                  }
-                }
-              },
-              "application/octet-stream": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "./datamodel.json#/components/schemas/Device"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "./datamodel.json#/components/schemas/Device"
+                    "$ref": "supernova-extensions-datamodel.json#/components/schemas/Device"
                   }
                 }
               }
@@ -139,9 +113,7 @@
     },
     "/Devices/{id}": {
       "get": {
-        "tags": [
-          "Device"
-        ],
+        "tags": ["Device"],
         "operationId": "Device_Get",
         "parameters": [
           {
@@ -149,17 +121,7 @@
             "in": "path",
             "required": true,
             "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          {
-            "name": "api-version",
-            "in": "query",
-            "description": "The requested API version",
-            "schema": {
-              "type": "string",
-              "default": "1.0"
+              "type": "string"
             }
           },
           {
@@ -185,27 +147,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "./datamodel.json#/components/schemas/Device"
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "$ref": "./datamodel.json#/components/schemas/Device"
-                }
-              },
-              "text/plain": {
-                "schema": {
-                  "$ref": "./datamodel.json#/components/schemas/Device"
-                }
-              },
-              "application/octet-stream": {
-                "schema": {
-                  "$ref": "./datamodel.json#/components/schemas/Device"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "./datamodel.json#/components/schemas/Device"
+                  "$ref": "supernova-extensions-datamodel.json#/components/schemas/Device"
                 }
               }
             }
@@ -218,9 +160,7 @@
     },
     "/Devices/{id}/Components": {
       "get": {
-        "tags": [
-          "Device"
-        ],
+        "tags": ["Device"],
         "operationId": "Device_GetComponentsList",
         "parameters": [
           {
@@ -228,17 +168,7 @@
             "in": "path",
             "required": true,
             "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          {
-            "name": "api-version",
-            "in": "query",
-            "description": "The requested API version",
-            "schema": {
-              "type": "string",
-              "default": "1.0"
+              "type": "string"
             }
           },
           {
@@ -316,39 +246,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "./datamodel.json#/components/schemas/Component"
-                  }
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "./datamodel.json#/components/schemas/Component"
-                  }
-                }
-              },
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "./datamodel.json#/components/schemas/Component"
-                  }
-                }
-              },
-              "application/octet-stream": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "./datamodel.json#/components/schemas/Component"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "./datamodel.json#/components/schemas/Component"
+                    "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/676b4bb1730de5ed871668d652c9a738c47907ee/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/Component"
                   }
                 }
               }
@@ -359,9 +257,7 @@
     },
     "/Devices/{id}/Connections": {
       "get": {
-        "tags": [
-          "Device"
-        ],
+        "tags": ["Device"],
         "operationId": "Device_GetConnectionsList",
         "parameters": [
           {
@@ -369,17 +265,7 @@
             "in": "path",
             "required": true,
             "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          {
-            "name": "api-version",
-            "in": "query",
-            "description": "The requested API version",
-            "schema": {
-              "type": "string",
-              "default": "1.0"
+              "type": "string"
             }
           },
           {
@@ -457,39 +343,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "./datamodel.json#/components/schemas/Connection"
-                  }
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "./datamodel.json#/components/schemas/Connection"
-                  }
-                }
-              },
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "./datamodel.json#/components/schemas/Connection"
-                  }
-                }
-              },
-              "application/octet-stream": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "./datamodel.json#/components/schemas/Connection"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "./datamodel.json#/components/schemas/Connection"
+                    "$ref": "supernova-extensions-datamodel.json#/components/schemas/Connection"
                   }
                 }
               }
@@ -500,9 +354,7 @@
     },
     "/Devices/{id}/Documents": {
       "get": {
-        "tags": [
-          "Device"
-        ],
+        "tags": ["Device"],
         "operationId": "Device_GetDocuments",
         "parameters": [
           {
@@ -510,17 +362,7 @@
             "in": "path",
             "required": true,
             "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          {
-            "name": "api-version",
-            "in": "query",
-            "description": "The requested API version",
-            "schema": {
-              "type": "string",
-              "default": "1.0"
+              "type": "string"
             }
           },
           {
@@ -598,39 +440,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "./datamodel.json#/components/schemas/Document"
-                  }
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "./datamodel.json#/components/schemas/Document"
-                  }
-                }
-              },
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "./datamodel.json#/components/schemas/Document"
-                  }
-                }
-              },
-              "application/octet-stream": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "./datamodel.json#/components/schemas/Document"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "./datamodel.json#/components/schemas/Document"
+                    "$ref": "supernova-extensions-datamodel.json#/components/schemas/Document"
                   }
                 }
               }
@@ -641,9 +451,7 @@
     },
     "/Devices/{id}/OMTasks": {
       "get": {
-        "tags": [
-          "Device"
-        ],
+        "tags": ["Device"],
         "operationId": "Device_GetOMTasksList",
         "parameters": [
           {
@@ -651,17 +459,7 @@
             "in": "path",
             "required": true,
             "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          {
-            "name": "api-version",
-            "in": "query",
-            "description": "The requested API version",
-            "schema": {
-              "type": "string",
-              "default": "1.0"
+              "type": "string"
             }
           },
           {
@@ -739,39 +537,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "./datamodel.json#/components/schemas/OMTask"
-                  }
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "./datamodel.json#/components/schemas/OMTask"
-                  }
-                }
-              },
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "./datamodel.json#/components/schemas/OMTask"
-                  }
-                }
-              },
-              "application/octet-stream": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "./datamodel.json#/components/schemas/OMTask"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "./datamodel.json#/components/schemas/OMTask"
+                    "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/676b4bb1730de5ed871668d652c9a738c47907ee/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/OMTask"
                   }
                 }
               }
@@ -780,89 +546,10 @@
         }
       }
     },
-    "/hooks": {
+    "/Gateway/Hooks": {
       "get": {
-        "tags": [
-          "Gateway"
-        ],
+        "tags": ["Gateway"],
         "operationId": "Gateway_GetHooks",
-        "parameters": [
-          {
-            "name": "api-version",
-            "in": "query",
-            "description": "The requested API version",
-            "schema": {
-              "type": "string",
-              "default": "1.0"
-            }
-          },
-          {
-            "name": "$expand",
-            "in": "query",
-            "description": "Expands related entities inline.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "$filter",
-            "in": "query",
-            "description": "Filters the results, based on a Boolean condition.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "$select",
-            "in": "query",
-            "description": "Selects which properties to include in the response.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "$orderby",
-            "in": "query",
-            "description": "Sorts the results.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "$top",
-            "in": "query",
-            "description": "Returns only the first n results.",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "$skip",
-            "in": "query",
-            "description": "Skips the first n results.",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "$count",
-            "in": "query",
-            "description": "Includes a count of the matching results in the response.",
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "name": "$apply",
-            "in": "query",
-            "description": "Specify a sequence of transformations to the entity set, such as groupby, filter, aggregate, etc..",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -871,39 +558,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "./datamodel.json#/components/schemas/GatewayHook"
-                  }
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "./datamodel.json#/components/schemas/GatewayHook"
-                  }
-                }
-              },
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "./datamodel.json#/components/schemas/GatewayHook"
-                  }
-                }
-              },
-              "application/octet-stream": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "./datamodel.json#/components/schemas/GatewayHook"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "./datamodel.json#/components/schemas/GatewayHook"
+                    "$ref": "supernova-extensions-datamodel.json#/components/schemas/GatewayHook"
                   }
                 }
               }
@@ -912,179 +567,26 @@
         }
       }
     },
-    "/hooks/{hookid}/executions": {
+    "/Gateway/Hooks/{hookname}/executions/{execId}": {
       "get": {
-        "tags": [
-          "Gateway"
-        ],
+        "tags": ["Gateway"],
         "operationId": "Gateway_GetHookExecutions",
         "parameters": [
           {
-            "name": "hookid",
+            "name": "hookname",
             "in": "path",
             "required": true,
             "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          {
-            "name": "api-version",
-            "in": "query",
-            "description": "The requested API version",
-            "schema": {
-              "type": "string",
-              "default": "1.0"
-            }
-          },
-          {
-            "name": "$expand",
-            "in": "query",
-            "description": "Expands related entities inline.",
-            "schema": {
               "type": "string"
-            }
-          },
-          {
-            "name": "$filter",
-            "in": "query",
-            "description": "Filters the results, based on a Boolean condition.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "$select",
-            "in": "query",
-            "description": "Selects which properties to include in the response.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "$orderby",
-            "in": "query",
-            "description": "Sorts the results.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "$top",
-            "in": "query",
-            "description": "Returns only the first n results.",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "$skip",
-            "in": "query",
-            "description": "Skips the first n results.",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "$count",
-            "in": "query",
-            "description": "Includes a count of the matching results in the response.",
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "name": "$apply",
-            "in": "query",
-            "description": "Specify a sequence of transformations to the entity set, such as groupby, filter, aggregate, etc..",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "./datamodel.json#/components/schemas/GatewayHookExecution"
-                  }
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "./datamodel.json#/components/schemas/GatewayHookExecution"
-                  }
-                }
-              },
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "./datamodel.json#/components/schemas/GatewayHookExecution"
-                  }
-                }
-              },
-              "application/octet-stream": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "./datamodel.json#/components/schemas/GatewayHookExecution"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "./datamodel.json#/components/schemas/GatewayHookExecution"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/hooks/{hookid}/executions/{excid}/result": {
-      "get": {
-        "tags": [
-          "Gateway"
-        ],
-        "operationId": "Gateway_GetExecutionResult",
-        "parameters": [
-          {
-            "name": "hookid",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
             }
           },
           {
             "name": "excid",
+            "description": "Execution identifier",
             "in": "path",
             "required": true,
             "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          {
-            "name": "api-version",
-            "in": "query",
-            "description": "The requested API version",
-            "schema": {
-              "type": "string",
-              "default": "1.0"
+              "type": "string"
             }
           }
         ],
@@ -1094,27 +596,10 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "./datamodel.json#/components/schemas/GatewayHookResult"
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "$ref": "./datamodel.json#/components/schemas/GatewayHookResult"
-                }
-              },
-              "text/plain": {
-                "schema": {
-                  "$ref": "./datamodel.json#/components/schemas/GatewayHookResult"
-                }
-              },
-              "application/octet-stream": {
-                "schema": {
-                  "$ref": "./datamodel.json#/components/schemas/GatewayHookResult"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "./datamodel.json#/components/schemas/GatewayHookResult"
+                  "type": "array",
+                  "items": {
+                    "$ref": "supernova-extensions-datamodel.json#/components/schemas/GatewayHookExecution"
+                  }
                 }
               }
             }
@@ -1122,29 +607,54 @@
         }
       }
     },
-    "/hooks/{hookid}/executions/run": {
-      "post": {
-        "tags": [
-          "Gateway"
-        ],
-        "operationId": "Gateway_RunHook",
+    "/Gateway/Hooks/{hookname}/executions/{execId}/result": {
+      "get": {
+        "tags": ["Gateway"],
+        "operationId": "Gateway_GetExecutionResult",
         "parameters": [
           {
-            "name": "hookid",
+            "name": "hookname",
             "in": "path",
             "required": true,
             "schema": {
-              "type": "string",
-              "format": "uuid"
+              "type": "string"
             }
           },
           {
-            "name": "api-version",
-            "in": "query",
-            "description": "The requested API version",
+            "name": "excid",
+            "description": "Execution identifier",
+            "in": "path",
+            "required": true,
             "schema": {
-              "type": "string",
-              "default": "1.0"
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "supernova-extensions-datamodel.json#/components/schemas/GatewayHookResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Gateway/Hooks/{hookname}/run": {
+      "post": {
+        "tags": ["Gateway"],
+        "operationId": "Gateway_RunHook",
+        "parameters": [
+          {
+            "name": "hookname",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -1153,37 +663,37 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "additionalProperties": { }
+                "additionalProperties": {}
               }
             },
             "application/xml": {
               "schema": {
                 "type": "object",
-                "additionalProperties": { }
+                "additionalProperties": {}
               }
             },
             "text/plain": {
               "schema": {
                 "type": "object",
-                "additionalProperties": { }
+                "additionalProperties": {}
               }
             },
             "application/json-patch+json": {
               "schema": {
                 "type": "object",
-                "additionalProperties": { }
+                "additionalProperties": {}
               }
             },
             "text/json": {
               "schema": {
                 "type": "object",
-                "additionalProperties": { }
+                "additionalProperties": {}
               }
             },
             "application/*+json": {
               "schema": {
                 "type": "object",
-                "additionalProperties": { }
+                "additionalProperties": {}
               }
             }
           }
@@ -1194,27 +704,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "./datamodel.json#/components/schemas/GatewayHookExecution"
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "$ref": "./datamodel.json#/components/schemas/GatewayHookExecution"
-                }
-              },
-              "text/plain": {
-                "schema": {
-                  "$ref": "./datamodel.json#/components/schemas/GatewayHookExecution"
-                }
-              },
-              "application/octet-stream": {
-                "schema": {
-                  "$ref": "./datamodel.json#/components/schemas/GatewayHookExecution"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "./datamodel.json#/components/schemas/GatewayHookExecution"
+                  "$ref": "supernova-extensions-datamodel.json#/components/schemas/GatewayHookExecution"
                 }
               }
             }
@@ -1224,20 +714,9 @@
     },
     "/OMTasks": {
       "get": {
-        "tags": [
-          "OMTask"
-        ],
+        "tags": ["OMTask"],
         "operationId": "OMTask_GetList",
         "parameters": [
-          {
-            "name": "api-version",
-            "in": "query",
-            "description": "The requested API version",
-            "schema": {
-              "type": "string",
-              "default": "1.0"
-            }
-          },
           {
             "name": "$expand",
             "in": "query",
@@ -1313,39 +792,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "./datamodel.json#/components/schemas/OMTask"
-                  }
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "./datamodel.json#/components/schemas/OMTask"
-                  }
-                }
-              },
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "./datamodel.json#/components/schemas/OMTask"
-                  }
-                }
-              },
-              "application/octet-stream": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "./datamodel.json#/components/schemas/OMTask"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "./datamodel.json#/components/schemas/OMTask"
+                    "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/676b4bb1730de5ed871668d652c9a738c47907ee/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/OMTask"
                   }
                 }
               }
@@ -1356,9 +803,7 @@
     },
     "/OMTasks/{id}": {
       "get": {
-        "tags": [
-          "OMTask"
-        ],
+        "tags": ["OMTask"],
         "operationId": "OMTask_Get",
         "parameters": [
           {
@@ -1366,17 +811,7 @@
             "in": "path",
             "required": true,
             "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          {
-            "name": "api-version",
-            "in": "query",
-            "description": "The requested API version",
-            "schema": {
-              "type": "string",
-              "default": "1.0"
+              "type": "string"
             }
           },
           {
@@ -1402,27 +837,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "./datamodel.json#/components/schemas/OMTask"
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "$ref": "./datamodel.json#/components/schemas/OMTask"
-                }
-              },
-              "text/plain": {
-                "schema": {
-                  "$ref": "./datamodel.json#/components/schemas/OMTask"
-                }
-              },
-              "application/octet-stream": {
-                "schema": {
-                  "$ref": "./datamodel.json#/components/schemas/OMTask"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "./datamodel.json#/components/schemas/OMTask"
+                  "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/676b4bb1730de5ed871668d652c9a738c47907ee/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/OMTask"
                 }
               }
             }
@@ -1435,20 +850,9 @@
     },
     "/PVArrays": {
       "get": {
-        "tags": [
-          "PVArray"
-        ],
+        "tags": ["PVArray"],
         "operationId": "PVArray_GetList",
         "parameters": [
-          {
-            "name": "api-version",
-            "in": "query",
-            "description": "The requested API version",
-            "schema": {
-              "type": "string",
-              "default": "1.0"
-            }
-          },
           {
             "name": "$expand",
             "in": "query",
@@ -1524,39 +928,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "./datamodel.json#/components/schemas/PVArray"
-                  }
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "./datamodel.json#/components/schemas/PVArray"
-                  }
-                }
-              },
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "./datamodel.json#/components/schemas/PVArray"
-                  }
-                }
-              },
-              "application/octet-stream": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "./datamodel.json#/components/schemas/PVArray"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "./datamodel.json#/components/schemas/PVArray"
+                    "$ref": "supernova-extensions-datamodel.json#/components/schemas/PVArray"
                   }
                 }
               }
@@ -1567,9 +939,7 @@
     },
     "/PVArrays/{id}": {
       "get": {
-        "tags": [
-          "PVArray"
-        ],
+        "tags": ["PVArray"],
         "operationId": "PVArray_Get",
         "parameters": [
           {
@@ -1577,17 +947,7 @@
             "in": "path",
             "required": true,
             "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          {
-            "name": "api-version",
-            "in": "query",
-            "description": "The requested API version",
-            "schema": {
-              "type": "string",
-              "default": "1.0"
+              "type": "string"
             }
           },
           {
@@ -1613,27 +973,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "./datamodel.json#/components/schemas/PVArray"
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "$ref": "./datamodel.json#/components/schemas/PVArray"
-                }
-              },
-              "text/plain": {
-                "schema": {
-                  "$ref": "./datamodel.json#/components/schemas/PVArray"
-                }
-              },
-              "application/octet-stream": {
-                "schema": {
-                  "$ref": "./datamodel.json#/components/schemas/PVArray"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "./datamodel.json#/components/schemas/PVArray"
+                  "$ref": "supernova-extensions-datamodel.json#/components/schemas/PVArray"
                 }
               }
             }
@@ -1646,9 +986,7 @@
     },
     "/PVArrays/{id}/Devices": {
       "get": {
-        "tags": [
-          "PVArray"
-        ],
+        "tags": ["PVArray"],
         "operationId": "PVArray_GetDevicesList",
         "parameters": [
           {
@@ -1656,17 +994,7 @@
             "in": "path",
             "required": true,
             "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          {
-            "name": "api-version",
-            "in": "query",
-            "description": "The requested API version",
-            "schema": {
-              "type": "string",
-              "default": "1.0"
+              "type": "string"
             }
           },
           {
@@ -1744,39 +1072,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "./datamodel.json#/components/schemas/Device"
-                  }
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "./datamodel.json#/components/schemas/Device"
-                  }
-                }
-              },
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "./datamodel.json#/components/schemas/Device"
-                  }
-                }
-              },
-              "application/octet-stream": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "./datamodel.json#/components/schemas/Device"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "./datamodel.json#/components/schemas/Device"
+                    "$ref": "supernova-extensions-datamodel.json#/components/schemas/Device"
                   }
                 }
               }
@@ -1787,9 +1083,7 @@
     },
     "/PVArrays/{id}/PVStrings": {
       "get": {
-        "tags": [
-          "PVArray"
-        ],
+        "tags": ["PVArray"],
         "operationId": "PVArray_GetPVStringsList",
         "parameters": [
           {
@@ -1797,17 +1091,7 @@
             "in": "path",
             "required": true,
             "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          {
-            "name": "api-version",
-            "in": "query",
-            "description": "The requested API version",
-            "schema": {
-              "type": "string",
-              "default": "1.0"
+              "type": "string"
             }
           },
           {
@@ -1885,39 +1169,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "./datamodel.json#/components/schemas/PVString"
-                  }
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "./datamodel.json#/components/schemas/PVString"
-                  }
-                }
-              },
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "./datamodel.json#/components/schemas/PVString"
-                  }
-                }
-              },
-              "application/octet-stream": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "./datamodel.json#/components/schemas/PVString"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "./datamodel.json#/components/schemas/PVString"
+                    "$ref": "supernova-extensions-datamodel.json#/components/schemas/PVString"
                   }
                 }
               }
@@ -1928,20 +1180,9 @@
     },
     "/PVStrings": {
       "get": {
-        "tags": [
-          "PVString"
-        ],
+        "tags": ["PVString"],
         "operationId": "PVString_GetList",
         "parameters": [
-          {
-            "name": "api-version",
-            "in": "query",
-            "description": "The requested API version",
-            "schema": {
-              "type": "string",
-              "default": "1.0"
-            }
-          },
           {
             "name": "$expand",
             "in": "query",
@@ -2017,39 +1258,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "./datamodel.json#/components/schemas/PVString"
-                  }
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "./datamodel.json#/components/schemas/PVString"
-                  }
-                }
-              },
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "./datamodel.json#/components/schemas/PVString"
-                  }
-                }
-              },
-              "application/octet-stream": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "./datamodel.json#/components/schemas/PVString"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "./datamodel.json#/components/schemas/PVString"
+                    "$ref": "supernova-extensions-datamodel.json#/components/schemas/PVString"
                   }
                 }
               }
@@ -2060,9 +1269,7 @@
     },
     "/PVStrings/{id}": {
       "get": {
-        "tags": [
-          "PVString"
-        ],
+        "tags": ["PVString"],
         "operationId": "PVString_Get",
         "parameters": [
           {
@@ -2070,17 +1277,7 @@
             "in": "path",
             "required": true,
             "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          {
-            "name": "api-version",
-            "in": "query",
-            "description": "The requested API version",
-            "schema": {
-              "type": "string",
-              "default": "1.0"
+              "type": "string"
             }
           },
           {
@@ -2106,27 +1303,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "./datamodel.json#/components/schemas/PVString"
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "$ref": "./datamodel.json#/components/schemas/PVString"
-                }
-              },
-              "text/plain": {
-                "schema": {
-                  "$ref": "./datamodel.json#/components/schemas/PVString"
-                }
-              },
-              "application/octet-stream": {
-                "schema": {
-                  "$ref": "./datamodel.json#/components/schemas/PVString"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "./datamodel.json#/components/schemas/PVString"
+                  "$ref": "supernova-extensions-datamodel.json#/components/schemas/PVString"
                 }
               }
             }
@@ -2139,9 +1316,7 @@
     },
     "/PVStrings/{id}/Devices": {
       "get": {
-        "tags": [
-          "PVString"
-        ],
+        "tags": ["PVString"],
         "operationId": "PVString_GetDevicesList",
         "parameters": [
           {
@@ -2149,17 +1324,7 @@
             "in": "path",
             "required": true,
             "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          {
-            "name": "api-version",
-            "in": "query",
-            "description": "The requested API version",
-            "schema": {
-              "type": "string",
-              "default": "1.0"
+              "type": "string"
             }
           },
           {
@@ -2237,39 +1402,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "./datamodel.json#/components/schemas/Device"
-                  }
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "./datamodel.json#/components/schemas/Device"
-                  }
-                }
-              },
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "./datamodel.json#/components/schemas/Device"
-                  }
-                }
-              },
-              "application/octet-stream": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "./datamodel.json#/components/schemas/Device"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "./datamodel.json#/components/schemas/Device"
+                    "$ref": "supernova-extensions-datamodel.json#/components/schemas/Device"
                   }
                 }
               }
@@ -2280,20 +1413,9 @@
     },
     "/PVSystems": {
       "get": {
-        "tags": [
-          "PVSystem"
-        ],
+        "tags": ["PVSystem"],
         "operationId": "PVSystem_GetList",
         "parameters": [
-          {
-            "name": "api-version",
-            "in": "query",
-            "description": "The requested API version",
-            "schema": {
-              "type": "string",
-              "default": "1.0"
-            }
-          },
           {
             "name": "$expand",
             "in": "query",
@@ -2369,39 +1491,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "./datamodel.json#/components/schemas/PVSystem"
-                  }
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "./datamodel.json#/components/schemas/PVSystem"
-                  }
-                }
-              },
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "./datamodel.json#/components/schemas/PVSystem"
-                  }
-                }
-              },
-              "application/octet-stream": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "./datamodel.json#/components/schemas/PVSystem"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "./datamodel.json#/components/schemas/PVSystem"
+                    "$ref": "supernova-extensions-datamodel.json#/components/schemas/PVSystem"
                   }
                 }
               }
@@ -2412,9 +1502,7 @@
     },
     "/PVSystems/{id}": {
       "get": {
-        "tags": [
-          "PVSystem"
-        ],
+        "tags": ["PVSystem"],
         "operationId": "PVSystem_Get",
         "parameters": [
           {
@@ -2422,17 +1510,7 @@
             "in": "path",
             "required": true,
             "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          {
-            "name": "api-version",
-            "in": "query",
-            "description": "The requested API version",
-            "schema": {
-              "type": "string",
-              "default": "1.0"
+              "type": "string"
             }
           },
           {
@@ -2458,27 +1536,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "./datamodel.json#/components/schemas/PVSystem"
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "$ref": "./datamodel.json#/components/schemas/PVSystem"
-                }
-              },
-              "text/plain": {
-                "schema": {
-                  "$ref": "./datamodel.json#/components/schemas/PVSystem"
-                }
-              },
-              "application/octet-stream": {
-                "schema": {
-                  "$ref": "./datamodel.json#/components/schemas/PVSystem"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "./datamodel.json#/components/schemas/PVSystem"
+                  "$ref": "supernova-extensions-datamodel.json#/components/schemas/PVSystem"
                 }
               }
             }
@@ -2491,9 +1549,7 @@
     },
     "/PVSystems/{id}/Devices": {
       "get": {
-        "tags": [
-          "PVSystem"
-        ],
+        "tags": ["PVSystem"],
         "operationId": "PVSystem_GetDevicesList",
         "parameters": [
           {
@@ -2501,17 +1557,7 @@
             "in": "path",
             "required": true,
             "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          {
-            "name": "api-version",
-            "in": "query",
-            "description": "The requested API version",
-            "schema": {
-              "type": "string",
-              "default": "1.0"
+              "type": "string"
             }
           },
           {
@@ -2589,39 +1635,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "./datamodel.json#/components/schemas/Device"
-                  }
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "./datamodel.json#/components/schemas/Device"
-                  }
-                }
-              },
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "./datamodel.json#/components/schemas/Device"
-                  }
-                }
-              },
-              "application/octet-stream": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "./datamodel.json#/components/schemas/Device"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "./datamodel.json#/components/schemas/Device"
+                    "$ref": "supernova-extensions-datamodel.json#/components/schemas/Device"
                   }
                 }
               }
@@ -2632,9 +1646,7 @@
     },
     "/PVSystems/{id}/PVArrays": {
       "get": {
-        "tags": [
-          "PVSystem"
-        ],
+        "tags": ["PVSystem"],
         "operationId": "PVSystem_GetPVArraysList",
         "parameters": [
           {
@@ -2647,15 +1659,6 @@
             }
           },
           {
-            "name": "api-version",
-            "in": "query",
-            "description": "The requested API version",
-            "schema": {
-              "type": "string",
-              "default": "1.0"
-            }
-          },
-          {
             "name": "$expand",
             "in": "query",
             "description": "Expands related entities inline.",
@@ -2730,39 +1733,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "./datamodel.json#/components/schemas/PVArray"
-                  }
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "./datamodel.json#/components/schemas/PVArray"
-                  }
-                }
-              },
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "./datamodel.json#/components/schemas/PVArray"
-                  }
-                }
-              },
-              "application/octet-stream": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "./datamodel.json#/components/schemas/PVArray"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "./datamodel.json#/components/schemas/PVArray"
+                    "$ref": "supernova-extensions-datamodel.json#/components/schemas/PVArray"
                   }
                 }
               }
@@ -2774,7 +1745,7 @@
   },
   "security": [
     {
-      "bearer": [ ]
+      "bearer": []
     }
   ]
 }
