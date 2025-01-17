@@ -70,7 +70,7 @@ builder.Services.AddSwaggerGen(options =>
 
 
     // using System.Reflection;
-    var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    var xmlFilename = $"{System.Reflection.Assembly.GetExecutingAssembly().GetName().Name}.xml";
     options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
 
     options.MapType<AlternativeIdentifier>(() => new OpenApiSchema()
