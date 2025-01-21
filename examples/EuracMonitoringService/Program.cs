@@ -23,28 +23,28 @@ builder.Services.AddControllers()
     .AddJsonOptions(options =>
     {
         options.JsonSerializerOptions.PropertyNamingPolicy = null;
-        options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull; 
+        options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
     });
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 //add bearer tocket authentication
-//builder.Services.AddAuthentication()
-//       .AddJwtBearer(options =>
-//       {
-//           options.Authority = builder.Configuration["OpenId:Authority"];
-//           options.Audience = "eurac-influx";
-//           options.RequireHttpsMetadata = false;
-//           options.TokenValidationParameters = new TokenValidationParameters
-//           {
-//               ValidateIssuer = true,
-//               ValidateAudience = true,
-//               ValidateLifetime = true,
-//               ValidateIssuerSigningKey = true,
-//               // The IssuerSigningKey will be automatically retrieved from the OpenID Connect server
-//           };
-//       });
+builder.Services.AddAuthentication()
+       .AddJwtBearer(options =>
+       {
+           options.Authority = builder.Configuration["OpenId:Authority"];
+           options.Audience = "eurac-influx";
+           options.RequireHttpsMetadata = false;
+           options.TokenValidationParameters = new TokenValidationParameters
+           {
+               ValidateIssuer = true,
+               ValidateAudience = true,
+               ValidateLifetime = true,
+               ValidateIssuerSigningKey = true,
+               // The IssuerSigningKey will be automatically retrieved from the OpenID Connect server
+           };
+       });
 
 //create rabbitmp connection factory
 builder.Services.AddSingleton((sp) =>
@@ -105,9 +105,9 @@ builder.Services.AddSingleton<IBackgroundHookQueue>(sp =>
     }
 
     return new BackgroundHookQueue(
-        sp.GetRequiredService<ILogger<BackgroundHookQueue>>(), 
+        sp.GetRequiredService<ILogger<BackgroundHookQueue>>(),
         sp.GetRequiredService<RabbitMQService>(),
-        sp.GetRequiredService<IMemoryCache>(), 
+        sp.GetRequiredService<IMemoryCache>(),
         queueCapacity);
 });
 
@@ -135,14 +135,27 @@ app.UseSwaggerUI(options =>
 });
 app.UseHttpsRedirection();
 
-//app.UseAuthorization();
-//app.UseAuthentication();
+app.UseAuthorization();
+app.UseAuthentication();
 
 app.UseStaticFiles();
 app.MapControllers();
+
 app.MapFallback((HttpContext context) =>
 {
-    context.Response.StatusCode = StatusCodes.Status501NotImplemented;
+    if (context.Request.Path.StartsWithSegments("/Devices") ||
+        context.Request.Path.StartsWithSegments("/OMTasks") ||
+        context.Request.Path.StartsWithSegments("/PVArrays") ||
+        context.Request.Path.StartsWithSegments("/PVStrings") ||
+        context.Request.Path.StartsWithSegments("/PVSystems"))
+    {
+        context.Response.StatusCode = StatusCodes.Status501NotImplemented;
+    }
+    else
+    {
+        context.Response.StatusCode = StatusCodes.Status404NotFound;
+    }
+
     return Task.CompletedTask;
 });
 

@@ -8,7 +8,7 @@ namespace EuracMonitoringService.Controllers;
 
 [Route("/Devices")]
 [ApiController]
-//[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
 public class DeviceController : ControllerBase
 {
 

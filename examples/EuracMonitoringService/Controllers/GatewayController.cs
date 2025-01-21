@@ -8,7 +8,7 @@ namespace EuracMonitoringService.Controllers
 {
     [Route("/Gateway")]
     [ApiController]
-    //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class GatewayController : ControllerBase
     {
         private readonly IAuthorizationService authorizationService;
