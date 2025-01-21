@@ -12,20 +12,22 @@ EXPOSE 8081
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["universalmapper/UniversalMapper/UniversalMapper.csproj", "universalmapper/UniversalMapper/"]
+COPY ["examples/EuracMonitoringService/EuracMonitoringService.csproj", "examples/EuracMonitoringService/"]
 COPY ["models/dotnet/OrangeButton.Models/OrangeButton.Models.csproj", "models/dotnet/OrangeButton.Models/"]
-RUN dotnet restore "./universalmapper/UniversalMapper/UniversalMapper.csproj"
+COPY ["models/dotnet/Supernova.Messages.Models/Supernova.Messages.Models.csproj", "models/dotnet/Supernova.Messages.Models/"]
+COPY ["models/dotnet/Supernova.Models/Supernova.Models.csproj", "models/dotnet/Supernova.Models/"]
+RUN dotnet restore "./examples/EuracMonitoringService/EuracMonitoringService.csproj"
 COPY . .
-WORKDIR "/src/universalmapper/UniversalMapper"
-RUN dotnet build "./UniversalMapper.csproj" -c $BUILD_CONFIGURATION -o /app/build
+WORKDIR "/src/examples/EuracMonitoringService"
+RUN dotnet build "./EuracMonitoringService.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 # This stage is used to publish the service project to be copied to the final stage
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./UniversalMapper.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "./EuracMonitoringService.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 # This stage is used in production or when running from VS in regular mode (Default when not using the Debug configuration)
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "UniversalMapper.dll"]
+ENTRYPOINT ["dotnet", "EuracMonitoringService.dll"]

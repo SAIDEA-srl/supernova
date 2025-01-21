@@ -11,14 +11,14 @@
         "amqp": {
           "is":"routingKey",
           "exchange": {
-            "name": "RebusTopics",
+            "name": "topics",
             "type": "topic",
-            "vhost": "orange"
+            "vhost": "supernova"
           }
         }
       },
       "messages": {
-        "WeatherDataRecord": {
+        "MessageWeatherDataRecord": {
           "$ref": "#/components/messages/MessageWeatherDataRecord"
         }
       }
@@ -29,14 +29,14 @@
         "amqp": {
           "is":"routingKey",
           "exchange": {
-            "name": "RebusTopics",
+            "name": "topics",
             "type": "topic",
-            "vhost": "orange"
+            "vhost": "supernova"
           }
         }
       },
       "messages": {
-        "OmIssue": {
+        "MessageOmIssue": {
           "$ref": "#/components/messages/MessageOmIssue"
         }
       }
@@ -47,90 +47,90 @@
         "amqp": {
           "is":"routingKey",
           "exchange": {
-            "name": "RebusTopics",
+            "name": "topics",
             "type": "topic",
-            "vhost": "orange"
+            "vhost": "supernova"
           }
         }
       },
       "messages": {
-        "OmTask": {
+        "MessageOmTask": {
           "$ref": "#/components/messages/MessageOmTask"
         }
       }
     },
-    "hookcompletion": {
+    "gatewayhookexecution": {
       "address": "supernova.hookcompletion.{source}",
       "bindings": {
         "amqp": {
           "is":"routingKey",
           "exchange": {
-            "name": "RebusTopics",
+            "name": "topics",
             "type": "topic",
-            "vhost": "orange"
+            "vhost": "supernova"
           }
         }
       },
       "messages": {
-        "OmTask": {
-          "$ref": "#/components/messages/MessageHookCompletion"
+        "MessageGatewayHookExecution": {
+          "$ref": "#/components/messages/MessageGatewayHookExecution"
         }
       }
     }
   },
   "operations": {
-    "omTaskChanged": {
-      "action": "send",
-      "channel": {
-        "$ref": "#/channels/omtask"
-      },
-      "messages": [
-        {
-          "$ref": "#/channels/omtask/messages/OmTask"
-        }
-      ]
-    },
-    "omIssueRaised": {
-      "action": "send",
-      "channel": {
-        "$ref": "#/channels/omissue"
-      },
-      "messages": [
-        {
-          "$ref": "#/channels/omissue/messages/OmIssue"
-        }
-      ]
-    },
-    "weatherUpdate": {
+    "onWeatherUpdate": {
       "action": "send",
       "channel": {
         "$ref": "#/channels/weathers"
       },
       "messages": [
         {
-          "$ref": "#/channels/weathers/messages/WeatherDataRecord"
+          "$ref": "#/channels/weathers/messages/MessageWeatherDataRecord"
         }
       ]
     },
-    "hookOperationCompleted": {
+    "onOMIssueRaised": {
       "action": "send",
       "channel": {
-        "$ref": "#/channels/hookcompletion"
+        "$ref": "#/channels/omissue"
       },
       "messages": [
         {
-          "$ref": "#/channels/weathers/messages/MessageHookCompletion"
+          "$ref": "#/channels/omissue/messages/MessageOmIssue"
+        }
+      ]
+    },
+    "onOMTaskChanged": {
+      "action": "send",
+      "channel": {
+        "$ref": "#/channels/omtask"
+      },
+      "messages": [
+        {
+          "$ref": "#/channels/omtask/messages/MessageOmTask"
+        }
+      ]
+    },
+    "onGatewayHookExecutionChanged": {
+      "action": "send",
+      "channel": {
+        "$ref": "#/channels/gatewayhookexecution"
+      },
+      "messages": [
+        {
+          "$ref": "#/channels/gatewayhookexecution/messages/MessageGatewayHookExecution"
         }
       ]
     }
   },
   "components": {
     "messages": {
-      "MessageOmTask": {
+      "MessageWeatherDataRecord": {
         "payload": {
           "type": "object",
           "properties": {
-              "DateTime": {
+            "DateTime": {
               "type": "string",
               "format": "date-time",
               "description": "Message creation date"
@@ -140,7 +140,27 @@
               "description": "Message source"
             },
             "Data": {
-              "$ref": "./orange_api_swagger.json#/components/schemas/OMTask",
+              "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/676b4bb1730de5ed871668d652c9a738c47907ee/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/WeatherDataRecord",
+              "description": "WeatherDataRecord object"
+            }
+          }
+        }
+      },
+      "MessageOmTask": {
+        "payload": {
+          "type": "object",
+          "properties": {
+            "DateTime": {
+              "type": "string",
+              "format": "date-time",
+              "description": "Message creation date"
+            },
+            "Source": {
+              "type": "string",
+              "description": "Message source"
+            },
+            "Data": {
+              "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/676b4bb1730de5ed871668d652c9a738c47907ee/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/OMTask",
               "description": "OMTask object"
             }
           }
@@ -160,13 +180,13 @@
               "description": "Message source"
             },
             "Data": {
-              "$ref": "./orange_api_swagger.json#/components/schemas/OMIssue",
+              "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/676b4bb1730de5ed871668d652c9a738c47907ee/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/OMIssue",
               "description": "OMIssue object"
             }
           }
         }
       },
-      "MessageWeatherDataRecord": {
+      "MessageGatewayHookExecution": {
         "payload": {
           "type": "object",
           "properties": {
@@ -180,27 +200,7 @@
               "description": "Message source"
             },
             "Data": {
-              "$ref": "./orange_api_swagger.json#/components/schemas/WeatherDataRecord",
-              "description": "WeatherDataRecord object"
-            }
-          }
-        }
-      },
-      "MessageHookCompletion": {
-        "payload": {
-          "type": "object",
-          "properties": {
-            "DateTime": {
-              "type": "string",
-              "format": "date-time",
-              "description": "Message creation date"
-            },
-            "Source": {
-              "type": "string",
-              "description": "Message source"
-            },
-            "Data": {
-              "$ref": "./orange_api_swagger.json#/components/schemas/GatewayHookResult",
+              "$ref": "supernova-extensions-datamodel.json#/components/schemas/GatewayHookExecution",
               "description": "Results of completed hook operation"
             }
           }

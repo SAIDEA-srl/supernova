@@ -26,9 +26,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\..\models\dotnet\OrangeButtonModels\OrangeButton.Models.csproj" />
-	  <ProjectReference Include="..\..\models\dotnet\OrangeButtonModels\OrangeButtonModels.csproj" />
-	  <ProjectReference Include="..\..\models\dotnet\SupernovaModels\Supernova.Models.csproj" />
+	  <ProjectReference Include="..\..\models\dotnet\OrangeButton.Models\OrangeButton.Models.csproj" />
+	  <ProjectReference Include="..\..\models\dotnet\Supernova.Models\Supernova.Models.csproj" />
 	</ItemGroup>
 
 </Project>
