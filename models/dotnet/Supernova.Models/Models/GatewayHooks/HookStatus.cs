@@ -1,15 +1,15 @@
-﻿namespace Supernova.Models;
+﻿namespace Supernova.Models.GatewayHooks;
 
 public enum HookStatus
 {
 
     [System.Runtime.Serialization.EnumMember(Value = @"Created")]
-    Created = 0,
+    Created,
 
     [System.Runtime.Serialization.EnumMember(Value = @"Execution")]
-    Execution = 1,
+    Execution,
 
     [System.Runtime.Serialization.EnumMember(Value = @"End")]
-    End = 2,
+    End,
 
 }

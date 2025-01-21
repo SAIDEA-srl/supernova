@@ -1,4 +1,4 @@
-﻿namespace Supernova.Models;
+﻿namespace Supernova.Models.GatewayHooks;
 
 public partial class GatewayHook
 {
@@ -6,14 +6,14 @@ public partial class GatewayHook
     public string Name { get; set; }
 
     [Newtonsoft.Json.JsonProperty("Parameters", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-    public System.Collections.Generic.IDictionary<string, string> Parameters { get; set; }
+    public IDictionary<string, string> Parameters { get; set; }
 
-    private System.Collections.Generic.IDictionary<string, object> _additionalProperties;
+    private IDictionary<string, object> _additionalProperties;
 
     [Newtonsoft.Json.JsonExtensionData]
-    public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+    public IDictionary<string, object> AdditionalProperties
     {
-        get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+        get { return _additionalProperties ?? (_additionalProperties = new Dictionary<string, object>()); }
         set { _additionalProperties = value; }
     }
 
