@@ -47,11 +47,11 @@ public sealed class BackgroundHookQueue : IBackgroundHookQueue
         await _queue.Writer.WriteAsync(workItem);
 
         //push job status
-        await rabbitmqService.PublishAsync("topics", "supernova.hookcompletion.eurac-influx", new MessageGatewayHookExecution()
+        await rabbitmqService.PublishAsync("topics", "supernova.hookcompletion.eurac-monitoring-service", new MessageGatewayHookExecution()
         {
             Data = workItem,
             DateTime = DateTimeOffset.Now,
-            Source = "eurac-influx"
+            Source = "eurac-monitoring-service"
         });
 
     }
@@ -75,7 +75,7 @@ public sealed class BackgroundHookQueue : IBackgroundHookQueue
         {
             Data = exec,
             DateTime = DateTimeOffset.Now,
-            Source = "eurac-influx"
+            Source = "eurac-monitoring-service"
         });
 
     }

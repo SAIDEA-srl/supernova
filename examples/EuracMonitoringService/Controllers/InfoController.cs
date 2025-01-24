@@ -16,7 +16,7 @@ public class InfoController : ControllerBase
         return await Task.FromResult(new Info()
         {
             Name = "eurac monitoring",
-            Source = "eurac-influx",
+            Source = "eurac-monitoring-service",
             Description = "Prototype",
             Version = "0.0.1",
             SupportedDocuments = [

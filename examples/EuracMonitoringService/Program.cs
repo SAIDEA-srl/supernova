@@ -34,7 +34,7 @@ builder.Services.AddAuthentication()
        .AddJwtBearer(options =>
        {
            options.Authority = builder.Configuration["OpenId:Authority"];
-           options.Audience = "eurac-influx";
+           options.Audience = "eurac-monitoring-service";
            options.RequireHttpsMetadata = false;
            options.TokenValidationParameters = new TokenValidationParameters
            {
@@ -54,7 +54,7 @@ builder.Services.AddSingleton((sp) =>
         builder.Configuration["RabbitMQ:OAuth:ClientSecret"],
         new Uri($"{builder.Configuration["OpenId:Authority"]}/connect/token"))
         .SetScope(string.Join(" ", [
-            "supernova.write:supernova/topics/supernova.hookcompletion.eurac-influx",
+            "supernova.write:supernova/topics/supernova.hookcompletion.eurac-monitoring-service",
         ]))
         .Build();
 
