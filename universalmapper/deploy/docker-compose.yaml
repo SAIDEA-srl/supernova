@@ -47,7 +47,7 @@ services:
       ASPNETCORE_FORWARDEDHEADERS_ENABLED: "true"
       HTTP_PORTS: "8080"
       IdentityAuthority: "https://identityeurac.goantares.uno"
-      ConnectionStrings__universalmapper-db: "mongodb://admin:o9tX8DdSXZTKJVtaM7JGQD@mongo:27017/universalmapper-db?authSource=admin&authMechanism=SCRAM-SHA-256"
+      ConnectionStrings__universalmapper: "mongodb://admin:o9tX8DdSXZTKJVtaM7JGQD@mongo:27017/universalmapper-db?authSource=admin&authMechanism=SCRAM-SHA-256"
       OTEL_EXPORTER_OTLP_ENDPOINT: "http://aspire-dashboard:18889"
       OTEL_SERVICE_NAME: "universalmapper"
     ports:
