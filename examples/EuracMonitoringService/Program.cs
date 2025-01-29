@@ -1,16 +1,11 @@
+using EuracMonitoringService.Services;
 using EuracMonitoringService.Worker;
 using EuracMonitoringService.Workers.Hooks;
 using InfluxDB.Client;
 using Microsoft.Extensions.Caching.Memory;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
-using RabbitMQ.Client.OAuth2;
 using RabbitMQ.Client;
-using System.Text;
-using EuracMonitoringService.Services;
-using System.Net.Security;
-using System.Text.Json;
-using Newtonsoft.Json;
+using RabbitMQ.Client.OAuth2;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -53,9 +48,9 @@ builder.Services.AddSingleton((sp) =>
         builder.Configuration["RabbitMQ:OAuth:ClientId"],
         builder.Configuration["RabbitMQ:OAuth:ClientSecret"],
         new Uri($"{builder.Configuration["OpenId:Authority"]}/connect/token"))
-        .SetScope(string.Join(" ", [
-            "supernova.write:supernova/topics/supernova.hookcompletion.eurac-monitoring-service",
-        ]))
+        //.SetScope(string.Join(" ", [
+        //    "supernova.write:supernova/topics/supernova.hookcompletion.eurac-monitoring-service",
+        //]))
         .Build();
 
     var authprovider = new OAuth2ClientCredentialsProvider("oauth2", authclient);
@@ -63,6 +58,7 @@ builder.Services.AddSingleton((sp) =>
     return new ConnectionFactory()
     {
         HostName = builder.Configuration["RabbitMQ:Host"],
+        Port = 5672,
         VirtualHost = "supernova",
         ClientProvidedName = builder.Configuration["RabbitMQ:OAuth:ClientId"],
         CredentialsProvider = authprovider,
