@@ -71,7 +71,7 @@ public sealed class BackgroundHookQueue : IBackgroundHookQueue
         exec.Status = HookStatus.End;
         //publish job end
 
-        await rabbitmqService.PublishAsync("", "", new MessageGatewayHookExecution()
+        await rabbitmqService.PublishAsync("topics", "supernova.hookcompletion.eurac-monitoring-service", new MessageGatewayHookExecution()
         {
             Data = exec,
             DateTime = DateTimeOffset.Now,
