@@ -115,7 +115,7 @@ if (!int.TryParse(builder.Configuration["QueueProcessors"], out var queueProcess
 }
 for (var i = 0; i < queueProcessors; i++)
 {
-    builder.Services.AddSingleton<IHostedService>(sp => new QueuedHostedService(sp));
+    builder.Services.AddHostedService<QueuedHostedService>();
 }
 #endregion
 
