@@ -20,7 +20,6 @@ namespace EuracMonitoringService.Workers.Hooks
         {
             try
             {
-
                 exec.Status = HookStatus.Execution;
 
                 var query = client.GetQueryApi();

@@ -44,6 +44,10 @@ public class RabbitMQService(ConnectionFactory connectionFactory) : IDisposable
         var body = Encoding.UTF8.GetBytes(serialized);
 
         var props = channel.CreateBasicProperties();
+        props.MessageId = Guid.NewGuid().ToString();
+        props.ContentType = "application/json";
+        props.ContentEncoding = "utf-8";
+        props.Type = routingKey;
 
         channel.BasicPublish(exchange, routingKey, true, props, body);
     }
