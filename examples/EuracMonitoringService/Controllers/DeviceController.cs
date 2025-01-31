@@ -61,6 +61,10 @@ public class DeviceController : ControllerBase
                    DeviceUUID = new OrangeButton.Models.DeviceUUID()
                    {
                        Value = device
+                   },
+                   DeviceType = new OrangeButton.Models.DeviceType()
+                   {
+                       Value = "Inverter"
                    }
                };        
     }
@@ -75,6 +79,10 @@ public class DeviceController : ControllerBase
                           DeviceUUID = new OrangeButton.Models.DeviceUUID()
                           {
                               Value = device
+                          },
+                          DeviceType = new OrangeButton.Models.DeviceType()
+                          {
+                              Value = "Inverter"
                           }
                       };
 
