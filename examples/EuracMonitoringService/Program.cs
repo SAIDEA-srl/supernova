@@ -10,6 +10,9 @@ using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
+using ILoggerFactory factory = LoggerFactory.Create(builder => builder.AddConsole());
+ILogger logger = factory.CreateLogger<Program>();
+
 // Add services to the container.
 builder.Services.AddMemoryCache();
 
@@ -140,6 +143,7 @@ if (string.IsNullOrWhiteSpace(builder.Configuration["Reports:BasePath"]))
 }
 else
 {
+    logger.LogInformation($"Use document base path: {builder.Configuration["Reports:BasePath"]}");
     app.UseStaticFiles(builder.Configuration["Reports:BasePath"]);
 }
 

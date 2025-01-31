@@ -42,8 +42,15 @@ namespace EuracMonitoringService.Workers.Hooks
               |> sum(column: ""_value"")");
 
                 // trasform dump to csv and save to memory ?
-                var filePath = Path.Combine(reportBasePath, "reports", $"{exec.Id.ToString()}.csv");
-                var url = ReportManager.CreateFile(filePath, dump);
+                var path = Path.Combine(reportBasePath, "reports");
+
+                if (!Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
+                }
+
+                var filePath = Path.Combine(path, $"{exec.Id.ToString()}.csv");
+                ReportManager.CreateFile(filePath, dump);
 
                 //return result
                 return new GatewayHookResult()
@@ -51,7 +58,7 @@ namespace EuracMonitoringService.Workers.Hooks
                     ExecutionId = exec.Id,
                     DateTime = DateTime.Now,
                     IsSuccessful = true,
-                    ResponseUrl = url
+                    ResponseUrl = Path.Combine("/reports", $"{exec.Id.ToString()}.csv"),
                 };
 
             }
@@ -62,7 +69,7 @@ namespace EuracMonitoringService.Workers.Hooks
                     ExecutionId = exec.Id,
                     DateTime = DateTime.Now,
                     IsSuccessful = false,
-                    Message = ex.Message
+                    Message = $"{ex.Message}{Environment.NewLine}{ex.StackTrace}"
                 };
             }
         }

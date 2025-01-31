@@ -4,18 +4,16 @@ public class ReportManager
 {
     const string REPORT_PATHS = @"wwwroot";
 
-    public static string CreateFile(string filename, string content)
+    public static string CreateFile(string filePath, string content)
     {
-
         if(!Directory.Exists(REPORT_PATHS))
         {
             Directory.CreateDirectory(REPORT_PATHS);
         }
 
-        var filepath = Path.Combine(Directory.GetCurrentDirectory(), REPORT_PATHS, filename);
-        File.WriteAllText(filepath, content);
+        File.WriteAllText(filePath, content);
 
-        return $"/{filename}";
+        return $"{filePath}";
     }
 
     public static void DeleteFile(string filename)
