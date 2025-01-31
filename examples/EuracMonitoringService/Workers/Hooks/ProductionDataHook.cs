@@ -18,6 +18,8 @@ namespace EuracMonitoringService.Workers.Hooks
 
         public async Task<GatewayHookResult> Execute(GatewayHookExecution exec)
         {
+            var reportBasePath = configuration["Reports:BasePath"];
+
             try
             {
                 exec.Status = HookStatus.Execution;
@@ -40,7 +42,8 @@ namespace EuracMonitoringService.Workers.Hooks
               |> sum(column: ""_value"")");
 
                 // trasform dump to csv and save to memory ?
-                var url = ReportManager.CreateFile($"reports/{exec.Id.ToString()}.csv", dump);
+                var filePath = Path.Combine(reportBasePath, "reports", $"{exec.Id.ToString()}.csv");
+                var url = ReportManager.CreateFile(filePath, dump);
 
                 //return result
                 return new GatewayHookResult()

@@ -134,7 +134,15 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 app.UseAuthentication();
 
-app.UseStaticFiles();
+if (string.IsNullOrWhiteSpace(builder.Configuration["Reports:BasePath"]))
+{
+    app.UseStaticFiles();
+}
+else
+{
+    app.UseStaticFiles(builder.Configuration["Reports:BasePath"]);
+}
+
 app.MapControllers();
 
 app.MapFallback((HttpContext context) =>
