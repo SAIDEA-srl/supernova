@@ -3,6 +3,7 @@ using EuracMonitoringService.Worker;
 using EuracMonitoringService.Workers.Hooks;
 using InfluxDB.Client;
 using Microsoft.Extensions.Caching.Memory;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.IdentityModel.Tokens;
 using RabbitMQ.Client;
 using RabbitMQ.Client.OAuth2;
@@ -144,7 +145,13 @@ if (string.IsNullOrWhiteSpace(builder.Configuration["Reports:BasePath"]))
 else
 {
     logger.LogInformation($"Use document base path: {builder.Configuration["Reports:BasePath"]}");
-    app.UseStaticFiles(builder.Configuration["Reports:BasePath"]);
+    app.UseStaticFiles();
+
+    app.UseStaticFiles(new StaticFileOptions
+    {
+        FileProvider = new PhysicalFileProvider($"{builder.Configuration["Reports:BasePath"]}/reports"),
+        RequestPath = "/reports"
+    });
 }
 
 app.MapControllers();
