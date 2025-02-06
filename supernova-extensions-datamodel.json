@@ -39,6 +39,20 @@
           }
         }
       },
+      "AlarmTypeId": {
+        "allOf": [
+          {
+            "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/676b4bb1730de5ed871668d652c9a738c47907ee/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/TaxonomyElementString"
+          },
+          {
+            "type": "object",
+            "description": "...TODO...",
+            "x-ob-item-type": "StringItemType",
+            "x-ob-usage-tips": "",
+            "x-ob-item-type-group": ""
+          }
+        ]
+      },
       "SupportedDocument": {
         "type": "object",
         "description": "Document supported",
@@ -49,7 +63,7 @@
           "DocumentType": {
             "type": "string",
             "description": "document type",
-            "x-ob-usate-tips" : "text/csv"
+            "x-ob-usate-tips": "text/csv"
           }
         }
       },
@@ -62,15 +76,38 @@
           },
           {
             "type": "object",
-            "description": "State of a Province of the mailing or physical address.",
+            "description": "",
             "properties": {
               "Locations": {
                 "type": "array",
                 "items": {
                   "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/676b4bb1730de5ed871668d652c9a738c47907ee/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/Location"
                 }
+              },
+              "Connections": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Connection"
+                }
+              },
+              "DeviceTypeId": {
+                "$ref": "#/components/schemas/DeviceTypeId"
               }
             }
+          }
+        ]
+      },
+      "DeviceTypeId": {
+        "allOf": [
+          {
+            "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/676b4bb1730de5ed871668d652c9a738c47907ee/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/TaxonomyElementString"
+          },
+          {
+            "type": "object",
+            "description": "...TODO...",
+            "x-ob-item-type": "StringItemType",
+            "x-ob-usage-tips": "",
+            "x-ob-item-type-group": ""
           }
         ]
       },
@@ -372,11 +409,62 @@
       },
       "HookStatus": {
         "enum": [
-          "Created", 
-          "Execution", 
+          "Created",
+          "Execution",
           "End"
         ],
         "type": "string"
+      },
+      "OMIssue": {
+        "type": "object",
+        "description": "...TODO...",
+        "allOf": [
+          {
+            "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/676b4bb1730de5ed871668d652c9a738c47907ee/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/OMIssue"
+          },
+          {
+            "type": "object",
+            "description": "",
+            "properties": {
+              "DeviceTypeId": {
+                "$ref": "#/components/schemas/AlarmTypeId"
+              }
+            }
+          }
+        ]
+      },
+      "OMTask": {
+        "type": "object",
+        "description": "...TODO...",
+        "allOf": [
+          {
+            "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/676b4bb1730de5ed871668d652c9a738c47907ee/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/OMTask"
+          },
+          {
+            "type": "object",
+            "description": "",
+            "properties": {
+              "Devices": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Device"
+                }
+              },
+              "Documents": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Document"
+                }
+              },
+              "RelatedOMTasks": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/OMTask"
+                }
+              },
+            }
+          }
+        ]
       }
     }
   },
