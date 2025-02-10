@@ -1,5 +1,7 @@
-﻿namespace Supernova.Messages.Models;
+﻿using Supernova.Models;
 
-public class MessageOmIssue : Message<MessageOmIssue>
+namespace Supernova.Messages.Models;
+
+public class MessageOmIssue : Message<OMIssue>
 {
 }
