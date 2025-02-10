@@ -85,7 +85,7 @@ builder.Services.AddSwaggerGen(options =>
 
 builder.Services.AddDbContext<UniversalMapperDbContext>((config) =>
 {
-    var settings = new MongoUrlBuilder(builder.Configuration.GetConnectionString("universalmapper"));
+    var settings = new MongoUrlBuilder(builder.Configuration.GetConnectionString("universalmapper-db"));
     config.UseMongoDB(settings.ToString(), settings.DatabaseName);
 });
 

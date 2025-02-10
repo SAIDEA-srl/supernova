@@ -177,7 +177,7 @@ public class UniMapController : ControllerBase
     public async Task<Results<BadRequest, Ok<Guid>>> AddIdentifier(string source, [FromBody] AlternativeIdentifier alternativeIdentifier)
     {
 
-        var model = new Models.UUIDMap()
+        var model = new DBModels.UUIDMap()
         {
             UUID = Guid.NewGuid(),
             AlternativeIdentifier = alternativeIdentifier
@@ -231,7 +231,7 @@ public class UniMapController : ControllerBase
             return TypedResults.BadRequest();
         }
 
-        var model = new Models.UUIDMap()
+        var model = new DBModels.UUIDMap()
         {
             UUID = collectionUUID.Value,
             AlternativeIdentifier = alternativeIdentifier
