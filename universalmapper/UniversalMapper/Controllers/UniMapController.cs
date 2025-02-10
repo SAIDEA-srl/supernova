@@ -134,16 +134,15 @@ public class UniMapController : ControllerBase
 
         var collectionIds = identifiers.Select(t => t.UUID).ToList();
 
-        var collections = await dbContext.Maps.Where(t => collectionIds.Contains(t.UUID))
-            .GroupBy(t => t.UUID)
+        var collections = await dbContext.Maps.Where(t => collectionIds.Contains(t.UUID)).ToListAsync();
+;
+        return TypedResults.Ok(collections.GroupBy(t => t.UUID)
             .Select(t => new Collection()
             {
                 CollectionId = t.Key,
                 Identifiers = t.Select(t => t.AlternativeIdentifier).ToList()
             })
-            .ToListAsync();
-
-        return TypedResults.Ok(collections);
+            .ToList());
     }
 
 
