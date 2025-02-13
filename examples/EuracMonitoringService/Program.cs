@@ -7,23 +7,34 @@ using Microsoft.Extensions.FileProviders;
 using Microsoft.IdentityModel.Tokens;
 using RabbitMQ.Client;
 using RabbitMQ.Client.OAuth2;
+using Serilog;
 using System.Text.Json.Serialization;
+
+Log.Logger = new LoggerConfiguration()
+    .Enrich.FromLogContext()
+    .WriteTo.Console()
+    .CreateBootstrapLogger(); 
 
 var builder = WebApplication.CreateBuilder(args);
 
-using ILoggerFactory factory = LoggerFactory.Create(builder => builder.AddConsole());
-ILogger logger = factory.CreateLogger<Program>();
+
+builder.Services.AddSerilog((services, lc) => lc
+    .ReadFrom.Configuration(builder.Configuration)
+    .ReadFrom.Services(services)
+    .Enrich.FromLogContext()
+    .WriteTo.Console());
+
 
 // Add services to the container.
 builder.Services.AddMemoryCache();
 
-builder.Services.AddLogging();
 builder.Services.AddControllers()
     .AddJsonOptions(options =>
     {
         options.JsonSerializerOptions.PropertyNamingPolicy = null;
         options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
     });
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -119,7 +130,7 @@ if (!int.TryParse(builder.Configuration["QueueProcessors"], out var queueProcess
 }
 for (var i = 0; i < queueProcessors; i++)
 {
-    builder.Services.AddHostedService<QueuedHostedService>();
+    builder.Services.AddHostedService((sp) => new QueuedHostedService(sp));
 }
 #endregion
 
@@ -135,6 +146,8 @@ app.UseSwaggerUI(options =>
 });
 app.UseHttpsRedirection();
 
+app.UseSerilogRequestLogging();
+
 app.UseAuthorization();
 app.UseAuthentication();
 
@@ -144,12 +157,15 @@ if (string.IsNullOrWhiteSpace(builder.Configuration["Reports:BasePath"]))
 }
 else
 {
-    logger.LogInformation($"Use document base path: {builder.Configuration["Reports:BasePath"]}");
+    Log.Information($"Use document base path: {builder.Configuration["Reports:BasePath"]}");
     app.UseStaticFiles();
+
+    var directory = $"{builder.Configuration["Reports:BasePath"]}/reports";
+    Directory.CreateDirectory(directory);
 
     app.UseStaticFiles(new StaticFileOptions
     {
-        FileProvider = new PhysicalFileProvider($"{builder.Configuration["Reports:BasePath"]}/reports"),
+        FileProvider = new PhysicalFileProvider(directory),
         RequestPath = "/reports"
     });
 }
