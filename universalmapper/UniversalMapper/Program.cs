@@ -11,6 +11,8 @@ using UniversalMapper;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.AddServiceDefaults();
+
 builder.Services.Configure<JsonOptions>(options =>
 {
     options.SerializerOptions.PropertyNamingPolicy = null;
@@ -111,6 +113,8 @@ builder.Services.AddAuthentication()
 var app = builder.Build();
 
 app.UseHttpsRedirection();
+
+app.MapDefaultEndpoints();
 
 app.UseSwagger();
 app.UseSwaggerUI();
