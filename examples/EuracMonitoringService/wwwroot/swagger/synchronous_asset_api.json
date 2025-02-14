@@ -4,6 +4,11 @@
     "title": "SUPERNOVA Interoperation API 1.0 asset-related synchronous operations",
     "version": "1.0"
   },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
   "paths": {
     "/Info": {
       "get": {
