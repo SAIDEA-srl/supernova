@@ -12,7 +12,7 @@
   "paths": {
     "/Info": {
       "get": {
-        "tags": ["Info"],
+        "tags": [ "Info" ],
         "responses": {
           "200": {
             "description": "OK",
@@ -29,7 +29,7 @@
     },
     "/Devices": {
       "get": {
-        "tags": ["Device"],
+        "tags": [ "Device" ],
         "operationId": "Device_GetList",
         "parameters": [
           {
@@ -118,7 +118,7 @@
     },
     "/Devices/{id}": {
       "get": {
-        "tags": ["Device"],
+        "tags": [ "Device" ],
         "operationId": "Device_Get",
         "parameters": [
           {
@@ -165,7 +165,7 @@
     },
     "/Devices/{id}/Components": {
       "get": {
-        "tags": ["Device"],
+        "tags": [ "Device" ],
         "operationId": "Device_GetComponentsList",
         "parameters": [
           {
@@ -262,7 +262,7 @@
     },
     "/Devices/{id}/Connections": {
       "get": {
-        "tags": ["Device"],
+        "tags": [ "Device" ],
         "operationId": "Device_GetConnectionsList",
         "parameters": [
           {
@@ -359,7 +359,7 @@
     },
     "/Devices/{id}/Documents": {
       "get": {
-        "tags": ["Device"],
+        "tags": [ "Device" ],
         "operationId": "Device_GetDocuments",
         "parameters": [
           {
@@ -456,7 +456,7 @@
     },
     "/Devices/{id}/OMTasks": {
       "get": {
-        "tags": ["Device"],
+        "tags": [ "Device" ],
         "operationId": "Device_GetOMTasksList",
         "parameters": [
           {
@@ -553,7 +553,7 @@
     },
     "/Gateway/Hooks": {
       "get": {
-        "tags": ["Gateway"],
+        "tags": [ "Gateway" ],
         "operationId": "Gateway_GetHooks",
         "responses": {
           "200": {
@@ -574,7 +574,7 @@
     },
     "/Gateway/Hooks/{hookname}/executions/{execId}": {
       "get": {
-        "tags": ["Gateway"],
+        "tags": [ "Gateway" ],
         "operationId": "Gateway_GetHookExecutions",
         "parameters": [
           {
@@ -614,7 +614,7 @@
     },
     "/Gateway/Hooks/{hookname}/executions/{execId}/result": {
       "get": {
-        "tags": ["Gateway"],
+        "tags": [ "Gateway" ],
         "operationId": "Gateway_GetExecutionResult",
         "parameters": [
           {
@@ -651,7 +651,7 @@
     },
     "/Gateway/Hooks/{hookname}/run": {
       "post": {
-        "tags": ["Gateway"],
+        "tags": [ "Gateway" ],
         "operationId": "Gateway_RunHook",
         "parameters": [
           {
@@ -719,7 +719,7 @@
     },
     "/OMTasks": {
       "get": {
-        "tags": ["OMTask"],
+        "tags": [ "OMTask" ],
         "operationId": "OMTask_GetList",
         "parameters": [
           {
@@ -808,7 +808,7 @@
     },
     "/OMTasks/{id}": {
       "get": {
-        "tags": ["OMTask"],
+        "tags": [ "OMTask" ],
         "operationId": "OMTask_Get",
         "parameters": [
           {
@@ -855,7 +855,7 @@
     },
     "/PVArrays": {
       "get": {
-        "tags": ["PVArray"],
+        "tags": [ "PVArray" ],
         "operationId": "PVArray_GetList",
         "parameters": [
           {
@@ -944,7 +944,7 @@
     },
     "/PVArrays/{id}": {
       "get": {
-        "tags": ["PVArray"],
+        "tags": [ "PVArray" ],
         "operationId": "PVArray_Get",
         "parameters": [
           {
@@ -991,7 +991,7 @@
     },
     "/PVArrays/{id}/Devices": {
       "get": {
-        "tags": ["PVArray"],
+        "tags": [ "PVArray" ],
         "operationId": "PVArray_GetDevicesList",
         "parameters": [
           {
@@ -1088,7 +1088,7 @@
     },
     "/PVArrays/{id}/PVStrings": {
       "get": {
-        "tags": ["PVArray"],
+        "tags": [ "PVArray" ],
         "operationId": "PVArray_GetPVStringsList",
         "parameters": [
           {
@@ -1185,7 +1185,7 @@
     },
     "/PVStrings": {
       "get": {
-        "tags": ["PVString"],
+        "tags": [ "PVString" ],
         "operationId": "PVString_GetList",
         "parameters": [
           {
@@ -1274,7 +1274,7 @@
     },
     "/PVStrings/{id}": {
       "get": {
-        "tags": ["PVString"],
+        "tags": [ "PVString" ],
         "operationId": "PVString_Get",
         "parameters": [
           {
@@ -1321,7 +1321,7 @@
     },
     "/PVStrings/{id}/Devices": {
       "get": {
-        "tags": ["PVString"],
+        "tags": [ "PVString" ],
         "operationId": "PVString_GetDevicesList",
         "parameters": [
           {
@@ -1418,7 +1418,7 @@
     },
     "/PVSystems": {
       "get": {
-        "tags": ["PVSystem"],
+        "tags": [ "PVSystem" ],
         "operationId": "PVSystem_GetList",
         "parameters": [
           {
@@ -1507,7 +1507,7 @@
     },
     "/PVSystems/{id}": {
       "get": {
-        "tags": ["PVSystem"],
+        "tags": [ "PVSystem" ],
         "operationId": "PVSystem_Get",
         "parameters": [
           {
@@ -1554,7 +1554,7 @@
     },
     "/PVSystems/{id}/Devices": {
       "get": {
-        "tags": ["PVSystem"],
+        "tags": [ "PVSystem" ],
         "operationId": "PVSystem_GetDevicesList",
         "parameters": [
           {
@@ -1651,7 +1651,7 @@
     },
     "/PVSystems/{id}/PVArrays": {
       "get": {
-        "tags": ["PVSystem"],
+        "tags": [ "PVSystem" ],
         "operationId": "PVSystem_GetPVArraysList",
         "parameters": [
           {
@@ -1748,9 +1748,17 @@
       }
     }
   },
+  "components": {
+    "securitySchemes": {
+      "BearerAuth": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  },
   "security": [
     {
-      "bearer": []
+      "BearerAuth": []
     }
   ]
 }
