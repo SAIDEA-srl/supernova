@@ -17,12 +17,12 @@ Log.Logger = new LoggerConfiguration()
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.AddServiceDefaults();
 
 builder.Services.AddSerilog((services, lc) => lc
     .ReadFrom.Configuration(builder.Configuration)
     .ReadFrom.Services(services)
-    .Enrich.FromLogContext()
-    .WriteTo.Console());
+    .Enrich.FromLogContext());
 
 
 // Add services to the container.
@@ -145,6 +145,8 @@ app.UseSwaggerUI(options =>
     options.SwaggerEndpoint("/swagger/synchronous_asset_api.json", "");
 });
 app.UseHttpsRedirection();
+
+app.MapDefaultEndpoints();
 
 app.UseSerilogRequestLogging();
 

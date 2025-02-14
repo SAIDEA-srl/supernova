@@ -5,20 +5,24 @@ using System.Text;
 
 namespace EuracMonitoringService.Services;
 
-public class RabbitMQService(ConnectionFactory connectionFactory) : IDisposable
+public class RabbitMQService(ConnectionFactory connectionFactory, ILogger<RabbitMQService> logger) : IDisposable
 {
+
+    private SemaphoreSlim semaphore = new(1);
+
     private IConnection connection;
     private IModel channel;
-    private bool initialize;
 
     public void Dispose()
     {
         connection.Dispose();
     }
 
-    public ValueTask Init()
+    public async ValueTask Init()
     {
-        lock (this)
+        await semaphore.WaitAsync();
+
+        try
         {
             if (!(this.connection?.IsOpen ?? false))
             {
@@ -26,30 +30,39 @@ public class RabbitMQService(ConnectionFactory connectionFactory) : IDisposable
                 this.connection = connectionFactory.CreateConnection();
             }
 
-            if(this.channel?.IsClosed ?? true)
+            if (this.channel?.IsClosed ?? true)
             {
                 this.channel?.Dispose();
                 this.channel = connection.CreateModel();
             }
         }
-
-        return ValueTask.CompletedTask;
+        finally
+        {
+            semaphore.Release();
+        }            
     }
 
     public async ValueTask PublishAsync<T>(string exchange, string routingKey, T message)
     {
-        await Init();
+        try
+        {
+            await Init();
 
-        var serialized = JsonConvert.SerializeObject(message);
-        var body = Encoding.UTF8.GetBytes(serialized);
+            var serialized = JsonConvert.SerializeObject(message);
+            var body = Encoding.UTF8.GetBytes(serialized);
 
-        var props = channel.CreateBasicProperties();
-        props.MessageId = Guid.NewGuid().ToString();
-        props.ContentType = "application/json";
-        props.ContentEncoding = "utf-8";
-        props.Type = routingKey;
+            var props = channel.CreateBasicProperties();
+            props.MessageId = Guid.NewGuid().ToString();
+            props.ContentType = "application/json";
+            props.ContentEncoding = "utf-8";
+            props.Type = routingKey;
 
-        channel.BasicPublish(exchange, routingKey, true, props, body);
+            channel.BasicPublish(exchange, routingKey, true, props, body);
+        }
+        catch (Exception ex)
+        {
+            logger.LogError(ex, ex.Message);
+        }
     }
 
 }

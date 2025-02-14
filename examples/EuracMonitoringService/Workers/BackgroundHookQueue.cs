@@ -4,6 +4,7 @@ using Supernova.Models.GatewayHooks;
 using RabbitMQ.Client;
 using EuracMonitoringService.Services;
 using Supernova.Messages.Models;
+using Microsoft.Extensions.Logging;
 
 namespace EuracMonitoringService.Worker;
 
@@ -30,12 +31,12 @@ public sealed class BackgroundHookQueue : IBackgroundHookQueue
             FullMode = BoundedChannelFullMode.Wait
         };
 
-        _queue = Channel.CreateBounded<GatewayHookExecution>(options);        
+        _queue = Channel.CreateBounded<GatewayHookExecution>(options);
     }
 
     public async ValueTask QueueHookAsync(GatewayHookExecution workItem)
     {
-        ArgumentNullException.ThrowIfNull(workItem);        
+        ArgumentNullException.ThrowIfNull(workItem);
 
         var memoryCacheEntryOptions = new MemoryCacheEntryOptions()
             .SetAbsoluteExpiration(DateTimeOffset.Now.AddMinutes(1))
@@ -44,7 +45,11 @@ public sealed class BackgroundHookQueue : IBackgroundHookQueue
 
         cache.Set(workItem.Id, workItem, memoryCacheEntryOptions);
 
+        logger.LogDebug($"Hook {workItem.HookName} with id {workItem.Id} queued");
+
         await _queue.Writer.WriteAsync(workItem);
+
+        logger.LogDebug($"Hook {workItem.HookName} with id {workItem.Id} enqueued");
 
         //push job status
         await rabbitmqService.PublishAsync("topics", "supernova.hookcompletion.eurac-monitoring-service", new MessageGatewayHookExecution()
@@ -54,6 +59,7 @@ public sealed class BackgroundHookQueue : IBackgroundHookQueue
             Source = "eurac-monitoring-service"
         });
 
+        logger.LogDebug($"Hook {workItem.HookName} with id {workItem.Id} published");
     }
 
     public async ValueTask<GatewayHookExecution> DequeueHookAsync(CancellationToken cancellationToken)
@@ -71,6 +77,8 @@ public sealed class BackgroundHookQueue : IBackgroundHookQueue
         exec.Status = HookStatus.End;
         //publish job end
 
+        logger.LogDebug($"Hook {exec.HookName} with id {exec.Id} completed");
+
         await rabbitmqService.PublishAsync("topics", "supernova.hookcompletion.eurac-monitoring-service", new MessageGatewayHookExecution()
         {
             Data = exec,
@@ -78,6 +86,7 @@ public sealed class BackgroundHookQueue : IBackgroundHookQueue
             Source = "eurac-monitoring-service"
         });
 
+        logger.LogDebug($"Hook {exec.HookName} with id {exec.Id} published");
     }
 
 
@@ -88,10 +97,9 @@ public sealed class BackgroundHookQueue : IBackgroundHookQueue
 
         if (cacheValue is GatewayHookExecution execution)
         {
-            if(execution.Result != null)
+            if (execution.Result != null)
             {
                 ReportManager.DeleteFile(execution.Result.ResponseUrl);
-
             }
         }
     }
