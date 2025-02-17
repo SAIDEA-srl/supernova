@@ -68,7 +68,12 @@ builder.Services.AddSingleton((sp) =>
         //]))
         .Build();
 
-    var authprovider = new OAuth2ClientCredentialsProvider("oauth2", authclient);
+
+    var clientRefresher = new TimerBasedCredentialRefresher();
+    var authprovider = clientRefresher.Register(new OAuth2ClientCredentialsProvider("oauth2", authclient), (success) =>
+    {
+        Log.Information($"RABBIT MQ CREDENTIAL REFRESH: {success}");
+    });
 
     return new ConnectionFactory()
     {
@@ -77,6 +82,7 @@ builder.Services.AddSingleton((sp) =>
         VirtualHost = "supernova",
         ClientProvidedName = builder.Configuration["RabbitMQ:OAuth:ClientId"],
         CredentialsProvider = authprovider,
+        CredentialsRefresher = clientRefresher,
         /*Ssl = new SslOption()
         {
             Enabled = true,
