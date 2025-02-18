@@ -39,20 +39,6 @@
           }
         }
       },
-      "AlarmTypeId": {
-        "allOf": [
-          {
-            "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/676b4bb1730de5ed871668d652c9a738c47907ee/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/TaxonomyElementString"
-          },
-          {
-            "type": "object",
-            "description": "...TODO...",
-            "x-ob-item-type": "StringItemType",
-            "x-ob-usage-tips": "",
-            "x-ob-item-type-group": ""
-          }
-        ]
-      },
       "SupportedDocument": {
         "type": "object",
         "description": "Document supported",
@@ -91,23 +77,9 @@
                 }
               },
               "DeviceTypeId": {
-                "$ref": "#/components/schemas/DeviceTypeId"
+                "$ref": "supernova-constants.json#/components/schemas/DeviceTypeId"
               }
             }
-          }
-        ]
-      },
-      "DeviceTypeId": {
-        "allOf": [
-          {
-            "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/676b4bb1730de5ed871668d652c9a738c47907ee/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/TaxonomyElementString"
-          },
-          {
-            "type": "object",
-            "description": "...TODO...",
-            "x-ob-item-type": "StringItemType",
-            "x-ob-usage-tips": "",
-            "x-ob-item-type-group": ""
           }
         ]
       },
@@ -427,7 +399,7 @@
             "description": "",
             "properties": {
               "AlarmTypeId": {
-                "$ref": "#/components/schemas/AlarmTypeId"
+                "$ref": "supernova-constants.json#/components/schemas/AlarmTypeId"
               }
             }
           }
@@ -461,7 +433,7 @@
                 "items": {
                   "$ref": "#/components/schemas/OMTask"
                 }
-              },
+              }
             }
           }
         ]
