@@ -426,7 +426,7 @@
             "type": "object",
             "description": "",
             "properties": {
-              "DeviceTypeId": {
+              "AlarmTypeId": {
                 "$ref": "#/components/schemas/AlarmTypeId"
               }
             }
