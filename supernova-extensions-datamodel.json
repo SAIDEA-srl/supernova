@@ -416,6 +416,9 @@
             "type": "object",
             "description": "",
             "properties": {
+              "AlarmTypeId": {
+                "$ref": "supernova-constants.json#/components/schemas/AlarmTypeId"
+              },
               "Devices": {
                 "type": "array",
                 "items": {
