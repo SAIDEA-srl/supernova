@@ -1,60 +1,56 @@
 services:
-  aspire-dashboard:
-    container_name: "aspire-dashboard"
-    image: "mcr.microsoft.com/dotnet/aspire-dashboard:8.0"
-    environment:
-      DOTNET_DASHBOARD_UNSECURED_ALLOW_ANONYMOUS: "true"
-    ports:
-    - target: 18888
-      published: 18888
-    restart: unless-stopped
   mongo:
-    container_name: "mongo"
+    container_name: "${COMPOSE_PROJECT_NAME}-mongo"
     image: "docker.io/library/mongo:8.0"
     environment:
-      MONGO_INITDB_ROOT_USERNAME: "admin"
-      MONGO_INITDB_ROOT_PASSWORD: "o9tX8DdSXZTKJVtaM7JGQD"
-      OTEL_EXPORTER_OTLP_ENDPOINT: "http://aspire-dashboard:18889"
+      MONGO_INITDB_ROOT_USERNAME: "${MONGO_INITDB_ROOT_USERNAME}"
+      MONGO_INITDB_ROOT_PASSWORD: "${MONGO_INITDB_ROOT_PASSWORD}"
+      OTEL_EXPORTER_OTLP_ENDPOINT: "${OTLP_ENDPOINT}"
       OTEL_SERVICE_NAME: "mongo"
     volumes:
     - "universalmapper-db-volume:/data/db"
     ports:
-    - target: 27017
-      published: 27017
+    - 27017
     restart: unless-stopped
   mongo-express:
-    container_name: "mongo-express"
+    container_name: "${COMPOSE_PROJECT_NAME}-mongo-express"
     image: "docker.io/library/mongo-express:1.0"
     environment:
       ME_CONFIG_MONGODB_SERVER: "mongo"
       ME_CONFIG_MONGODB_PORT: "27017"
       ME_CONFIG_BASICAUTH: "false"
-      ME_CONFIG_MONGODB_ADMINUSERNAME: "admin"
-      ME_CONFIG_MONGODB_ADMINPASSWORD: "o9tX8DdSXZTKJVtaM7JGQD"
-      OTEL_EXPORTER_OTLP_ENDPOINT: "http://aspire-dashboard:18889"
+      ME_CONFIG_MONGODB_ADMINUSERNAME: "${MONGO_INITDB_ROOT_USERNAME}"
+      ME_CONFIG_MONGODB_ADMINPASSWORD: "${MONGO_INITDB_ROOT_PASSWORD}"
+      OTEL_EXPORTER_OTLP_ENDPOINT: "${OTLP_ENDPOINT}"
       OTEL_SERVICE_NAME: "mongo-express"
     ports:
-    - target: 8081
-      published: 8081
+    - 8081
     restart: unless-stopped
+    networks:
+    - supernova
   universalmapper:
-    container_name: "universalmapper"
-    image: "universal-mapper:latest"
+    container_name: "${COMPOSE_PROJECT_NAME}-universalmapper"
+    image: "127.0.0.1:5000/universalmapper:latest"
     environment:
       OTEL_DOTNET_EXPERIMENTAL_OTLP_EMIT_EXCEPTION_LOG_ATTRIBUTES: "true"
       OTEL_DOTNET_EXPERIMENTAL_OTLP_EMIT_EVENT_LOG_ATTRIBUTES: "true"
       OTEL_DOTNET_EXPERIMENTAL_OTLP_RETRY: "in_memory"
       ASPNETCORE_FORWARDEDHEADERS_ENABLED: "true"
       HTTP_PORTS: "8080"
-      IdentityAuthority: "https://identityeurac.goantares.uno"
-      ConnectionStrings__universalmapper: "mongodb://admin:o9tX8DdSXZTKJVtaM7JGQD@mongo:27017/universalmapper-db?authSource=admin&authMechanism=SCRAM-SHA-256"
-      OTEL_EXPORTER_OTLP_ENDPOINT: "http://aspire-dashboard:18889"
+      IdentityAuthority: "${OPENID_AUTORITY}"
+      ConnectionStrings__universalmapper-db: "mongodb://${MONGO_INITDB_ROOT_USERNAME}:${MONGO_INITDB_ROOT_PASSWORD}@mongo:27017/universalmapper-db?authSource=admin&authMechanism=SCRAM-SHA-256"
+      OTEL_EXPORTER_OTLP_ENDPOINT: "${OTLP_ENDPOINT}"
       OTEL_SERVICE_NAME: "universalmapper"
     ports:
-    - target: 8080
-      published: 10000
-    - target: 8443
-      published: 10001
+    - 8080
     restart: unless-stopped
+    networks:
+    - supernova
 volumes:
   universalmapper-db-volume: {}
+networks:
+   supernova:
+    name:  "${COMPOSE_PROJECT_NAME}-network"
+    external: false
+
+
