@@ -25,6 +25,8 @@ RUN dotnet build "./EuracMonitoringService.csproj" -c $BUILD_CONFIGURATION -o /a
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
 RUN dotnet publish "./EuracMonitoringService.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN mkdir -p /app/publish/data/reports
+RUN chown $APP_UID -R /app/publish/data
 
 # This stage is used in production or when running from VS in regular mode (Default when not using the Debug configuration)
 FROM base AS final

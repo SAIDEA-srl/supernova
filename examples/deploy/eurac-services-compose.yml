@@ -10,7 +10,7 @@ services:
       RabbitMQ__Host: "192.168.254.124"
       RabbitMQ__OAuth__ClientId: "eurac-monitoring-service"
       RabbitMQ__OAuth__ClientSecret: "7e1b6166-2922-4de4-846f-912fb2f554f2"
-      Reports__BasePath: "/app/data"
+      Reports__BasePath: "/app/data/reports"
     volumes:
     - "/var/log/docker/eurac-monitoring-service:/app/Logs"
     - "eurac-monitoring-service_data:/app/data"
