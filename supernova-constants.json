@@ -11,10 +11,10 @@
         "type": "string",
         "description": "Preliminary platform list. To be extended with new products.",
         "enum": [
-           "ANTARES",
-           "SOLARGAIN",
-           "SYNAPTIQ",
-           "other"
+          "ANTARES",
+          "SOLARGAIN",
+          "SYNAPTIQ",
+          "other"
         ]
       },
       "DocumentContentType": {
@@ -128,7 +128,7 @@
       },
       "AlarmTypeId": {
         "type": "string",
-        "description": "",        
+        "description": "",
         "enum": [
           "com.01",
           "com.02",
@@ -542,16 +542,16 @@
         "x-extracted-on": "2024-12-31"
       },
       "AssetIdentifierType": {
-          "type":"string",
-          "description": "Preliminary set. To be extended while platforms are added.",
-          "enum": [
-              "UUID",
-              "InternalID",
-              "Name",
-              "SerialNumber"
-          ]
+        "type": "string",
+        "description": "Preliminary set. To be extended while platforms are added.",
+        "enum": [
+          "UUID",
+          "InternalID",
+          "Name",
+          "SerialNumber"
+        ]
       },
-      "NotificationTopic": {
+      "NotificationSubject": {
         "type": "string",
         "description": "To be extended while channel types are identifier.",
         "enum": [

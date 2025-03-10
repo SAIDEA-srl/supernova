@@ -1,0 +1,41 @@
+services:
+  eurac-monitoring-service:
+    container_name: "eurac-monitoring-service"
+    image: "127.0.0.1:5000/euracmonitoringservice:latest"
+    environment:
+      InfluxDb__Token: "B9ZcpoFcmhaG01FGPsJRxqYq72QSV1OcYCspghOFHPcDthXtRKKOpQv5SXTzK3a4dcKPwL7TtL_vKUXQtxU7Yg=="
+      InfluxDb__Url: "https://192.168.254.123:8086"
+      Logging__LogLevel__Default: "Debug"
+      Logging__LogLevel__Microsoft.AspnetCore: "Debug"
+      RabbitMQ__Host: "192.168.254.124"
+      RabbitMQ__OAuth__ClientId: "eurac-monitoring-service"
+      RabbitMQ__OAuth__ClientSecret: "7e1b6166-2922-4de4-846f-912fb2f554f2"
+      Reports__BasePath: "/app/data"
+    volumes:
+    - "/var/log/docker/eurac-monitoring-service:/app/Logs"
+    - "eurac-monitoring-service_data:/app/data"
+    ports:
+    - 32808:8080
+    - 32809:8081
+    restart: unless-stopped
+    networks:
+    - supernova
+  eurac-copy-data-service:
+    container_name: "eurac-copy-data-service"
+    image: "127.0.0.1:5000/euraccopydataservice:latest"
+    environment:
+      Eurac__InfluxDbName: "pvs_abd"
+      Eurac__InfluxDbPassword: "kvTKE1>muAH@>k)^$i=3"
+      Eurac__InfluxDbUrl: "https://ts.eurac.net:443"
+      Eurac__InfluxDbUsername: "pvs_abd_saidea_r"
+      Saidea__InfluxDbName: "pvs_bolzano"
+      Saidea__InfluxDbOrg: "Saidea"
+      Saidea__InfluxDbToken: "cM6FgG6QFEWlVo_fphm9Kp-aUVo5jx2429GVErpTQ7BQbr4oLkdVqUJzt7RjZsOBmBRDD6_dNKCma9wZIWAVbA=="
+      Saidea__InfluxDbUrl: "https://192.168.254.123:8086"
+    restart: unless-stopped
+volumes:
+  eurac-monitoring-service_data: {}
+networks:
+  supernova:
+    name:  "supernova-network"
+    external: true
