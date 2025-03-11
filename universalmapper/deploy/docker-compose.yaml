@@ -51,7 +51,8 @@ services:
     - supernova
     - mongo-network
 volumes:
-  universalmapper-db-volume: {}
+  universalmapper-db-volume:
+    name:  "${COMPOSE_PROJECT_NAME}-universalmapper-db-volume"
 networks:
    supernova:
     name:  "${COMPOSE_PROJECT_NAME}-network"
