@@ -41,6 +41,9 @@ services:
       RabbitMQ__Port: "5672"
       RabbitMQ__OAuth__ClientId: "cpn-calculator"
       RabbitMQ__OAuth__ClientSecret: "cpn-calculator"
+      UniversalMapper__Host: "http://192.168.254.124:43952"
+      EuracMonitoringService__Host: "http://192.168.254.124:32808"
+      SupernovaApi__Host: "https://eurac.goantares.uno/public/orangeapi/"
     restart: unless-stopped
 volumes:
   eurac-monitoring-service_data: {}
