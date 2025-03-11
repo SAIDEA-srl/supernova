@@ -33,6 +33,15 @@ services:
       Saidea__InfluxDbToken: "cM6FgG6QFEWlVo_fphm9Kp-aUVo5jx2429GVErpTQ7BQbr4oLkdVqUJzt7RjZsOBmBRDD6_dNKCma9wZIWAVbA=="
       Saidea__InfluxDbUrl: "https://192.168.254.123:8086"
     restart: unless-stopped
+  eurac-cpn-calculator-service:
+    container_name: "eurac-cpn-calculator-service"
+    image: "127.0.0.1:5000/cpncalculator:latest"
+    environment:
+      RabbitMQ__Host: "192.168.254.124"
+      RabbitMQ__Port: "5672"
+      RabbitMQ__OAuth__ClientId: "cpn-calculator"
+      RabbitMQ__OAuth__ClientSecret: "cpn-calculator"
+    restart: unless-stopped
 volumes:
   eurac-monitoring-service_data: {}
 networks:

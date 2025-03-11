@@ -42,7 +42,7 @@ namespace EuracMonitoringService.Workers.Hooks
               |> sum(column: ""_value"")");
 
                 // trasform dump to csv and save to memory ?
-                var path = Path.Combine(reportBasePath, "reports");
+                var path = reportBasePath;
 
                 if (!Directory.Exists(path))
                 {
