@@ -12,6 +12,8 @@ services:
     ports:
     - 27017
     restart: unless-stopped
+    networks:
+    - mongo-network
   mongo-express:
     container_name: "${COMPOSE_PROJECT_NAME}-mongo-express"
     image: "docker.io/library/mongo-express:1.0"
@@ -21,13 +23,14 @@ services:
       ME_CONFIG_BASICAUTH: "false"
       ME_CONFIG_MONGODB_ADMINUSERNAME: "${MONGO_INITDB_ROOT_USERNAME}"
       ME_CONFIG_MONGODB_ADMINPASSWORD: "${MONGO_INITDB_ROOT_PASSWORD}"
+      ME_CONFIG_MONGODB_URL: "mongodb://${COMPOSE_PROJECT_NAME}-mongo:27017"
       OTEL_EXPORTER_OTLP_ENDPOINT: "${OTLP_ENDPOINT}"
       OTEL_SERVICE_NAME: "${COMPOSE_PROJECT_NAME}-mongo-express"
     ports:
     - 8081
     restart: unless-stopped
     networks:
-    - supernova
+    - mongo-network
   universalmapper:
     container_name: "${COMPOSE_PROJECT_NAME}-universalmapper"
     image: "127.0.0.1:5000/universalmapper:latest"
@@ -46,11 +49,15 @@ services:
     restart: unless-stopped
     networks:
     - supernova
+    - mongo-network
 volumes:
   universalmapper-db-volume: {}
 networks:
    supernova:
     name:  "${COMPOSE_PROJECT_NAME}-network"
+    external: false
+   mongo-network:
+    name:  "${COMPOSE_PROJECT_NAME}-mongo-network"
     external: false
 
 
