@@ -160,7 +160,7 @@
               "description": "Message source"
             },
             "Data": {
-              "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/676b4bb1730de5ed871668d652c9a738c47907ee/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/OMTask",
+              "$ref": "supernova-extensions-datamodel.json#/components/schemas/OMTask",
               "description": "OMTask object"
             }
           }
@@ -180,7 +180,7 @@
               "description": "Message source"
             },
             "Data": {
-              "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/676b4bb1730de5ed871668d652c9a738c47907ee/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/OMIssue",
+              "$ref": "supernova-extensions-datamodel.json#/components/schemas/OMIssue",
               "description": "OMIssue object"
             }
           }

@@ -53,6 +53,24 @@
           }
         }
       },
+      "Scope": {
+        "type": "object",
+        "description": "...TODO...",
+        "allOf": [
+          {
+            "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/676b4bb1730de5ed871668d652c9a738c47907ee/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/Scope"
+          },
+          {
+            "type": "object",
+            "description": "",
+            "properties": {
+              "AlternativeIdentifier": {
+                "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/676b4bb1730de5ed871668d652c9a738c47907ee/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/AlternativeIdentifier"
+              }
+            }
+          }
+        ]
+      },
       "Device": {
         "type": "object",
         "description": "...TODO...",
@@ -380,11 +398,7 @@
         }
       },
       "HookStatus": {
-        "enum": [
-          "Created",
-          "Execution",
-          "End"
-        ],
+        "enum": ["Created", "Execution", "End"],
         "type": "string"
       },
       "OMIssue": {
@@ -400,6 +414,9 @@
             "properties": {
               "AlarmTypeId": {
                 "$ref": "supernova-constants.json#/components/schemas/AlarmTypeId"
+              },
+              "Scope": {
+                "$ref": "#/components/schemas/Scope"
               }
             }
           }
@@ -436,6 +453,9 @@
                 "items": {
                   "$ref": "#/components/schemas/OMTask"
                 }
+              },
+              "Scope": {
+                "$ref": "#/components/schemas/Scope"
               }
             }
           }
