@@ -168,7 +168,7 @@ else
     Log.Information($"Use document base path: {builder.Configuration["Reports:BasePath"]}");
     app.UseStaticFiles();
 
-    var directory = $"{builder.Configuration["Reports:BasePath"]}/reports";
+    var directory = $"{builder.Configuration["Reports:BasePath"]}";
     Directory.CreateDirectory(directory);
 
     app.UseStaticFiles(new StaticFileOptions
