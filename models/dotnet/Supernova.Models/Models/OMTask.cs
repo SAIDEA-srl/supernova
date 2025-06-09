@@ -16,7 +16,10 @@ namespace Supernova.Models
 
         [Newtonsoft.Json.JsonProperty("RelatedOMTasks", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public IEnumerable<OMTask>? RelatedOMTasks { get; set; }
+
         public string? AlarmTypeId { get; set; }
+
+        public new OMWorkPlan OMWorkPlan { get; set; }
 
         public new Scope Scope { get; set; }
     }
