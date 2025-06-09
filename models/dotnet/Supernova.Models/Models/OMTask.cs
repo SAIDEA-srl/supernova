@@ -19,8 +19,8 @@ namespace Supernova.Models
 
         public string? AlarmTypeId { get; set; }
 
-        public new OMWorkPlan OMWorkPlan { get; set; }
+        public new OMWorkPlan? OMWorkPlan { get; set; }
 
-        public new Scope Scope { get; set; }
+        public new Scope? Scope { get; set; }
     }
 }
