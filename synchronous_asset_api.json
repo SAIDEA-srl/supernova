@@ -848,6 +848,103 @@
         }
       }
     },
+    "//OMTasks/{id}/OMWorkPlan": {
+      "get": {
+        "tags": ["OMTask"],
+        "operationId": "OMTask_GetOMWorkPlan",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expands related entities inline.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filters the results, based on a Boolean condition.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Selects which properties to include in the response.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Sorts the results.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$top",
+            "in": "query",
+            "description": "Returns only the first n results.",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "$skip",
+            "in": "query",
+            "description": "Skips the first n results.",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "$count",
+            "in": "query",
+            "description": "Includes a count of the matching results in the response.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "$apply",
+            "in": "query",
+            "description": "Specify a sequence of transformations to the entity set, such as groupby, filter, aggregate, etc..",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "supernova-extensions-datamodel.json#/components/schemas/OMWorkPlan"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/PVArrays": {
       "get": {
         "tags": ["PVArray"],

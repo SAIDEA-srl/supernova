@@ -10,7 +10,7 @@
     "schemas": {
       "Info": {
         "type": "object",
-        "description": "...TODO...",
+        "description": "api information",
         "properties": {
           "Name": {
             "type": "string",
@@ -23,15 +23,15 @@
             "x-ob-usage-tips": ""
           },
           "Description": {
-            "description": "...TODO...",
+            "description": "description of service",
             "type": "string"
           },
           "Version": {
-            "description": "...TODO...",
+            "description": "version of service",
             "type": "string"
           },
           "SupportedDocuments": {
-            "description": "...TODO...",
+            "description": "types of document supported",
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/SupportedDocument"
@@ -55,7 +55,7 @@
       },
       "Scope": {
         "type": "object",
-        "description": "...TODO...",
+        "description": "extension of Scope",
         "allOf": [
           {
             "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/676b4bb1730de5ed871668d652c9a738c47907ee/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/Scope"
@@ -73,7 +73,7 @@
       },
       "Device": {
         "type": "object",
-        "description": "...TODO...",
+        "description": "extension of Device with connections",
         "allOf": [
           {
             "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/676b4bb1730de5ed871668d652c9a738c47907ee/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/Device"
@@ -103,7 +103,7 @@
       },
       "PVArray": {
         "type": "object",
-        "description": "...TODO...",
+        "description": "extension of pvarray with location",
         "allOf": [
           {
             "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/676b4bb1730de5ed871668d652c9a738c47907ee/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/PVArray"
@@ -124,7 +124,7 @@
       },
       "PVString": {
         "type": "object",
-        "description": "...TODO...",
+        "description": "extension of PVString with location",
         "allOf": [
           {
             "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/676b4bb1730de5ed871668d652c9a738c47907ee/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/PVString"
@@ -145,7 +145,7 @@
       },
       "PVSystem": {
         "type": "object",
-        "description": "...TODO...",
+        "description": "extension of PVSystem with location",
         "allOf": [
           {
             "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/676b4bb1730de5ed871668d652c9a738c47907ee/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/PVString"
@@ -166,7 +166,7 @@
       },
       "Connection": {
         "type": "object",
-        "description": "...TODO...",
+        "description": "device connections",
         "properties": {
           "ConnectionId": {
             "$ref": "#/components/schemas/ConnectionId"
@@ -184,7 +184,7 @@
       },
       "Document": {
         "type": "object",
-        "description": "...TODO...",
+        "description": "Document",
         "properties": {
           "DocumentId": {
             "$ref": "#/components/schemas/DocumentId"
@@ -210,7 +210,7 @@
           },
           {
             "type": "object",
-            "description": "...TODO...",
+            "description": "connection id",
             "x-ob-item-type": "StringItemType",
             "x-ob-usage-tips": "",
             "x-ob-item-type-group": ""
@@ -224,7 +224,7 @@
           },
           {
             "type": "object",
-            "description": "...TODO...",
+            "description": "connection type",
             "x-ob-item-type": "StringItemType",
             "x-ob-usage-tips": "",
             "x-ob-item-type-group": ""
@@ -238,7 +238,7 @@
           },
           {
             "type": "object",
-            "description": "...TODO...",
+            "description": "",
             "x-ob-item-type": "StringItemType",
             "x-ob-usage-tips": "",
             "x-ob-item-type-group": ""
@@ -252,7 +252,7 @@
           },
           {
             "type": "object",
-            "description": "...TODO...",
+            "description": "",
             "x-ob-item-type": "StringItemType",
             "x-ob-usage-tips": "",
             "x-ob-item-type-group": ""
@@ -266,7 +266,7 @@
           },
           {
             "type": "object",
-            "description": "...TODO...",
+            "description": "",
             "x-ob-item-type": "StringItemType",
             "x-ob-usage-tips": "",
             "x-ob-item-type-group": ""
@@ -280,7 +280,7 @@
           },
           {
             "type": "object",
-            "description": "...TODO...",
+            "description": "",
             "x-ob-item-type": "StringItemType",
             "x-ob-usage-tips": "",
             "x-ob-item-type-group": ""
@@ -294,7 +294,7 @@
           },
           {
             "type": "object",
-            "description": "...TODO...",
+            "description": "",
             "x-ob-item-type": "StringItemType",
             "x-ob-usage-tips": "",
             "x-ob-item-type-group": ""
@@ -308,7 +308,7 @@
           },
           {
             "type": "object",
-            "description": "...TODO...",
+            "description": "",
             "x-ob-item-type": "StringItemType",
             "x-ob-usage-tips": "",
             "x-ob-item-type-group": ""
@@ -322,7 +322,7 @@
           },
           {
             "type": "object",
-            "description": "...TODO...",
+            "description": "",
             "x-ob-item-type": "StringItemType",
             "x-ob-usage-tips": "",
             "x-ob-item-type-group": ""
@@ -403,7 +403,7 @@
       },
       "OMIssue": {
         "type": "object",
-        "description": "...TODO...",
+        "description": "extension of OMIssue",
         "allOf": [
           {
             "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/676b4bb1730de5ed871668d652c9a738c47907ee/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/OMIssue"
@@ -424,7 +424,7 @@
       },
       "OMTask": {
         "type": "object",
-        "description": "...TODO...",
+        "description": "extensions of OMTask",
         "allOf": [
           {
             "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/676b4bb1730de5ed871668d652c9a738c47907ee/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/OMTask"
@@ -456,6 +456,27 @@
               },
               "Scope": {
                 "$ref": "#/components/schemas/Scope"
+              },
+              "OMWorkPlan": {
+                "$ref": "#/components/schemas/OMWorkPlan"
+              }
+            }
+          }
+        ]
+      },
+      "OMWorkPlan": {
+        "type": "object",
+        "description": "extensions of OMWorkPlan with generic tasks",
+        "allOf": [
+          {
+            "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/676b4bb1730de5ed871668d652c9a738c47907ee/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/OMWorkPlan"
+          },
+          {
+            "type": "object",
+            "description": "",
+            "properties": {
+              "Tasks": {
+                "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/676b4bb1730de5ed871668d652c9a738c47907ee/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/Tasks"
               }
             }
           }
