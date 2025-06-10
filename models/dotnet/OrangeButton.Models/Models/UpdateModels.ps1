@@ -5,7 +5,9 @@ nswag run .\NSwagConfig.nswag
     -replace 'System.CodeDom.Compiler.GeneratedCode', 'global::System.CodeDom.Compiler.GeneratedCode' `
     -replace 'using System = global::System;', '' `
     -replace 'System.Collections.Generic.', 'global::System.Collections.Generic.' `
-    -replace 'System.Collections.ObjectModel.', 'global::System.Collections.ObjectModel.' | Set-Content .\ModelGenerated.cs
+    -replace 'System.Collections.ObjectModel.', 'global::System.Collections.ObjectModel.' `
+    -replace 'IEnumerable<global::System.Collections.Generic.List<(.*)>', 'IEnumerable<$1' `
+    | Set-Content .\ModelGenerated.cs
 
 
 ## fix Parameters

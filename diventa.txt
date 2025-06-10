@@ -1,0 +1,35 @@
+ODV 
+	6 - Riga
+	16 - Riga
+	14 - Riga
+	17 - Riga
+	20 - Riga
+
+CANONI 
+	27 - DOC
+
+PROG 
+	18 - DOC
+	
+PREPAID 
+	21 - DOC FATTURA
+	
+CONSUNTIVO 
+	25 - DOC TEORICAMENTE NO VEDERE ACCOUNTING
+		
+RDL 
+	14 - DOC PREFATTURA
+	
+RICHIESTA EMISSIONE FATTURA
+	29 - RIGA - Nota di credito
+	
+
+RDA 
+
+CONFERMA RDA
+
+ODA
+
+Entrata MERCI
+
+	
