@@ -6,15 +6,15 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>218a398d-af8d-48ae-96ae-149d31c59b32</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
-    <ContainerRepository>eurac-monitoring-service</ContainerRepository>
+    <ContainerRepository>euracmonitoringservice</ContainerRepository>
     <DockerfileContext>..\..</DockerfileContext>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.11" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.21.0" />
-    <PackageReference Include="RabbitMQ.Client" Version="6.8.1" />
-    <PackageReference Include="RabbitMQ.Client.OAuth2" Version="1.0.0" />
+    <PackageReference Include="RabbitMQ.Client" Version="7.1.2" />
+    <PackageReference Include="RabbitMQ.Client.OAuth2" Version="2.0.0" />
     <PackageReference Include="Serilog" Version="4.2.0" />
     <PackageReference Include="Serilog.AspNetCore" Version="9.0.0" />
     <PackageReference Include="Serilog.Extensions.Logging" Version="9.0.0" />

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Connections;
 using Newtonsoft.Json;
 using RabbitMQ.Client;
+using RabbitMQ.Client.OAuth2;
 using Serilog;
 using Supernova.Models.GatewayHooks;
 using System.Text;
@@ -8,10 +9,10 @@ using System.Threading;
 
 namespace EuracMonitoringService.Services;
 
-public class RabbitMQService(ConnectionFactory connectionFactory, ILogger<RabbitMQService> logger) : IAsyncDisposable
+public class RabbitMQService(Lazy<Task<ConnectionFactory>> connectionFactory, ILogger<RabbitMQService> logger) : IAsyncDisposable
 {
 
-    private SemaphoreSlim semaphore = new(1);
+    private static SemaphoreSlim semaphore = new(1);
 
     private IConnection? connection = null;
 
@@ -28,10 +29,10 @@ public class RabbitMQService(ConnectionFactory connectionFactory, ILogger<Rabbit
 
                 try
                 {
-                    currentconnection.Close();
+                    await currentconnection.CloseAsync();
                     currentconnection.Dispose();
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     logger.LogDebug(ex, $"Exception thrown while closing and disposing connection. This can probably be ignored, but for good measure, here it is: {ex.Message}");
                 }
@@ -47,14 +48,14 @@ public class RabbitMQService(ConnectionFactory connectionFactory, ILogger<Rabbit
         }
     }
 
-    public async ValueTask<IModel> Init()
+    public async ValueTask<IChannel> Init()
     {
 
         var currentConnection = this.connection;
 
         if (currentConnection != null && currentConnection.IsOpen)
         {
-            return currentConnection.CreateModel();
+            return await currentConnection.CreateChannelAsync();
         }
 
 
@@ -68,14 +69,14 @@ public class RabbitMQService(ConnectionFactory connectionFactory, ILogger<Rabbit
             {
                 if (currentConnection.IsOpen)
                 {
-                    return currentConnection.CreateModel();
+                    return await currentConnection.CreateChannelAsync();
                 }
 
                 logger.LogInformation("Existing connection found to be CLOSED");
 
                 try
                 {
-                    currentConnection.Close();
+                    await currentConnection.CloseAsync();
                     currentConnection.Dispose();
                 }
                 catch (Exception e)
@@ -86,9 +87,9 @@ public class RabbitMQService(ConnectionFactory connectionFactory, ILogger<Rabbit
 
             try
             {
-                connection = connectionFactory.CreateConnection();
-
-                return connection.CreateModel();
+                var factory = await connectionFactory.Value;
+                connection = await factory.CreateConnectionAsync();
+                return await connection.CreateChannelAsync();
             }
             catch (Exception exception)
             {
@@ -105,25 +106,19 @@ public class RabbitMQService(ConnectionFactory connectionFactory, ILogger<Rabbit
 
     public async ValueTask PublishAsync<T>(string exchange, string routingKey, T message)
     {
-        try
-        {
-            using var channel = await Init();
+        var channel = await Init();
 
-            var serialized = JsonConvert.SerializeObject(message);
-            var body = Encoding.UTF8.GetBytes(serialized);
+        var serialized = JsonConvert.SerializeObject(message);
+        var body = Encoding.UTF8.GetBytes(serialized);
 
-            var props = channel.CreateBasicProperties();
-            props.MessageId = Guid.NewGuid().ToString();
-            props.ContentType = "application/json";
-            props.ContentEncoding = "utf-8";
-            props.Type = routingKey;
+        var props = new BasicProperties();
+        props.MessageId = Guid.NewGuid().ToString();
+        props.ContentType = "application/json";
+        props.ContentEncoding = "utf-8";
+        props.Type = routingKey;
 
-            channel.BasicPublish(exchange, routingKey, true, props, body);
-        }
-        catch (Exception ex)
-        {
-            logger.LogError(ex, ex.Message);
-        }
+        await channel.BasicPublishAsync(exchange, routingKey, true, props, body);
     }
 
 }
+

@@ -3,6 +3,7 @@ using EuracMonitoringService.Worker;
 using EuracMonitoringService.Workers.Hooks;
 using InfluxDB.Client;
 using Microsoft.Extensions.Caching.Memory;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.IdentityModel.Tokens;
 using RabbitMQ.Client;
@@ -13,7 +14,7 @@ using System.Text.Json.Serialization;
 Log.Logger = new LoggerConfiguration()
     .Enrich.FromLogContext()
     .WriteTo.Console()
-    .CreateBootstrapLogger(); 
+    .CreateBootstrapLogger();
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -56,41 +57,33 @@ builder.Services.AddAuthentication()
            };
        });
 
+
+
+
 //create rabbitmp connection factory
 builder.Services.AddSingleton((sp) =>
 {
-    var authclient = new OAuth2ClientBuilder(
-        builder.Configuration["RabbitMQ:OAuth:ClientId"],
-        builder.Configuration["RabbitMQ:OAuth:ClientSecret"],
-        new Uri($"{builder.Configuration["OpenId:Authority"]}/connect/token"))
-        //.SetScope(string.Join(" ", [
-        //    "supernova.write:supernova/topics/supernova.hookcompletion.eurac-monitoring-service",
-        //]))
-        .Build();
-
-
-    var clientRefresher = new TimerBasedCredentialRefresher();
-    var authprovider = clientRefresher.Register(new OAuth2ClientCredentialsProvider("oauth2", authclient), (success) =>
+    return new Lazy<Task<ConnectionFactory>>(async () =>
     {
-        Log.Information($"RABBIT MQ CREDENTIAL REFRESH: {success}");
-    });
+        var authbuilder = new OAuth2ClientBuilder(
+            builder.Configuration["RabbitMQ:OAuth:ClientId"],
+            builder.Configuration["RabbitMQ:OAuth:ClientSecret"],
+            new Uri($"{builder.Configuration["OpenId:Authority"]}/connect/token"));
 
-    return new ConnectionFactory()
-    {
-        HostName = builder.Configuration["RabbitMQ:Host"],
-        Port = 5672,
-        VirtualHost = "supernova",
-        ClientProvidedName = builder.Configuration["RabbitMQ:OAuth:ClientId"],
-        CredentialsProvider = authprovider,
-        CredentialsRefresher = clientRefresher,
-        /*Ssl = new SslOption()
+        var authclient = await authbuilder.BuildAsync();
+
+        var authprovider = new OAuth2ClientCredentialsProvider("supernova", authclient);
+
+        return new ConnectionFactory()
         {
-            Enabled = true,
-            //ServerName = builder.Configuration["RabbitMQ:Host"],
-            CheckCertificateRevocation = false,
-            AcceptablePolicyErrors = SslPolicyErrors.RemoteCertificateNameMismatch | SslPolicyErrors.RemoteCertificateChainErrors
-        }*/
-    };
+            HostName = builder.Configuration["RabbitMQ:Host"],
+            Port = 5672,
+            VirtualHost = "supernova",
+            ClientProvidedName = builder.Configuration["RabbitMQ:OAuth:ClientId"],
+            CredentialsProvider = authprovider,
+        };
+
+    });
 });
 
 builder.Services.AddSingleton<RabbitMQService>();
