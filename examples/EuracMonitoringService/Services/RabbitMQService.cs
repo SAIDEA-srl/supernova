@@ -106,7 +106,7 @@ public class RabbitMQService(Lazy<Task<ConnectionFactory>> connectionFactory, IL
 
     public async ValueTask PublishAsync<T>(string exchange, string routingKey, T message)
     {
-        var channel = await Init();
+        using var channel = await Init();
 
         var serialized = JsonConvert.SerializeObject(message);
         var body = Encoding.UTF8.GetBytes(serialized);
