@@ -67,17 +67,6 @@ var authbuilder = new OAuth2ClientBuilder(
 var authclient = await authbuilder.BuildAsync();
 var authprovider = new OAuth2ClientCredentialsProvider("supernova", authclient);
 
-builder.Services.AddSingleton(authprovider);
-builder.Services.AddSingleton(new CredentialsRefresher(authprovider, (credentials, exception, cancellationToken) =>
-{
-    if (exception != null)
-    {
-        Console.WriteLine($"Error refreshing credentials: {exception.Message}");
-        return System.Threading.Tasks.Task.FromException(exception);
-    }
-    return System.Threading.Tasks.Task.CompletedTask;
-}, default(CancellationToken)));
-
 //create rabbitmp connection factory
 builder.Services.AddSingleton((sp) =>
 {
@@ -92,6 +81,7 @@ builder.Services.AddSingleton((sp) =>
 });
 
 builder.Services.AddSingleton<RabbitMQService>();
+builder.Services.AddHostedService<RabbitMQCredentialRefresher>();
 
 
 builder.Services.AddTransient((sp) =>

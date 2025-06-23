@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Connections;
 using Newtonsoft.Json;
 using RabbitMQ.Client;
-using RabbitMQ.Client.OAuth2;
 using Serilog;
 using Supernova.Models.GatewayHooks;
 using System.Text;
@@ -120,4 +119,3 @@ public class RabbitMQService(ConnectionFactory connectionFactory, ILogger<Rabbit
     }
 
 }
-
