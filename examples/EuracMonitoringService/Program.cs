@@ -60,30 +60,35 @@ builder.Services.AddAuthentication()
 
 
 
+var authbuilder = new OAuth2ClientBuilder(
+    builder.Configuration["RabbitMQ:OAuth:ClientId"],
+    builder.Configuration["RabbitMQ:OAuth:ClientSecret"],
+    new Uri($"{builder.Configuration["OpenId:Authority"]}/connect/token"));
+var authclient = await authbuilder.BuildAsync();
+var authprovider = new OAuth2ClientCredentialsProvider("supernova", authclient);
+
+builder.Services.AddSingleton(authprovider);
+builder.Services.AddSingleton(new CredentialsRefresher(authprovider, (credentials, exception, cancellationToken) =>
+{
+    if (exception != null)
+    {
+        Console.WriteLine($"Error refreshing credentials: {exception.Message}");
+        return System.Threading.Tasks.Task.FromException(exception);
+    }
+    return System.Threading.Tasks.Task.CompletedTask;
+}, default(CancellationToken)));
+
 //create rabbitmp connection factory
 builder.Services.AddSingleton((sp) =>
 {
-    return new Lazy<Task<ConnectionFactory>>(async () =>
+    return new ConnectionFactory()
     {
-        var authbuilder = new OAuth2ClientBuilder(
-            builder.Configuration["RabbitMQ:OAuth:ClientId"],
-            builder.Configuration["RabbitMQ:OAuth:ClientSecret"],
-            new Uri($"{builder.Configuration["OpenId:Authority"]}/connect/token"));
-
-        var authclient = await authbuilder.BuildAsync();
-
-        var authprovider = new OAuth2ClientCredentialsProvider("supernova", authclient);
-
-        return new ConnectionFactory()
-        {
-            HostName = builder.Configuration["RabbitMQ:Host"],
-            Port = 5672,
-            VirtualHost = "supernova",
-            ClientProvidedName = builder.Configuration["RabbitMQ:OAuth:ClientId"],
-            CredentialsProvider = authprovider,
-        };
-
-    });
+        HostName = builder.Configuration["RabbitMQ:Host"],
+        Port = 5672,
+        VirtualHost = "supernova",
+        ClientProvidedName = builder.Configuration["RabbitMQ:OAuth:ClientId"],
+        CredentialsProvider = authprovider,
+    };
 });
 
 builder.Services.AddSingleton<RabbitMQService>();

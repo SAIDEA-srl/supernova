@@ -9,7 +9,7 @@ using System.Threading;
 
 namespace EuracMonitoringService.Services;
 
-public class RabbitMQService(Lazy<Task<ConnectionFactory>> connectionFactory, ILogger<RabbitMQService> logger) : IAsyncDisposable
+public class RabbitMQService(ConnectionFactory connectionFactory, ILogger<RabbitMQService> logger) : IAsyncDisposable
 {
 
     private static SemaphoreSlim semaphore = new(1);
@@ -87,8 +87,7 @@ public class RabbitMQService(Lazy<Task<ConnectionFactory>> connectionFactory, IL
 
             try
             {
-                var factory = await connectionFactory.Value;
-                connection = await factory.CreateConnectionAsync();
+                connection = await connectionFactory.CreateConnectionAsync();
                 return await connection.CreateChannelAsync();
             }
             catch (Exception exception)
