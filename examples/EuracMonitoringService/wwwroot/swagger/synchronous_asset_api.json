@@ -1,0 +1,1751 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "SUPERNOVA Interoperation API 1.0 asset-related synchronous operations",
+    "version": "1.0"
+  },
+  "paths": {
+    "/Info": {
+      "get": {
+        "tags": [ "Info" ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "supernova-extensions-datamodel.json#/components/schemas/Info"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Devices": {
+      "get": {
+        "tags": [ "Device" ],
+        "operationId": "Device_GetList",
+        "parameters": [
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expands related entities inline.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filters the results, based on a Boolean condition.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Selects which properties to include in the response.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Sorts the results.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$top",
+            "in": "query",
+            "description": "Returns only the first n results.",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "$skip",
+            "in": "query",
+            "description": "Skips the first n results.",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "$count",
+            "in": "query",
+            "description": "Includes a count of the matching results in the response.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "$apply",
+            "in": "query",
+            "description": "Specify a sequence of transformations to the entity set, such as groupby, filter, aggregate, etc..",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "supernova-extensions-datamodel.json#/components/schemas/Device"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Devices/{id}": {
+      "get": {
+        "tags": [ "Device" ],
+        "operationId": "Device_Get",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expands related entities inline.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Selects which properties to include in the response.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "supernova-extensions-datamodel.json#/components/schemas/Device"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/Devices/{id}/Components": {
+      "get": {
+        "tags": [ "Device" ],
+        "operationId": "Device_GetComponentsList",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expands related entities inline.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filters the results, based on a Boolean condition.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Selects which properties to include in the response.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Sorts the results.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$top",
+            "in": "query",
+            "description": "Returns only the first n results.",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "$skip",
+            "in": "query",
+            "description": "Skips the first n results.",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "$count",
+            "in": "query",
+            "description": "Includes a count of the matching results in the response.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "$apply",
+            "in": "query",
+            "description": "Specify a sequence of transformations to the entity set, such as groupby, filter, aggregate, etc..",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/676b4bb1730de5ed871668d652c9a738c47907ee/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/Component"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Devices/{id}/Connections": {
+      "get": {
+        "tags": [ "Device" ],
+        "operationId": "Device_GetConnectionsList",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expands related entities inline.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filters the results, based on a Boolean condition.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Selects which properties to include in the response.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Sorts the results.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$top",
+            "in": "query",
+            "description": "Returns only the first n results.",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "$skip",
+            "in": "query",
+            "description": "Skips the first n results.",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "$count",
+            "in": "query",
+            "description": "Includes a count of the matching results in the response.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "$apply",
+            "in": "query",
+            "description": "Specify a sequence of transformations to the entity set, such as groupby, filter, aggregate, etc..",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "supernova-extensions-datamodel.json#/components/schemas/Connection"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Devices/{id}/Documents": {
+      "get": {
+        "tags": [ "Device" ],
+        "operationId": "Device_GetDocuments",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expands related entities inline.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filters the results, based on a Boolean condition.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Selects which properties to include in the response.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Sorts the results.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$top",
+            "in": "query",
+            "description": "Returns only the first n results.",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "$skip",
+            "in": "query",
+            "description": "Skips the first n results.",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "$count",
+            "in": "query",
+            "description": "Includes a count of the matching results in the response.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "$apply",
+            "in": "query",
+            "description": "Specify a sequence of transformations to the entity set, such as groupby, filter, aggregate, etc..",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "supernova-extensions-datamodel.json#/components/schemas/Document"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Devices/{id}/OMTasks": {
+      "get": {
+        "tags": [ "Device" ],
+        "operationId": "Device_GetOMTasksList",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expands related entities inline.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filters the results, based on a Boolean condition.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Selects which properties to include in the response.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Sorts the results.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$top",
+            "in": "query",
+            "description": "Returns only the first n results.",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "$skip",
+            "in": "query",
+            "description": "Skips the first n results.",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "$count",
+            "in": "query",
+            "description": "Includes a count of the matching results in the response.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "$apply",
+            "in": "query",
+            "description": "Specify a sequence of transformations to the entity set, such as groupby, filter, aggregate, etc..",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "supernova-extensions-datamodel.json#/components/schemas/OMTask"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Gateway/Hooks": {
+      "get": {
+        "tags": [ "Gateway" ],
+        "operationId": "Gateway_GetHooks",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "supernova-extensions-datamodel.json#/components/schemas/GatewayHook"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Gateway/Hooks/{hookname}/executions/{execId}": {
+      "get": {
+        "tags": [ "Gateway" ],
+        "operationId": "Gateway_GetHookExecutions",
+        "parameters": [
+          {
+            "name": "hookname",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "execId",
+            "description": "Execution identifier",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "supernova-extensions-datamodel.json#/components/schemas/GatewayHookExecution"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Gateway/Hooks/{hookname}/executions/{execId}/result": {
+      "get": {
+        "tags": [ "Gateway" ],
+        "operationId": "Gateway_GetExecutionResult",
+        "parameters": [
+          {
+            "name": "hookname",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "execId",
+            "description": "Execution identifier",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "supernova-extensions-datamodel.json#/components/schemas/GatewayHookResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Gateway/Hooks/{hookname}/run": {
+      "post": {
+        "tags": [ "Gateway" ],
+        "operationId": "Gateway_RunHook",
+        "parameters": [
+          {
+            "name": "hookname",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": {}
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": {}
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": {}
+              }
+            },
+            "application/json-patch+json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": {}
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": {}
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": {}
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "supernova-extensions-datamodel.json#/components/schemas/GatewayHookExecution"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/OMTasks": {
+      "get": {
+        "tags": [ "OMTask" ],
+        "operationId": "OMTask_GetList",
+        "parameters": [
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expands related entities inline.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filters the results, based on a Boolean condition.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Selects which properties to include in the response.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Sorts the results.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$top",
+            "in": "query",
+            "description": "Returns only the first n results.",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "$skip",
+            "in": "query",
+            "description": "Skips the first n results.",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "$count",
+            "in": "query",
+            "description": "Includes a count of the matching results in the response.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "$apply",
+            "in": "query",
+            "description": "Specify a sequence of transformations to the entity set, such as groupby, filter, aggregate, etc..",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "supernova-extensions-datamodel.json#/components/schemas/OMTask"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/OMTasks/{id}": {
+      "get": {
+        "tags": [ "OMTask" ],
+        "operationId": "OMTask_Get",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expands related entities inline.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Selects which properties to include in the response.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "supernova-extensions-datamodel.json#/components/schemas/OMTask"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/PVArrays": {
+      "get": {
+        "tags": [ "PVArray" ],
+        "operationId": "PVArray_GetList",
+        "parameters": [
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expands related entities inline.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filters the results, based on a Boolean condition.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Selects which properties to include in the response.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Sorts the results.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$top",
+            "in": "query",
+            "description": "Returns only the first n results.",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "$skip",
+            "in": "query",
+            "description": "Skips the first n results.",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "$count",
+            "in": "query",
+            "description": "Includes a count of the matching results in the response.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "$apply",
+            "in": "query",
+            "description": "Specify a sequence of transformations to the entity set, such as groupby, filter, aggregate, etc..",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "supernova-extensions-datamodel.json#/components/schemas/PVArray"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/PVArrays/{id}": {
+      "get": {
+        "tags": [ "PVArray" ],
+        "operationId": "PVArray_Get",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expands related entities inline.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Selects which properties to include in the response.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "supernova-extensions-datamodel.json#/components/schemas/PVArray"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/PVArrays/{id}/Devices": {
+      "get": {
+        "tags": [ "PVArray" ],
+        "operationId": "PVArray_GetDevicesList",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expands related entities inline.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filters the results, based on a Boolean condition.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Selects which properties to include in the response.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Sorts the results.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$top",
+            "in": "query",
+            "description": "Returns only the first n results.",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "$skip",
+            "in": "query",
+            "description": "Skips the first n results.",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "$count",
+            "in": "query",
+            "description": "Includes a count of the matching results in the response.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "$apply",
+            "in": "query",
+            "description": "Specify a sequence of transformations to the entity set, such as groupby, filter, aggregate, etc..",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "supernova-extensions-datamodel.json#/components/schemas/Device"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/PVArrays/{id}/PVStrings": {
+      "get": {
+        "tags": [ "PVArray" ],
+        "operationId": "PVArray_GetPVStringsList",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expands related entities inline.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filters the results, based on a Boolean condition.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Selects which properties to include in the response.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Sorts the results.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$top",
+            "in": "query",
+            "description": "Returns only the first n results.",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "$skip",
+            "in": "query",
+            "description": "Skips the first n results.",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "$count",
+            "in": "query",
+            "description": "Includes a count of the matching results in the response.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "$apply",
+            "in": "query",
+            "description": "Specify a sequence of transformations to the entity set, such as groupby, filter, aggregate, etc..",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "supernova-extensions-datamodel.json#/components/schemas/PVString"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/PVStrings": {
+      "get": {
+        "tags": [ "PVString" ],
+        "operationId": "PVString_GetList",
+        "parameters": [
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expands related entities inline.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filters the results, based on a Boolean condition.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Selects which properties to include in the response.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Sorts the results.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$top",
+            "in": "query",
+            "description": "Returns only the first n results.",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "$skip",
+            "in": "query",
+            "description": "Skips the first n results.",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "$count",
+            "in": "query",
+            "description": "Includes a count of the matching results in the response.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "$apply",
+            "in": "query",
+            "description": "Specify a sequence of transformations to the entity set, such as groupby, filter, aggregate, etc..",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "supernova-extensions-datamodel.json#/components/schemas/PVString"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/PVStrings/{id}": {
+      "get": {
+        "tags": [ "PVString" ],
+        "operationId": "PVString_Get",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expands related entities inline.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Selects which properties to include in the response.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "supernova-extensions-datamodel.json#/components/schemas/PVString"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/PVStrings/{id}/Devices": {
+      "get": {
+        "tags": [ "PVString" ],
+        "operationId": "PVString_GetDevicesList",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expands related entities inline.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filters the results, based on a Boolean condition.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Selects which properties to include in the response.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Sorts the results.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$top",
+            "in": "query",
+            "description": "Returns only the first n results.",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "$skip",
+            "in": "query",
+            "description": "Skips the first n results.",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "$count",
+            "in": "query",
+            "description": "Includes a count of the matching results in the response.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "$apply",
+            "in": "query",
+            "description": "Specify a sequence of transformations to the entity set, such as groupby, filter, aggregate, etc..",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "supernova-extensions-datamodel.json#/components/schemas/Device"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/PVSystems": {
+      "get": {
+        "tags": [ "PVSystem" ],
+        "operationId": "PVSystem_GetList",
+        "parameters": [
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expands related entities inline.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filters the results, based on a Boolean condition.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Selects which properties to include in the response.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Sorts the results.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$top",
+            "in": "query",
+            "description": "Returns only the first n results.",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "$skip",
+            "in": "query",
+            "description": "Skips the first n results.",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "$count",
+            "in": "query",
+            "description": "Includes a count of the matching results in the response.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "$apply",
+            "in": "query",
+            "description": "Specify a sequence of transformations to the entity set, such as groupby, filter, aggregate, etc..",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "supernova-extensions-datamodel.json#/components/schemas/PVSystem"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/PVSystems/{id}": {
+      "get": {
+        "tags": [ "PVSystem" ],
+        "operationId": "PVSystem_Get",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expands related entities inline.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Selects which properties to include in the response.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "supernova-extensions-datamodel.json#/components/schemas/PVSystem"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/PVSystems/{id}/Devices": {
+      "get": {
+        "tags": [ "PVSystem" ],
+        "operationId": "PVSystem_GetDevicesList",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expands related entities inline.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filters the results, based on a Boolean condition.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Selects which properties to include in the response.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Sorts the results.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$top",
+            "in": "query",
+            "description": "Returns only the first n results.",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "$skip",
+            "in": "query",
+            "description": "Skips the first n results.",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "$count",
+            "in": "query",
+            "description": "Includes a count of the matching results in the response.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "$apply",
+            "in": "query",
+            "description": "Specify a sequence of transformations to the entity set, such as groupby, filter, aggregate, etc..",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "supernova-extensions-datamodel.json#/components/schemas/Device"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/PVSystems/{id}/PVArrays": {
+      "get": {
+        "tags": [ "PVSystem" ],
+        "operationId": "PVSystem_GetPVArraysList",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expands related entities inline.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filters the results, based on a Boolean condition.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Selects which properties to include in the response.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Sorts the results.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "$top",
+            "in": "query",
+            "description": "Returns only the first n results.",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "$skip",
+            "in": "query",
+            "description": "Skips the first n results.",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "$count",
+            "in": "query",
+            "description": "Includes a count of the matching results in the response.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "$apply",
+            "in": "query",
+            "description": "Specify a sequence of transformations to the entity set, such as groupby, filter, aggregate, etc..",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "supernova-extensions-datamodel.json#/components/schemas/PVArray"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "security": [
+    {
+      "bearer": []
+    }
+  ]
+}

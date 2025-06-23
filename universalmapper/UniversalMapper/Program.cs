@@ -3,11 +3,15 @@ using Microsoft.AspNetCore.Http.Json;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using MongoDB.Driver;
+using OrangeButton.Models;
+using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Reflection;
 using System.Text.Json;
 using UniversalMapper;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.AddServiceDefaults();
 
 builder.Services.Configure<JsonOptions>(options =>
 {
@@ -25,17 +29,22 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {
+    options.UseAllOfForInheritance();
+    options.UseOneOfForPolymorphism();
+    options.UseAllOfToExtendReferenceSchemas();
+
     options.SwaggerDoc("v1", new OpenApiInfo
     {
         Version = "v1",
-        Title = "UniversalMapper API",
-        Description = "An Api for multiple idenfiers mapping",
+        Title = "SUPERNOVA Interoperation API 1.0, UniversalMapper service",
+        Description = "An API for multiple identifiers mapping",
     });
 
     options.OrderActionsBy(apiDescription =>
     {
         return apiDescription.RelativePath?.ToLower();
     });
+
     options.AddSecurityDefinition(JwtBearerDefaults.AuthenticationScheme.ToLower(), new OpenApiSecurityScheme
     {
         Description = "JWT Authorization header using the Bearer scheme.",
@@ -61,15 +70,24 @@ builder.Services.AddSwaggerGen(options =>
         }
     });
 
-
     // using System.Reflection;
-    var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    var xmlFilename = $"{System.Reflection.Assembly.GetExecutingAssembly().GetName().Name}.xml";
     options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
+
+    options.MapType<AlternativeIdentifier>(() => new OpenApiSchema()
+    {
+        Reference = new OpenApiReference()
+        {
+            Id = "AlternativeIdentifier",
+            Type = ReferenceType.Schema,
+            ExternalResource = "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/676b4bb1730de5ed871668d652c9a738c47907ee/Master-OB-OpenAPI-2407-0-0.json",
+        }
+    });
 });
 
 builder.Services.AddDbContext<UniversalMapperDbContext>((config) =>
 {
-    var settings = new MongoUrlBuilder(builder.Configuration.GetConnectionString("universalmapper"));
+    var settings = new MongoUrlBuilder(builder.Configuration.GetConnectionString("universalmapper-db"));
     config.UseMongoDB(settings.ToString(), settings.DatabaseName);
 });
 
@@ -95,6 +113,8 @@ builder.Services.AddAuthentication()
 var app = builder.Build();
 
 app.UseHttpsRedirection();
+
+app.MapDefaultEndpoints();
 
 app.UseSwagger();
 app.UseSwaggerUI();

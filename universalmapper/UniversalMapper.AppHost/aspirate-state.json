@@ -1,0 +1,30 @@
+{
+  "projectPath": ".",
+  "outputPath": "..\\deploy\\",
+  "containerImageTags": [
+    "latest"
+  ],
+  "containerBuilder": "docker",
+  "outputFormat": "compose",
+  "privateRegistryEmail": "aspir8@aka.ms",
+  "includeDashboard": true,
+  "secrets": {
+    "salt": "R60dfOrPd7tcDqkz",
+    "hash": "ag0ip0tXs8wiii68svFKTopMdelLkRxi6sjJrBsR5lU=",
+    "secrets": {
+      "mongo-password": {
+        "value": "R60dfOrPd7tcDqkzaSF9M1w7e4LGhRNSqnzOmhl5hNZ4JxgF0SNwTjUd9XJKmuudS9s="
+      },
+      "mongo": {},
+      "universalmapper-db": {},
+      "universalmapper": {
+        "ConnectionStrings__universalmapper-db": "R60dfOrPd7tcDqkz\u002BJ09UQ5mDRW5IkDWbXtguRsvnukvBx5splZFYRIi7ylolNWCItu8iFqZUAbobe2PMSQ/LbNbEUrV9M4zRHMaaZqAvAXJ73hVk3Wo0ezRiUHuT\u002BEAM\u002BlEYBchfJ8J9Vd4UwRIIYnWeJdM9Qnrbo0ZChFK/y0v4z4gmRDUMBFx1u9OiQ=="
+      },
+      "IdentityAuthority": {
+        "value": "R60dfOrPd7tcDqkzAKsAU6sJsNkTvN51zSERpB40hP4zWVN54B1Bawsi9Wpi2NO7ebG/tGOtcCzQXurACX0a"
+      },
+      "mongo-express": {}
+    }
+  },
+  "processAllComponents": true
+}

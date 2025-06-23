@@ -1,0 +1,468 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "SUPERNOVA Interoperation API 1.0 Data Model",
+    "version": "1.0",
+    "description": "Derived by extending the OB OpenAPI Taxonomy 1.1.7"
+  },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "Info": {
+        "type": "object",
+        "description": "...TODO...",
+        "properties": {
+          "Name": {
+            "type": "string",
+            "description": "Name of current service exposed"
+          },
+          "Source": {
+            "type": "string",
+            "description": "Identifier of the platform",
+            "$ref": "supernova-constants.json#/components/schemas/PlatformIdentifier",
+            "x-ob-usage-tips": ""
+          },
+          "Description": {
+            "description": "...TODO...",
+            "type": "string"
+          },
+          "Version": {
+            "description": "...TODO...",
+            "type": "string"
+          },
+          "SupportedDocuments": {
+            "description": "...TODO...",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SupportedDocument"
+            }
+          }
+        }
+      },
+      "SupportedDocument": {
+        "type": "object",
+        "description": "Document supported",
+        "properties": {
+          "Description": {
+            "type": "string"
+          },
+          "DocumentType": {
+            "type": "string",
+            "description": "document type",
+            "x-ob-usate-tips": "text/csv"
+          }
+        }
+      },
+      "Scope": {
+        "type": "object",
+        "description": "...TODO...",
+        "allOf": [
+          {
+            "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/676b4bb1730de5ed871668d652c9a738c47907ee/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/Scope"
+          },
+          {
+            "type": "object",
+            "description": "",
+            "properties": {
+              "AlternativeIdentifier": {
+                "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/676b4bb1730de5ed871668d652c9a738c47907ee/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/AlternativeIdentifier"
+              }
+            }
+          }
+        ]
+      },
+      "Device": {
+        "type": "object",
+        "description": "...TODO...",
+        "allOf": [
+          {
+            "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/676b4bb1730de5ed871668d652c9a738c47907ee/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/Device"
+          },
+          {
+            "type": "object",
+            "description": "",
+            "properties": {
+              "Locations": {
+                "type": "array",
+                "items": {
+                  "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/676b4bb1730de5ed871668d652c9a738c47907ee/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/Location"
+                }
+              },
+              "Connections": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Connection"
+                }
+              },
+              "DeviceTypeId": {
+                "$ref": "supernova-constants.json#/components/schemas/DeviceTypeId"
+              }
+            }
+          }
+        ]
+      },
+      "PVArray": {
+        "type": "object",
+        "description": "...TODO...",
+        "allOf": [
+          {
+            "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/676b4bb1730de5ed871668d652c9a738c47907ee/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/PVArray"
+          },
+          {
+            "type": "object",
+            "description": "State of a Province of the mailing or physical address.",
+            "properties": {
+              "Locations": {
+                "type": "array",
+                "items": {
+                  "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/676b4bb1730de5ed871668d652c9a738c47907ee/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/Location"
+                }
+              }
+            }
+          }
+        ]
+      },
+      "PVString": {
+        "type": "object",
+        "description": "...TODO...",
+        "allOf": [
+          {
+            "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/676b4bb1730de5ed871668d652c9a738c47907ee/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/PVString"
+          },
+          {
+            "type": "object",
+            "description": "State of a Province of the mailing or physical address.",
+            "properties": {
+              "Locations": {
+                "type": "array",
+                "items": {
+                  "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/676b4bb1730de5ed871668d652c9a738c47907ee/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/Location"
+                }
+              }
+            }
+          }
+        ]
+      },
+      "PVSystem": {
+        "type": "object",
+        "description": "...TODO...",
+        "allOf": [
+          {
+            "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/676b4bb1730de5ed871668d652c9a738c47907ee/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/PVString"
+          },
+          {
+            "type": "object",
+            "description": "State of a Province of the mailing or physical address.",
+            "properties": {
+              "Locations": {
+                "type": "array",
+                "items": {
+                  "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/676b4bb1730de5ed871668d652c9a738c47907ee/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/Location"
+                }
+              }
+            }
+          }
+        ]
+      },
+      "Connection": {
+        "type": "object",
+        "description": "...TODO...",
+        "properties": {
+          "ConnectionId": {
+            "$ref": "#/components/schemas/ConnectionId"
+          },
+          "ConnectionType": {
+            "$ref": "#/components/schemas/ConnectionType"
+          },
+          "FromDeviceId": {
+            "$ref": "#/components/schemas/FromDeviceId"
+          },
+          "ToDeviceId": {
+            "$ref": "#/components/schemas/ToDeviceId"
+          }
+        }
+      },
+      "Document": {
+        "type": "object",
+        "description": "...TODO...",
+        "properties": {
+          "DocumentId": {
+            "$ref": "#/components/schemas/DocumentId"
+          },
+          "DocumentName": {
+            "$ref": "#/components/schemas/DocumentName"
+          },
+          "DocumentType": {
+            "$ref": "#/components/schemas/DocumentType"
+          },
+          "DocumentUrl": {
+            "$ref": "#/components/schemas/DocumentUrl"
+          },
+          "DocumentDate": {
+            "$ref": "#/components/schemas/DocumentDate"
+          }
+        }
+      },
+      "ConnectionId": {
+        "allOf": [
+          {
+            "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/676b4bb1730de5ed871668d652c9a738c47907ee/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/TaxonomyElementString"
+          },
+          {
+            "type": "object",
+            "description": "...TODO...",
+            "x-ob-item-type": "StringItemType",
+            "x-ob-usage-tips": "",
+            "x-ob-item-type-group": ""
+          }
+        ]
+      },
+      "ConnectionType": {
+        "allOf": [
+          {
+            "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/676b4bb1730de5ed871668d652c9a738c47907ee/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/TaxonomyElementString"
+          },
+          {
+            "type": "object",
+            "description": "...TODO...",
+            "x-ob-item-type": "StringItemType",
+            "x-ob-usage-tips": "",
+            "x-ob-item-type-group": ""
+          }
+        ]
+      },
+      "FromDeviceId": {
+        "allOf": [
+          {
+            "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/676b4bb1730de5ed871668d652c9a738c47907ee/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/TaxonomyElementString"
+          },
+          {
+            "type": "object",
+            "description": "...TODO...",
+            "x-ob-item-type": "StringItemType",
+            "x-ob-usage-tips": "",
+            "x-ob-item-type-group": ""
+          }
+        ]
+      },
+      "ToDeviceId": {
+        "allOf": [
+          {
+            "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/676b4bb1730de5ed871668d652c9a738c47907ee/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/TaxonomyElementString"
+          },
+          {
+            "type": "object",
+            "description": "...TODO...",
+            "x-ob-item-type": "StringItemType",
+            "x-ob-usage-tips": "",
+            "x-ob-item-type-group": ""
+          }
+        ]
+      },
+      "DocumentId": {
+        "allOf": [
+          {
+            "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/676b4bb1730de5ed871668d652c9a738c47907ee/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/TaxonomyElementString"
+          },
+          {
+            "type": "object",
+            "description": "...TODO...",
+            "x-ob-item-type": "StringItemType",
+            "x-ob-usage-tips": "",
+            "x-ob-item-type-group": ""
+          }
+        ]
+      },
+      "DocumentName": {
+        "allOf": [
+          {
+            "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/676b4bb1730de5ed871668d652c9a738c47907ee/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/TaxonomyElementString"
+          },
+          {
+            "type": "object",
+            "description": "...TODO...",
+            "x-ob-item-type": "StringItemType",
+            "x-ob-usage-tips": "",
+            "x-ob-item-type-group": ""
+          }
+        ]
+      },
+      "DocumentType": {
+        "allOf": [
+          {
+            "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/676b4bb1730de5ed871668d652c9a738c47907ee/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/TaxonomyElementString"
+          },
+          {
+            "type": "object",
+            "description": "...TODO...",
+            "x-ob-item-type": "StringItemType",
+            "x-ob-usage-tips": "",
+            "x-ob-item-type-group": ""
+          }
+        ]
+      },
+      "DocumentUrl": {
+        "allOf": [
+          {
+            "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/676b4bb1730de5ed871668d652c9a738c47907ee/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/TaxonomyElementString"
+          },
+          {
+            "type": "object",
+            "description": "...TODO...",
+            "x-ob-item-type": "StringItemType",
+            "x-ob-usage-tips": "",
+            "x-ob-item-type-group": ""
+          }
+        ]
+      },
+      "DocumentDate": {
+        "allOf": [
+          {
+            "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/676b4bb1730de5ed871668d652c9a738c47907ee/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/TaxonomyElementString"
+          },
+          {
+            "type": "object",
+            "description": "...TODO...",
+            "x-ob-item-type": "StringItemType",
+            "x-ob-usage-tips": "",
+            "x-ob-item-type-group": ""
+          }
+        ]
+      },
+      "GatewayHook": {
+        "type": "object",
+        "properties": {
+          "Name": {
+            "type": "string",
+            "nullable": true
+          },
+          "Parameters": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        }
+      },
+      "GatewayHookExecution": {
+        "type": "object",
+        "properties": {
+          "Id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "HookName": {
+            "type": "string"
+          },
+          "Paramenters": {
+            "type": "object",
+            "additionalProperties": {},
+            "nullable": true
+          },
+          "DateTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "Status": {
+            "$ref": "#/components/schemas/HookStatus"
+          },
+          "Result": {
+            "$ref": "#/components/schemas/GatewayHookResult"
+          }
+        }
+      },
+      "GatewayHookResult": {
+        "type": "object",
+        "properties": {
+          "ExecutionId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "IsSuccessful": {
+            "type": "boolean"
+          },
+          "ResponseUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "DateTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "ExpirationTime": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        }
+      },
+      "HookStatus": {
+        "enum": [ "Created", "Execution", "End" ],
+        "type": "string"
+      },
+      "OMIssue": {
+        "type": "object",
+        "description": "...TODO...",
+        "allOf": [
+          {
+            "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/676b4bb1730de5ed871668d652c9a738c47907ee/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/OMIssue"
+          },
+          {
+            "type": "object",
+            "description": "",
+            "properties": {
+              "AlarmTypeId": {
+                "$ref": "supernova-constants.json#/components/schemas/AlarmTypeId"
+              },
+              "Scope": {
+                "$ref": "#/components/schemas/Scope"
+              }
+            }
+          }
+        ]
+      },
+      "OMTask": {
+        "type": "object",
+        "description": "...TODO...",
+        "allOf": [
+          {
+            "$ref": "https://raw.githubusercontent.com/Open-Orange-Button/Orange-Button-Taxonomy/676b4bb1730de5ed871668d652c9a738c47907ee/Master-OB-OpenAPI-2407-0-0.json#/components/schemas/OMTask"
+          },
+          {
+            "type": "object",
+            "description": "",
+            "properties": {
+              "AlarmTypeId": {
+                "$ref": "supernova-constants.json#/components/schemas/AlarmTypeId"
+              },
+              "Devices": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Device"
+                }
+              },
+              "Documents": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Document"
+                }
+              },
+              "RelatedOMTasks": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/OMTask"
+                }
+              },
+              "Scope": {
+                "$ref": "#/components/schemas/Scope"
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "x-ob-item-types": {},
+  "x-ob-item-type-group": {}
+}

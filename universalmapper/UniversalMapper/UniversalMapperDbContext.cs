@@ -3,7 +3,7 @@ using MongoDB.Bson;
 using System;
 using MongoDB.EntityFrameworkCore.Extensions;
 using OrangeButton.Models;
-using UniversalMapper.Models;
+using UniversalMapper.DBModels;
 
 namespace UniversalMapper;
 
@@ -17,6 +17,11 @@ public class UniversalMapperDbContext : DbContext
     {
         base.OnModelCreating(modelBuilder);
 
+        //ignore additional properties
+        modelBuilder.Ignore<IDictionary<string, object>>();
+        modelBuilder.Ignore<Dictionary<string, object>>();
+
+        //map class
         modelBuilder.Entity<UUIDMap>().ToCollection("uuid-map");
     }
 

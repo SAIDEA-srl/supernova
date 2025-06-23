@@ -1,0 +1,6 @@
+﻿{% if HasInheritance %}
+    {% if BaseClassName contains 'System.Collections.Generic.List<' %}
+    public {{ClassName}}() : base() { }        
+    public {{ClassName}}(IEnumerable<{{ BaseClassName }}> collection) : base(collection) { }
+    {% endif %}
+{% endif %}

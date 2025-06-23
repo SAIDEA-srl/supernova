@@ -7,7 +7,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniversalMapper", "Universa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniversalMapper.AppHost", "UniversalMapper.AppHost\UniversalMapper.AppHost.csproj", "{3849399B-F1B8-4779-B927-53350EDB0F8C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrangeButtonModels", "..\models\dotnet\OrangeButtonModels\OrangeButtonModels.csproj", "{C1D962BC-CCA8-921D-18F5-87A7FC59411A}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Supernova.Models", "..\models\dotnet\Supernova.Models\Supernova.Models.csproj", "{D1E7E8A8-1163-0022-98A3-9B5913EECBB5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrangeButton.Models", "..\models\dotnet\OrangeButton.Models\OrangeButton.Models.csproj", "{D484EA18-CFCD-8C62-1171-62D3BAD22840}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Supernova.Messages.Models", "..\models\dotnet\Supernova.Messages.Models\Supernova.Messages.Models.csproj", "{DE93B365-3280-46F9-BCBF-2514CB15AD7A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniversalMapper.Models", "..\models\dotnet\UniversalMapper.Models\UniversalMapper.Models.csproj", "{CE3A1A3B-EB03-4E06-AF37-C1FBC49F5D03}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +31,22 @@ Global
 		{3849399B-F1B8-4779-B927-53350EDB0F8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3849399B-F1B8-4779-B927-53350EDB0F8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3849399B-F1B8-4779-B927-53350EDB0F8C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C1D962BC-CCA8-921D-18F5-87A7FC59411A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C1D962BC-CCA8-921D-18F5-87A7FC59411A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C1D962BC-CCA8-921D-18F5-87A7FC59411A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C1D962BC-CCA8-921D-18F5-87A7FC59411A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1E7E8A8-1163-0022-98A3-9B5913EECBB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1E7E8A8-1163-0022-98A3-9B5913EECBB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1E7E8A8-1163-0022-98A3-9B5913EECBB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1E7E8A8-1163-0022-98A3-9B5913EECBB5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D484EA18-CFCD-8C62-1171-62D3BAD22840}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D484EA18-CFCD-8C62-1171-62D3BAD22840}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D484EA18-CFCD-8C62-1171-62D3BAD22840}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D484EA18-CFCD-8C62-1171-62D3BAD22840}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE93B365-3280-46F9-BCBF-2514CB15AD7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE93B365-3280-46F9-BCBF-2514CB15AD7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE93B365-3280-46F9-BCBF-2514CB15AD7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE93B365-3280-46F9-BCBF-2514CB15AD7A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE3A1A3B-EB03-4E06-AF37-C1FBC49F5D03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE3A1A3B-EB03-4E06-AF37-C1FBC49F5D03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE3A1A3B-EB03-4E06-AF37-C1FBC49F5D03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE3A1A3B-EB03-4E06-AF37-C1FBC49F5D03}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
