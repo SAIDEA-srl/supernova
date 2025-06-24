@@ -15,6 +15,20 @@ public class RabbitMQService(ConnectionFactory connectionFactory, ILogger<Rabbit
 
     private IConnection? connection = null;
 
+    public async ValueTask UpdateCredential(Credentials credentials)
+    {
+        await semaphore.WaitAsync();
+
+        try
+        {
+            this.connection?.UpdateSecretAsync(credentials.Password, "refresh credential");
+        }
+        finally
+        {
+            semaphore.Release();
+        }
+    }
+
     public async ValueTask DisposeAsync()
     {
         await semaphore.WaitAsync();

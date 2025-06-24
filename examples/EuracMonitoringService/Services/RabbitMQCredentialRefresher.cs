@@ -3,7 +3,9 @@ using RabbitMQ.Client.OAuth2;
 
 namespace EuracMonitoringService.Services;
 
-public class RabbitMQCredentialRefresher(ConnectionFactory connectionFactory,
+public class RabbitMQCredentialRefresher(
+        ConnectionFactory connectionFactory,
+        RabbitMQService rabbitMQService,
         ILogger<RabbitMQCredentialRefresher> logger) : IHostedService
 {
     private CredentialsRefresher clientRefresher = null;
@@ -12,19 +14,17 @@ public class RabbitMQCredentialRefresher(ConnectionFactory connectionFactory,
     {
         if (connectionFactory?.CredentialsProvider != null)
         {
-            this.clientRefresher = new CredentialsRefresher(connectionFactory.CredentialsProvider, (credentials, exception, cancellationToken) =>
+            this.clientRefresher = new CredentialsRefresher(connectionFactory.CredentialsProvider, async (credentials, exception, cancellationToken) =>
             {
                 if (exception != null)
                 {
                     logger.LogError(exception, $"Error refreshing credentials: {exception.Message}");
-                    return Task.FromException(exception);
                 }
                 else
                 {
-                    logger.LogInformation($"Credentials refreshed successfully. {credentials.ValidUntil}");
+                    await rabbitMQService.UpdateCredential(credentials);
+                    logger.LogInformation($"Credentials refreshed successfully. {DateTime.Now.Add(credentials.ValidUntil ?? TimeSpan.Zero)}");
                 }
-
-                return Task.CompletedTask;
             }, cancellationToken);
         }
 
