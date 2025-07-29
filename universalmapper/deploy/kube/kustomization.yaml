@@ -1,9 +1,0 @@
-resources:
-- mongo
-- universalmapper
-- dashboard.yaml
-
-generatorOptions:
-  disableNameSuffixHash: true
-
-

@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Http.Json;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.OpenApi.Models;
 using MongoDB.Driver;
 using OrangeButton.Models;
@@ -10,6 +11,8 @@ using System.Text.Json;
 using UniversalMapper;
 
 var builder = WebApplication.CreateBuilder(args);
+
+bool disableAuth = builder.Configuration.GetValue<bool>("DISABLE_AUTHENTICATION");
 
 builder.AddServiceDefaults();
 
@@ -45,17 +48,19 @@ builder.Services.AddSwaggerGen(options =>
         return apiDescription.RelativePath?.ToLower();
     });
 
-    options.AddSecurityDefinition(JwtBearerDefaults.AuthenticationScheme.ToLower(), new OpenApiSecurityScheme
+    if (disableAuth == false)
     {
-        Description = "JWT Authorization header using the Bearer scheme.",
-        Name = "Authorization",
-        In = ParameterLocation.Header,
-        Type = SecuritySchemeType.Http,
-        Scheme = JwtBearerDefaults.AuthenticationScheme.ToLower(),
-        BearerFormat = "JWT"
-    });
+        options.AddSecurityDefinition(JwtBearerDefaults.AuthenticationScheme.ToLower(), new OpenApiSecurityScheme
+        {
+            Description = "JWT Authorization header using the Bearer scheme.",
+            Name = "Authorization",
+            In = ParameterLocation.Header,
+            Type = SecuritySchemeType.Http,
+            Scheme = JwtBearerDefaults.AuthenticationScheme.ToLower(),
+            BearerFormat = "JWT"
+        });
 
-    options.AddSecurityRequirement(new OpenApiSecurityRequirement
+        options.AddSecurityRequirement(new OpenApiSecurityRequirement
     {
         {
             new OpenApiSecurityScheme
@@ -69,6 +74,7 @@ builder.Services.AddSwaggerGen(options =>
             new List<string>() {}
         }
     });
+    }
 
     // using System.Reflection;
     var xmlFilename = $"{System.Reflection.Assembly.GetExecutingAssembly().GetName().Name}.xml";
@@ -91,8 +97,9 @@ builder.Services.AddDbContext<UniversalMapperDbContext>((config) =>
     config.UseMongoDB(settings.ToString(), settings.DatabaseName);
 });
 
-
-builder.Services.AddAuthentication()
+if (disableAuth == false)
+{
+    builder.Services.AddAuthentication()
     .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
     {
         options.Authority = builder.Configuration.GetValue<string>("IdentityAuthority");
@@ -109,6 +116,7 @@ builder.Services.AddAuthentication()
             },
         };
     });
+}
 
 var app = builder.Build();
 
@@ -119,9 +127,23 @@ app.MapDefaultEndpoints();
 app.UseSwagger();
 app.UseSwaggerUI();
 
-app.UseAuthentication();
-app.UseAuthorization();
+if (disableAuth == false)
+{
+    app.UseAuthentication();
+    app.UseAuthorization();
+    app.MapControllers();
+}
+else
+{
+    Console.WriteLine("Authentication is disabled.");
+    app.MapControllers().AllowAnonymous();
+}
 
-app.MapControllers();
+app.MapGet("/", context =>
+{
+    context.Response.Redirect("/swagger");
+    return System.Threading.Tasks.Task.CompletedTask;
+});
+
 
 app.Run();

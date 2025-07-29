@@ -1,12 +1,8 @@
-# REQUIREMENTS
-dotnet sdk 9.0 or later
+# BUILD 
+> docker compose build .
 
-## INSTALL ASPIRE CLI
-dotnet tool install --global aspire.cli --prerelease
+# CONFIG 
+Modify .env file
 
-## GENERATE DOCKER FILE
-cd UniversalMapper.AppHost
-aspire publish -o ../deploy/unimap
-
-Change the .env file to match your environment variables.
-Change the docker-compose.yml file to map your custom networks and volumes.
+# RUN 
+> docker compose up -d
