@@ -8,6 +8,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniversalMapper.AppHost", "UniversalMapper.AppHost\UniversalMapper.AppHost.csproj", "{3849399B-F1B8-4779-B927-53350EDB0F8C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Supernova.Models", "..\models\dotnet\Supernova.Models\Supernova.Models.csproj", "{D1E7E8A8-1163-0022-98A3-9B5913EECBB5}"
 EndProject
